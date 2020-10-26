@@ -18,11 +18,19 @@ alias vim_="/usr/local/bin/vim"
 
 alias ssh-cam='gcloud beta compute ssh --zone "asia-northeast1-b" "camera-man-dev" --project "upbeat-repeater-291507"'
 
-eval "$(hub alias -s)"
+if which hub &>/dev/null
+then
+    eval "$(hub alias -s)"
+elif which gh &>/dev/null
+then
+    eval "$(gh alias -s)"
+fi
 
-# exec ls when on directry changed (if not $HOME)
 function chpwd() {
-    ls
+    if [ $(ls | wc -l) -le 40 -a $PWD==$HOME ]
+    then
+        ls
+    fi
 }
 
 
