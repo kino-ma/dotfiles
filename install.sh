@@ -1,1 +1,2 @@
-cp -r ./* $HOME/
+#! /bin/sh
+cp -r ./.* $HOME/
