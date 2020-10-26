@@ -1,1 +1,0 @@
-<html><body>You are being <a href="https://raw.githubusercontent.com/bobthecow/git-flow-completion/master/git-flow-completion.zsh">redirected</a>.</body></html>
