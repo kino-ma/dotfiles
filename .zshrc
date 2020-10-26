@@ -16,8 +16,6 @@ alias la='ls -al'
 alias vim="nvim"
 alias vim_="/usr/local/bin/vim"
 
-alias ssh-cam='gcloud beta compute ssh --zone "asia-northeast1-b" "camera-man-dev" --project "upbeat-repeater-291507"'
-
 eval "$(hub alias -s)"
 
 function chpwd() {
