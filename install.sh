@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /usr/bin/env sh
 
 update() {
     cp -r .zshrc .vimrc .zsh .vim ~/ \
@@ -43,15 +43,23 @@ install_gfc() {
 
 
 
-if [ $1 = "--update" ]
+if [ "$1" = "--update" ]
 then
     echo "updating..."
     update
     echo "done"
-elif [ -z $1 ]
+elif [ -z "$1" ]
 then
+    echo "installing..."
+    echo ""
     update
+    echo ""
+    echo "cofiguring vimrc and zshrc has been done."
+    echo "next, install other tools."
+    echo ""
     install_tools
+    echo ""
+    echo "done"
 else
     echo "esage: $0 [FLAGS]"
     echo ""
