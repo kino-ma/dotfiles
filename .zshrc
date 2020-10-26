@@ -105,7 +105,8 @@ export LC_ALL=en_US.UTF-8
 # fi
 
 # Git-Flow AutoComplete
-source ~/.git-flow-completion.zsh
+source ~/.zsh/*.*sh
+
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
