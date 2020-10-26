@@ -1,14 +1,14 @@
 "dein Scripts-----------------------------
 " Required:
-set runtimepath+=/Users/kino-ma/.vim/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/Users/kino-ma/.vim/dein')
-  call dein#begin('/Users/kino-ma/.vim/dein')
+if dein#load_state('~/.vim/dein')
+  call dein#begin('~/.vim/dein')
 
   " Let dein manage dein
   " Required:
-  call dein#add('/Users/kino-ma/.vim/dein/repos/github.com/Shougo/dein.vim')
+  call dein#add('~/.vim/dein/repos/github.com/Shougo/dein.vim')
 
   " Add or remove your plugins here like this:
   "call dein#add('')
