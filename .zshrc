@@ -18,13 +18,7 @@ alias vim_="/usr/local/bin/vim"
 
 alias ssh-cam='gcloud beta compute ssh --zone "asia-northeast1-b" "camera-man-dev" --project "upbeat-repeater-291507"'
 
-if which hub &>/dev/null
-then
-    eval "$(hub alias -s)"
-elif which gh &>/dev/null
-then
-    eval "$(gh alias -s)"
-fi
+eval "$(hub alias -s)"
 
 function chpwd() {
     if [ $(ls | wc -l) -le 40 -a $PWD==$HOME ]
