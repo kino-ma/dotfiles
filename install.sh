@@ -1,12 +1,12 @@
 #! /bin/sh
 
-function update() {
+update() {
     cp -r .zshrc .vimrc .zsh .vim ~/ \
         && cp -r nvim ~/.config/nvim
 }
 
 
-function install_tools() {
+install_tools() {
     if which apt 1>/dev/null
     then
         sudo apt update \
@@ -18,7 +18,7 @@ function install_tools() {
     install_gfc
 }
 
-function isntall_hub() {
+isntall_hub() {
     if which apt 1>/dev/null
     then
         sudo apt update \
@@ -31,13 +31,13 @@ function isntall_hub() {
     fi
 }
 
-function install_dein() {
+install_dein() {
     curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > dein_install.sh \
         && sh ./dein_install.sh ~/.vim/dein 1>/dev/null \
         && rm dein_install.sh
 }
 
-function install_gfc() {
+install_gfc() {
     curl https://raw.githubusercontent.com/bobthecow/git-flow-completion/master/git-flow-completion.zsh > ~/.zsh/git-flow-completion.zsh
 }
 
