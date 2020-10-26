@@ -1,7 +1,7 @@
 #! /usr/bin/env sh
 
 update() {
-    cp -r .zshrc .vimrc .zsh .vim ~/ \
+    cp -r .zshrc .vimrc .zsh .vim .gitconfig .gitignore_global ~/ \
         && cp -r nvim ~/.config/nvim
 }
 
