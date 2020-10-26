@@ -51,9 +51,7 @@ then
 elif [ -z "$1" ]
 then
     echo "installing..."
-    echo ""
     update
-    echo ""
     echo "cofiguring vimrc and zshrc has been done."
     echo "next, install other tools."
     echo ""
