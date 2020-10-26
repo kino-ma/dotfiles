@@ -14,7 +14,7 @@ alias ls='ls --color=auto'
 alias la='ls -al'
 
 alias vim="nvim"
-alias vim_="/usr/local/bin/vim"
+alias vim_='"vim"'
 
 eval "$(hub alias -s)"
 
