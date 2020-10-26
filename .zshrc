@@ -1,5 +1,5 @@
 # set prompt
-PROMPT=$'\e[01;34m%*\e[00m \e[00;32m%c\e[00m $ '
+PROMPT=$'%{\e[01;34m%}%*%{\e[00m%} %{\e[00;32m%}%c%{\e[00m%} $ '
 
 # dan't log out with control+D
 setopt IGNOREEOF
