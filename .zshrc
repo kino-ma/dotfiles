@@ -56,23 +56,12 @@ function cattmp() {
 autoload -U compinit
 compinit
 
-#emacs-like keybind
-bindkey -e
-
 # options about history
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 
 TERM=xterm
-
-# backspace,deleteキーを使えるように
-stty erase ^H
-stty erase "^?"
-bindkey "^D" delete-char-or-list
-bindkey "^H" backward-delete-char
-bindkey "" backward-delete-char
-
 
 VIMTMP="$HOME/.vim/tmp"
 
