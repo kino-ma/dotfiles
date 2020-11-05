@@ -74,8 +74,10 @@ export PATH="$HOME/.ghcup/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:/usr/local/bin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
 
-export PATH="/Users/kino-ma/google-cloud-sdk/bin:$PATH"
 
 
 
-source ~/.zsh/*.*sh
+for rc in $HOME/.zsh/*.*sh
+do
+    source $rc
+done
