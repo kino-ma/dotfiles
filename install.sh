@@ -1,8 +1,15 @@
 #! /usr/bin/env sh
 
 update() {
-    cp -r .zshrc .vimrc .zsh .vim .gitconfig .gitignore_global ~/ \
-        && cp -r nvim ~/.config/nvim
+    git pull \
+        && cp .zshrc .vimrc .gitconfig .gitignore_global ~/ \
+        && cp nvim/* $HOME/.config/nvim/ \
+        && cp .zsh/* $HOME/.zsh/ \
+        && cp .vim/* $HOME/.vim/ \
+}
+
+init_dirs() {
+    mkdir $HOME/{.zsh,.vim,.config/nvim}
 }
 
 
@@ -51,6 +58,7 @@ then
 elif [ -z "$1" ]
 then
     echo "installing..."
+    init_dirs
     update
     echo "cofiguring vimrc and zshrc has been done."
     echo "next, install other tools."
