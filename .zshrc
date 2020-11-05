@@ -74,36 +74,8 @@ export PATH="$HOME/.ghcup/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:/usr/local/bin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
 
-# replace Mac utils with GNU utils
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/binutils/bin:$PATH"
-export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-
 export PATH="/Users/kino-ma/google-cloud-sdk/bin:$PATH"
 
 
 
-export LC_ALL=en_US.UTF-8
-
-
-
-# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-# 
-# if (which zprof > /dev/null 2>&1) ;then
-#   zprof
-# fi
-
 source ~/.zsh/*.*sh
-
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
-export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
-export PATH="/usr/local/Cellar/pyenv/1.2.18/libexec/pyenv:$PATH"
-export PATH="$HOME/.pyenv/shims:$PATH"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/kino-ma/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kino-ma/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/kino-ma/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kino-ma/google-cloud-sdk/completion.zsh.inc'; fi
