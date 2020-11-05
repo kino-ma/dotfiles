@@ -93,7 +93,6 @@ export LC_ALL=en_US.UTF-8
 #   zprof
 # fi
 
-# Git-Flow AutoComplete
 source ~/.zsh/*.*sh
 
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
