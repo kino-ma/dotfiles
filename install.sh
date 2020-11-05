@@ -79,7 +79,7 @@ then
     echo ""
     echo "done"
 else
-    echo "esage: $0 [FLAGS]"
+    echo "usage: $0 [FLAGS]"
     echo ""
     echo "    For default, setup whole enviroment."
     echo ""
