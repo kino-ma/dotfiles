@@ -1,15 +1,16 @@
 #! /usr/bin/env sh
 
 update() {
-    git pull \
+    git pull >> /dev/null \
         && cp .zshrc .vimrc .gitconfig .gitignore_global ~/ \
         && cp nvim/* $HOME/.config/nvim/ \
         && cp .zsh/* $HOME/.zsh/ \
-        && cp .vim/* $HOME/.vim/ \
+        && cp .vim/rc/* $HOME/.vim/rc/ \
+
 }
 
 init_dirs() {
-    mkdir $HOME/{.zsh,.vim,.config/nvim}
+    mkdir -p $HOME/{.zsh,.vim/rc,.config/nvim}
 }
 
 
@@ -53,8 +54,8 @@ install_gfc() {
 if [ "$1" = "--update" ]
 then
     echo "updating..."
-    update
-    echo "done"
+    update \
+        && echo "done"
 elif [ -z "$1" ]
 then
     echo "installing..."
