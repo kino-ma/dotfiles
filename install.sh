@@ -1,4 +1,4 @@
-#! /usr/bin/env sh
+#! /usr/bin/env zsh
 
 update() {
     git pull >> /dev/null \
@@ -7,6 +7,16 @@ update() {
         && cp .zsh/* $HOME/.zsh/ \
         && cp .vim/rc/* $HOME/.vim/rc/ \
 
+}
+
+sureWantTo() {
+    echo -e -n "Are you sure you want to install configuration files?(y/\e[04mn\e[00m): "
+    read answer
+    if [ "$answer" != "y" ]
+    then
+        echo "stop."
+        exit
+    fi
 }
 
 init_dirs() {
@@ -58,6 +68,7 @@ then
         && echo "done"
 elif [ -z "$1" ]
 then
+    sureWantTo
     echo "installing..."
     init_dirs
     update
