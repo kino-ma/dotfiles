@@ -1,4 +1,4 @@
-#! /usr/bin/env zsh
+#! /usr/bin/env bash
 
 update() {
     git pull >> /dev/null \
@@ -10,7 +10,7 @@ update() {
 }
 
 sureWantTo() {
-    echo -e -n "Are you sure you want to install configuration files?(y/\e[04mn\e[00m): "
+    echo -e -n $'Are you sure you want to install configuration files?(y/\e[04mn\e[00m): '
     read answer
     if [ "$answer" != "y" ]
     then
@@ -20,7 +20,7 @@ sureWantTo() {
 }
 
 init_dirs() {
-    mkdir -p $HOME/{.zsh,.vim/rc,.config/nvim}
+    mkdir -p $HOME/{.zsh,.vim/{rc,tmp},.config/nvim}
 }
 
 
