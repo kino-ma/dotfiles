@@ -28,7 +28,7 @@ install_tools() {
     if which apt 1>/dev/null
     then
         sudo apt update \
-            && sudo apt install -y git curl vim neovim
+            && sudo apt install -y zsh git curl vim neovim
     fi
 
     install_hub
@@ -59,6 +59,10 @@ install_gfc() {
     curl https://raw.githubusercontent.com/bobthecow/git-flow-completion/master/git-flow-completion.zsh > ~/.zsh/git-flow-completion.zsh
 }
 
+chsh_zsh() {
+    chsh -s $(which zsh)
+}
+
 
 
 if [ "$1" = "--update" ]
@@ -76,6 +80,7 @@ then
     echo "next, install other tools."
     echo ""
     install_tools
+    chsh_zsh
     echo ""
     echo "done"
 else
