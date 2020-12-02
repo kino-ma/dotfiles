@@ -69,7 +69,8 @@ if [ "$1" = "--update" ]
 then
     echo "updating..."
     update \
-        && echo "done"
+        && echo "done" \
+        && exec $SHELL -l
 elif [ -z "$1" ]
 then
     sureWantTo
