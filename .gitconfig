@@ -10,3 +10,8 @@
 	excludesfile = ~/.gitignore_global
 [pull]
 	ff = only
+[alias]
+	c = commit -m
+	s = status
+	d = diff
+	ds = diff --staged
