@@ -83,6 +83,7 @@ then
     chsh_zsh
     echo ""
     echo "done"
+    exec $SHELL -l
 else
     echo "usage: $0 [FLAGS]"
     echo ""
