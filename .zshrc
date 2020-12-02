@@ -13,10 +13,16 @@ setopt auto_cd
 alias ls='ls --color=auto'
 alias la='ls -al'
 
-alias vim="nvim"
-alias vim_='"vim"'
+if which nvim > /dev/null
+then
+    alias vim="nvim"
+    alias vim_='"vim"'
+fi
 
-eval "$(hub alias -s)"
+if which hub > /dev/null
+then
+    eval "$(hub alias -s)"
+fi
 
 function chpwd() {
     if [ $(ls | wc -l) -le 40 -a $PWD==$HOME ]
