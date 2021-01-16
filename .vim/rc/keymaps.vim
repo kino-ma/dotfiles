@@ -25,16 +25,6 @@ inoremap <C-e> <ESC>A
 inoremap <C-h> <BS>
 inoremap <C-d> <Del>
 
-" inoremap <silent> <C-P> <C-o>ki
-" inoremap <silent> <C-N> <C-o>ji
-" inoremap <silent> <C-F> <C-o>la
-" inoremap <silent> <C-B> <Left>
-" inoremap <silent> <C-A> <C-o>I
-" inoremap <silent> <C-E> <C-o>A
-" inoremap <silent> <C-D> <Right><C-o>x
-
-" inoremap <silent> <C-h> <C-d>
-
 cnoremap <silent> <C-p> <Up>
 cnoremap <silent> <C-n> <Down>
 cnoremap <silent> <C-f> <Right>
@@ -51,18 +41,6 @@ noremap j t
 " shortcuts
 noremap - ^
 noremap _ $
-
-"noremap [ <C-u>
-"noremap ] <C-d>
-
-
-" move line
-" nnoremap <C-Up> "zkk<Up>"zP
-" nnoremap <C-Down> "zkk"zp
-" move lines
-" vnoremap <C-Up> "zx<Up>zP`[V`]
-" vnoremap <C-Down> "zx"zp`[V`]
-
 
 
 " manipulating tabs
@@ -92,6 +70,7 @@ function! g:NextWindow()
     endif
 endfunction
 
+
 " previous window
 function! g:PreviousWindow()
     wincmd W
@@ -105,6 +84,9 @@ nnoremap <silent> <C-d> :call g:PreviousWindow()<CR>
 nnoremap <silent> <C-h> :call g:PreviousTab()<CR>
 nnoremap <silent> <C-t> :call g:NextTab()<CR>
 nnoremap <silent> <C-n> :call g:NextWindow()<CR>
+
+nnoremap <silent> <C-p> <C-u>
+nnoremap <silent> <C-u> <C-d>
 
 
 " useful shortcuts
