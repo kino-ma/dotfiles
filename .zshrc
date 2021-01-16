@@ -1,9 +1,9 @@
 # set prompt
 export PROMPT=$'%{\e[01;34m%}%*%{\e[00m%} %{\e[00;32m%}'$HOST$':%~%{\e[00m%} \n$ '
 
-if which nvim
+if which nvim > /dev/null
 then
-    export EDITOR=$(which nvim > /dev/null)
+    export EDITOR=$(which nvim)
 fi
 
 # dan't log out with control+D
