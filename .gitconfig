@@ -28,40 +28,40 @@
 	c = commit -m
 
     # A new feature
-    commit-feat = !sh -c 'source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'feat'
-    c-feat = !sh -c 'source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'feat'
+    commit-feat = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'feat'"
+    c-feat = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'feat'"
 
     # A bug fix
-    commit-fix = !sh -c 'source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'fix'
-    c-fix = !sh -c 'source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'fix'
+    commit-fix = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'fix'"
+    c-fix = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'fix'"
 
     # A code change that neither fixes a bug nor adds a feature
-    commit-refactor = !sh -c 'source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'refactor'
-    c-refactor = !sh -c 'source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'refactor'
+    commit-refactor = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'refactor'"
+    c-refactor = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'refactor'"
 
     # Adding missing tests or correcting existing tests
-    commit-test = !sh -c 'source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'test'
-    c-test = !sh -c 'source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'test'
+    commit-test = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'test'"
+    c-test = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'test'"
 
     # A code change that improves performance
-    commit-perf = !sh -c 'source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'perf'
-    c-perf = !sh -c 'source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'perf'
+    commit-perf = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'perf'"
+    c-perf = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'perf'"
 
     # Changes that do not affect the meaning of the code
-    commit-style = !sh -c 'source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'style'
-    c-style = !sh -c 'source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'style'
+    commit-style = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'style'"
+    c-style = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'style'"
 
     # Documantation only changes
-    commit-docs = !sh -c 'source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'docs'
-    c-docs = !sh -c 'source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'docs'
+    commit-docs = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'docs'"
+    c-docs = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'docs'"
 
     # Changes that affect the build system or external dependencies
-    commit-build = !sh -c 'source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'build'
-    c-build = !sh -c 'source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'build'
+    commit-build = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'build'"
+    c-build = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'build'"
 
     # Changes to CI configuration files and scripts
-    commit-ci = !sh -c 'source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'ci'
-    c-ci = !sh -c 'source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'ci'
+    commit-ci = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'ci'"
+    c-ci = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'ci'"
 
 
     ##
