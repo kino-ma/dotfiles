@@ -11,31 +11,63 @@
 [pull]
 	ff = only
 [alias]
+    ##
+    #  Shortcut for commands that frequently used
+    ##
+
 	s = status
 	d = diff
 	ds = diff --staged
+
+
+    ##
+    #  Aliases about commiting
+    ##
 
     # commit with message
 	c = commit -m
 
     # A new feature
-    feat-commit = commit -m '[feat]'
+    commit-feat = !git-commit-with-prefix 'feat'
+    c-feat = !git-commit-with-prefix 'feat'
+
     # A bug fix
-    fix-commit = commit -m '[fix]'
+    commit-fix = !git-commit-with-prefix 'fix'
+    c-fix = !git-commit-with-prefix 'fix'
+
     # A code change that neither fixes a bug nor adds a feature
-    refactor-commit = commit -m '[update]'
+    commit-refactor = !git-commit-with-prefix 'refactor'
+    c-refactor = !git-commit-with-prefix 'refactor'
+
     # Adding missing tests or correcting existing tests
-    test-commit = commit -m '[test]'
+    commit-test = !git-commit-with-prefix 'test'
+    c-test = !git-commit-with-prefix 'test'
+
     # A code change that improves performance
-    perf-commit = commit -m '[perf]'
+    commit-perf = !git-commit-with-prefix 'perf'
+    c-perf = !git-commit-with-prefix 'perf'
+
     # Changes that do not affect the meaning of the code
-    style-commit = commit -m '[update]'
+    commit-style = !git-commit-with-prefix 'style'
+    c-style = !git-commit-with-prefix 'style'
+
     # Documantation only changes
-    docs-commit = commit -m '[docs]'
+    commit-docs = !git-commit-with-prefix 'docs'
+    c-docs = !git-commit-with-prefix 'docs'
+
     # Changes that affect the build system or external dependencies
-    build-commit = commit -m '[build]'
+    commit-build = !git-commit-with-prefix 'build'
+    c-build = !git-commit-with-prefix 'build'
+
     # Changes to CI configuration files and scripts
-    ci-commit = commit -m '[ci]'
+    commit-ci = !git-commit-with-prefix 'ci'
+    c-ci = !git-commit-with-prefix 'ci'
+
+
+    ##
+    #  Other useful aliases
+    ##
+
 
     # show commit logs in pretty style
 	gr = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
