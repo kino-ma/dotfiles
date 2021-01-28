@@ -6,6 +6,7 @@ update() {
         && cp nvim/* $HOME/.config/nvim/ \
         && cp .zsh/* $HOME/.zsh/ \
         && cp .vim/rc/* $HOME/.vim/rc/ \
+        && cp .shell_fn/* $HOME/.shell_fn/ \
 
 }
 
@@ -20,7 +21,7 @@ sureWantTo() {
 }
 
 init_dirs() {
-    mkdir -p $HOME/{.zsh,.vim/{rc,tmp},.config/nvim}
+    mkdir -p $HOME/{.zsh,.vim/{rc,tmp},.config/nvim,.shell_fn}
 }
 
 
