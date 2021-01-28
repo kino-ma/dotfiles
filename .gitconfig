@@ -19,23 +19,23 @@
 	c = commit -m
 
     # A new feature
-    c-feat = commit -m '[feat]'
+    feat-commit = commit -m '[feat]'
     # A bug fix
-    c-fix = commit -m '[fix]'
+    fix-commit = commit -m '[fix]'
     # A code change that neither fixes a bug nor adds a feature
-    c-refactor = commit -m '[update]'
+    refactor-commit = commit -m '[update]'
     # Adding missing tests or correcting existing tests
-    c-test = commit -m '[test]'
+    test-commit = commit -m '[test]'
     # A code change that improves performance
-    c-perf = commit -m '[perf]'
+    perf-commit = commit -m '[perf]'
     # Changes that do not affect the meaning of the code
-    c-style = commit -m '[update]'
+    style-commit = commit -m '[update]'
     # Documantation only changes
-    c-docs = commit -m '[docs]'
+    docs-commit = commit -m '[docs]'
     # Changes that affect the build system or external dependencies
-    c-build = commit -m '[build]'
+    build-commit = commit -m '[build]'
     # Changes to CI configuration files and scripts
-    c-ci = commit -m '[ci]'
+    ci-commit = commit -m '[ci]'
 
     # show commit logs in pretty style
 	gr = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
