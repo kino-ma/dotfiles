@@ -69,7 +69,8 @@ chsh_zsh() {
 if [ "$1" = "--update" ]
 then
     echo "updating..."
-    update \
+    init_dirs \
+        && update \
         && echo "done" \
         && exec $SHELL -l
 elif [ -z "$1" ]
