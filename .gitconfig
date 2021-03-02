@@ -28,40 +28,40 @@
 	c = commit -m
 
     # A new feature
-    commit-feat = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'feat'"
-    c-feat = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'feat'"
+    commit-feat = !". $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'feat'"
+    c-feat = !". $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'feat'"
 
     # A bug fix
-    commit-fix = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'fix'"
-    c-fix = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'fix'"
+    commit-fix = !". $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'fix'"
+    c-fix = !". $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'fix'"
 
     # A code change that neither fixes a bug nor adds a feature
-    commit-refactor = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'refactor'"
-    c-refactor = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'refactor'"
+    commit-refactor = !". $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'refactor'"
+    c-refactor = !". $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'refactor'"
 
     # Adding missing tests or correcting existing tests
-    commit-test = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'test'"
-    c-test = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'test'"
+    commit-test = !". $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'test'"
+    c-test = !". $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'test'"
 
     # A code change that improves performance
-    commit-perf = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'perf'"
-    c-perf = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'perf'"
+    commit-perf = !". $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'perf'"
+    c-perf = !". $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'perf'"
 
     # Changes that do not affect the meaning of the code
-    commit-style = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'style'"
-    c-style = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'style'"
+    commit-style = !". $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'style'"
+    c-style = !". $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'style'"
 
     # Documantation only changes
-    commit-docs = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'docs'"
-    c-docs = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'docs'"
+    commit-docs = !". $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'docs'"
+    c-docs = !". $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'docs'"
 
     # Changes that affect the build system or external dependencies
-    commit-build = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'build'"
-    c-build = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'build'"
+    commit-build = !". $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'build'"
+    c-build = !". $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'build'"
 
     # Changes to CI configuration files and scripts
-    commit-ci = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'ci'"
-    c-ci = !"source $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'ci'"
+    commit-ci = !". $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'ci'"
+    c-ci = !". $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'ci'"
 
 
     ##
