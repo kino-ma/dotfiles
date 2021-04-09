@@ -1,11 +1,6 @@
 # set prompt
 export PROMPT=$'%{\e[01;34m%}%*%{\e[00m%} %{\e[00;32m%}'$HOST$':%~%{\e[00m%} \n$ '
 
-if which nvim > /dev/null
-then
-    export EDITOR=$(which nvim)
-fi
-
 # dan't log out with control+D
 setopt IGNOREEOF
 
@@ -20,6 +15,7 @@ alias la='ls -al'
 
 if which nvim > /dev/null
 then
+    export EDITOR=$(which nvim)
     alias vim="nvim"
     alias vim_='"vim"'
 fi
