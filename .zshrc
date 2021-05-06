@@ -1,6 +1,3 @@
-# make prompt expanded before manipulated
-setopt PROMPT_SUBST
-
 # set prompt
 if [[ "$USER" == "kino-ma" ]]
 then
@@ -44,6 +41,9 @@ then
     export EDITOR=$(which nvim)
     alias vim="nvim"
     alias vim_='"vim"'
+elif which vim > /dev/null
+then
+    export EDITOR=$(which vim)
 fi
 
 if which hub > /dev/null
@@ -100,7 +100,7 @@ TERM=xterm
 
 VIMTMP="$HOME/.vim/tmp"
 
-# Ctrl+rでヒストリーのインクリメンタルサーチ、Ctrl+sで逆順
+# Ctrl+r for backward history search and Ctrl+s for forward
 bindkey '^r' history-incremental-pattern-search-backward
 bindkey '^s' history-incremental-pattern-search-forward
 
