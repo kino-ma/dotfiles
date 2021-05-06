@@ -1,3 +1,6 @@
+# make prompt expanded before manipulated
+setopt PROMPT_SUBST
+
 # set prompt
 if [[ "$USER" == "kino-ma" ]]
 then
