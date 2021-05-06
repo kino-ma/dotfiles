@@ -1,9 +1,31 @@
+# make prompt expanded before manipulated
+setopt PROMPT_SUBST
+
 # set prompt
-# ```
-# 00:00:00 hostname:~
-# $
-# ```
-export PROMPT=$'%{\e[01;34m%}%*%{\e[00m%} %(!.%{\e[01;31m%}.%{\e[01;32m%})%m:%~%{\e[00m%} \n$ '
+if [[ "$USER" == "kino-ma" ]]
+then
+    # If I am kino-ma
+    # ```
+    # 00:00:00 hostname:~
+    # $
+    # ```
+    export PROMPT=$'%{\e[01;34m%}%*%{\e[00m%} %{\e[01;32m%}%m:%~%{\e[00m%}\n$ '
+elif [[ "$USER" == "root" ]]
+then
+    # If I am root
+    # ```
+    # 00:00:00 root@hostname:~  # <- red color
+    # $
+    # ```
+    export PROMPT=$'%{\e[01;34m%}%*%{\e[00m%} %{\e[01;33m%}$USER@%(!.%{\e[01;31m%}.%{\e[01;32m%})%m:%~%{\e[00m%}\n$ '
+else
+    # Other
+    # ```
+    # 00:00:00 hoge@hostname:~  # <- green color
+    # $
+    # ```
+    export PROMPT=$'%{\e[01;34m%}%*%{\e[00m%} %{\e[01;33m%}$USER@%(!.%{\e[01;31m%}.%{\e[01;32m%})%m:%~%{\e[00m%}\n$ '
+fi
 
 # dan't log out with control+D
 setopt IGNOREEOF
