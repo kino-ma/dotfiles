@@ -1,5 +1,9 @@
 # set prompt
-export PROMPT=$'%{\e[01;34m%}%*%{\e[00m%} %{\e[00;32m%}'$HOST$':%~%{\e[00m%} \n$ '
+# ```
+# 00:00:00 hostname:~
+# $
+# ```
+export PROMPT=$'%{\e[01;34m%}%*%{\e[00m%} %(!.%{\e[01;31m%}.%{\e[01;32m%})%m:%~%{\e[00m%} \n$ '
 
 # dan't log out with control+D
 setopt IGNOREEOF
