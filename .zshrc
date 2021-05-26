@@ -88,7 +88,7 @@ function cattmp() {
     cat $VIMTMP/$1'~'
 }
 
-alias dcp="docker-compose"
+alias dcp="docker compose"
 
 # hokan
 autoload -U compinit
