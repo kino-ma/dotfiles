@@ -39,17 +39,17 @@ setopt auto_cd
 alias ls='ls --color=auto'
 alias la='ls -al'
 
-if which nvim > /dev/null
+if which nvim &> /dev/null
 then
     export EDITOR=$(which nvim)
     alias vim="nvim"
     alias vim_='"vim"'
-elif which vim > /dev/null
+elif which vim &> /dev/null
 then
     export EDITOR=$(which vim)
 fi
 
-if which hub > /dev/null
+if which hub &> /dev/null
 then
     eval "$(hub alias -s)"
 fi
