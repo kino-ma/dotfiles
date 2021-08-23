@@ -21,6 +21,7 @@ if dein#load_state('~/.vim/dein')
   call dein#add('yuezk/vim-js')                 " js syntax
   call dein#add('HerringtonDarkholme/yats.vim') " typescript syntax
   call dein#add('pangloss/vim-javascript')
+  call dein#add('rhysd/vim-wasm')
 
   " Required:
   call dein#end()
