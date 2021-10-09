@@ -123,8 +123,4 @@ done
 if [[ -e ${ITERM2_INTEGRATIONS:=~/.iterm2_shell_integration.*sh} ]]
 then
     . $ITERM2_integrations
-else
-    shell=${SHELL##*/}
-    curl -L https://iterm2.com/shell_integration/$shell \
-        -o ~/.iterm2_shell_integration.$shell
 fi

@@ -37,6 +37,7 @@ install_tools() {
     install_hub
     install_dein
     install_gfc
+    install_iterm2_integrations
 }
 
 isntall_hub() {
@@ -62,6 +63,9 @@ install_gfc() {
     curl https://raw.githubusercontent.com/bobthecow/git-flow-completion/master/git-flow-completion.zsh > ~/.zsh/git-flow-completion.zsh
 }
 
+isnall_iterm2_integrations() {
+    curl -L https://iterm2.com/shell_integration/install_shell_integration.sh | bash
+}
 chsh_zsh() {
     chsh -s $(which zsh)
 }
