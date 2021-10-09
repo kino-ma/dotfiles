@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+set -euo pipefail
+
 update() {
     git pull >> /dev/null \
         && cp .zshrc .vimrc .gitconfig .gitignore_global ~/ \
