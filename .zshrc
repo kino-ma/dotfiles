@@ -1,3 +1,10 @@
+# first load other rcs
+# because some may include paths configuration
+for rc in $HOME/.zsh/*.*sh
+do
+    source $rc
+done
+
 # make prompt expanded before manipulated
 setopt PROMPT_SUBST
 
@@ -114,11 +121,6 @@ export PATH="$HOME/.cabal/bin:$PATH"
 
 
 
-
-for rc in $HOME/.zsh/*.*sh
-do
-    source $rc
-done
 
 if [[ -e ${ITERM2_INTEGRATIONS:=~/.iterm2_shell_integration.*sh} ]]
 then
