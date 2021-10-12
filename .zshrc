@@ -46,6 +46,11 @@ setopt auto_cd
 alias ls='ls --color=auto'
 alias la='ls -al'
 
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
+
 if which nvim &> /dev/null
 then
     export EDITOR=$(which nvim)
@@ -98,7 +103,7 @@ function cattmp() {
 alias dcp="docker compose"
 
 # hokan
-autoload -U compinit
+autoload -Uz compinit
 compinit
 
 # options about history
