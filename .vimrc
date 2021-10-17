@@ -74,7 +74,7 @@ endfunction
 
 command! Reload call Reload()
 
-let s:scripts = ['settings.vim', 'keymaps.vim', 'terminal.vim', 'binary.vim', 'plugin.vim', 'syntax.vim', 'local'vim']
+let s:scripts = ['settings.vim', 'keymaps.vim', 'terminal.vim', 'binary.vim', 'plugin.vim', 'syntax.vim', 'local.vim']
 
 " load script files
 for s in s:scripts
