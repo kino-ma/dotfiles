@@ -111,11 +111,15 @@ alias dcp="docker compose"
   fi
 } &!
 autoload -Uz compinit
-if [ "$(uname)" = 'Darwin' -a $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ${ZDOTDIR:-$HOME}/.zcompdump) ]; then
+if [ "$(uname)" = 'Darwin' ]; then
+    if [ $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ${ZDOTDIR:-$HOME}/.zcompdump) ]; then
 
-  compinit
+    compinit
+    else
+    compinit -C
+    fi
 else
-  compinit -C
+    compinit -C
 fi
 
 # options about history
