@@ -100,7 +100,12 @@ function cattmp() {
     cat $VIMTMP/$1'~'
 }
 
-alias dcp="docker compose"
+if [[ "$(uname)" == "Linux" ]]
+then
+    alias dcp="docker-compose"
+else
+    alias dcp="docker compose"
+fi
 
 # hokan
 # load completion script in the background
