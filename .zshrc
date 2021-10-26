@@ -43,7 +43,15 @@ setopt correct
 # auto cd
 setopt auto_cd
 
-alias ls='ls --color=auto'
+if ls --version &> /dev/null
+then
+    alias ls='ls --color=auto'
+elif ls -G &> /dev/null
+then
+    export LSCOLORS=ExGxdxdxCxDxDxBxBxegeg
+    alias ls='ls -G'
+fi
+
 alias la='ls -al'
 
 if type brew &>/dev/null
