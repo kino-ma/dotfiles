@@ -67,7 +67,12 @@ isnall_iterm2_integrations() {
     curl -L https://iterm2.com/shell_integration/install_shell_integration.sh | bash
 }
 chsh_zsh() {
-    chsh -s $(which zsh)
+    if which zsh &> /dev/null
+    then
+        chsh -s $(which zsh)
+    else
+        echo 'zsh not found. skipping.'
+    fi
 }
 
 
