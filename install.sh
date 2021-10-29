@@ -79,6 +79,14 @@ then
         && update \
         && echo "done" \
         && exec $SHELL -l
+if [ "$1" = "--init" ]
+then
+    echo "initializing..."
+    init_dirs \
+        && update \
+        && isntall_dein
+        && echo "done" \
+        && exec $SHELL -l
 elif [ -z "$1" ]
 then
     sureWantTo
