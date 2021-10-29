@@ -43,7 +43,15 @@ setopt correct
 # auto cd
 setopt auto_cd
 
-alias ls='ls --color=auto'
+if ls --version &> /dev/null
+then
+    alias ls='ls --color=auto'
+elif ls -G &> /dev/null
+then
+    export LSCOLORS=ExGxdxdxCxDxDxBxBxegeg
+    alias ls='ls -G'
+fi
+
 alias la='ls -al'
 
 if type brew &>/dev/null
@@ -100,7 +108,12 @@ function cattmp() {
     cat $VIMTMP/$1'~'
 }
 
-alias dcp="docker compose"
+if [[ "$(uname)" == "Linux" ]]
+then
+    alias dcp="docker-compose"
+else
+    alias dcp="docker compose"
+fi
 
 # hokan
 # load completion script in the background
@@ -111,11 +124,15 @@ alias dcp="docker compose"
   fi
 } &!
 autoload -Uz compinit
-if [ "$(uname)" = 'Darwin' -a $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ${ZDOTDIR:-$HOME}/.zcompdump) ]; then
+if [ "$(uname)" = 'Darwin' ]; then
+    if [ $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ${ZDOTDIR:-$HOME}/.zcompdump) ]; then
 
-  compinit
+    compinit
+    else
+    compinit -C
+    fi
 else
-  compinit -C
+    compinit -C
 fi
 
 # options about history
