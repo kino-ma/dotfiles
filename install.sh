@@ -84,12 +84,12 @@ then
         && update \
         && echo "done" \
         && exec $SHELL -l
-if [ "$1" = "--init" ]
+elif [ "$1" = "--init" ]
 then
     echo "initializing..."
     init_dirs \
         && update \
-        && isntall_dein
+        && install_dein \
         && echo "done" \
         && exec $SHELL -l
 elif [ -z "$1" ]
