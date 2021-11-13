@@ -5,4 +5,4 @@ git-commit-with-prefix() {
     git commit -m "[$GIT_PREFIX] $GIT_COMMIT_MESSAGE" "$@"
 }
 
-alias xbrew='arch -x86_64 /usr/local/Homebrew/bin/brew'
+alias xbrew='BREW_PREFIX=/usr/local arch -x86_64 /usr/local/Homebrew/bin/brew'

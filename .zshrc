@@ -148,13 +148,6 @@ VIMTMP="$HOME/.vim/tmp"
 bindkey '^r' history-incremental-pattern-search-backward
 bindkey '^s' history-incremental-pattern-search-forward
 
-export PATH="$HOME/go/bin:$PATH"
-export PATH="$HOME/.ghcup/bin:$PATH"
-export PATH="$HOME/.rbenv/shims:/usr/local/bin:$PATH"
-export PATH="$HOME/.cabal/bin:$PATH"
-
-
-
 
 if [[ -e ${ITERM2_INTEGRATIONS:=~/.iterm2_shell_integration.*sh} ]]
 then
