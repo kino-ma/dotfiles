@@ -1,6 +1,7 @@
 [user]
 	name = kino-ma
 	email = kino.ma.ms@gmail.com
+	signingkey = "F0D7A2F02CAE648A"
 [init]
     defaultBranch = main
 [filter "lfs"]
