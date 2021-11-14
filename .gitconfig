@@ -2,6 +2,8 @@
 	name = kino-ma
 	email = ma@kino.ma
 	signingkey = "F0D7A2F02CAE648A"
+[commit]
+    gpgsign = true
 [init]
     defaultBranch = main
 [filter "lfs"]
