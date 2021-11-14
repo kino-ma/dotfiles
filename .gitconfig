@@ -1,6 +1,6 @@
 [user]
 	name = kino-ma
-	email = kino.ma.ms@gmail.com
+	email = ma@kino.ma
 	signingkey = "F0D7A2F02CAE648A"
 [init]
     defaultBranch = main
