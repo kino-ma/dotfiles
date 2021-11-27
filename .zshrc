@@ -148,8 +148,8 @@ VIMTMP="$HOME/.vim/tmp"
 bindkey '^r' history-incremental-pattern-search-backward
 bindkey '^s' history-incremental-pattern-search-forward
 
-
-if [[ -e ${ITERM2_INTEGRATIONS:=~/.iterm2_shell_integration.*sh} ]]
+# not portable, but it's ok because this is *`.zshrc`*
+if [[ -e ${ITERM2_INTEGRATIONS:=~/.iterm2_shell_integration.zsh} ]]
 then
-    . $ITERM2_integrations
+    . $ITERM2_INTEGRATIONS
 fi
