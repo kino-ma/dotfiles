@@ -66,6 +66,7 @@ install_gfc() {
 isnall_iterm2_integrations() {
     curl -L https://iterm2.com/shell_integration/install_shell_integration.sh | bash
 }
+
 chsh_zsh() {
     if which zsh &> /dev/null
     then
@@ -90,6 +91,7 @@ then
     init_dirs \
         && update \
         && install_dein \
+        && install_iterm2_integrations \
         && echo "done" \
         && exec $SHELL -l
 elif [ -z "$1" ]
