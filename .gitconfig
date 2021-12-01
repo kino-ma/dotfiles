@@ -23,6 +23,7 @@
 	s = status
 	d = diff
 	ds = diff --staged
+    force-clean = clean -fdX
 
 
     ##
