@@ -100,9 +100,6 @@ nnoremap <silent> <Leader>Q :w<CR>:bd<CR>
 nnoremap <silent>  o<ESC><UP>
 nnoremap <silent> <Leader><CR> O<ESC>
 
-" escape from input mode
-inoremap <silent> jj <ESC>
-
 " delete left character
 nnoremap <silent> <BS> hx
 
