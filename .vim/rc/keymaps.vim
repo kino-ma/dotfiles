@@ -8,7 +8,6 @@ vnoremap <Space> <Nop>
 " set <Leader> key to <Space>
 let mapleader = "\<Space>"
 
-
 " Dvorak mapping
 noremap d h
 noremap h gj
@@ -128,3 +127,13 @@ nnoremap <silent> <Leader>T :call OpenTermVert()<CR>
 
 " clear highlight and redraw
 nnoremap <silent> <Leader>l :<C-u>nohlsearch<CR><C-l>
+
+" move with CamelCaseMotion for the default
+map <silent> w <Plug>CamelCaseMotion_w
+map <silent> b <Plug>CamelCaseMotion_b
+map <silent> e <Plug>CamelCaseMotion_e
+map <silent> ge <Plug>CamelCaseMotion_ge
+sunmap w
+sunmap b
+sunmap e
+sunmap ge
