@@ -157,5 +157,6 @@ fi
 # Automatically start tmux session on ssh
 if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]
 then
-  tmux -CC attach || tmux -CC
+    start_tmux() { tmux -CC attach || tmux -CC; }
+    exec start_tmux
 fi
