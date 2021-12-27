@@ -153,3 +153,9 @@ if [[ -e ${ITERM2_INTEGRATIONS:=~/.iterm2_shell_integration.zsh} ]]
 then
     . $ITERM2_INTEGRATIONS
 fi
+
+# Automatically start tmux session on ssh
+if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]
+then
+  tmux -CC attach || tmux -CC
+fi
