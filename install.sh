@@ -81,20 +81,21 @@ chsh_zsh() {
 if [ "$1" = "--update" ]
 then
     echo "updating..."
-    init_dirs \
-        && update \
-        && echo "done" \
-        && echo 'Initialization has been completed.'
-        && echo 'You can re-login with `exec $SHELL -l`.'
+    init_dirs
+    update
+    echo
+    echo 'Initialization has been completed.'
+    echo 'You can re-login with `exec $SHELL -l`.'
 elif [ "$1" = "--init" ]
 then
     echo "initializing..."
-    init_dirs \
-        && update \
-        && install_dein \
-        && install_iterm2_integrations \
-        && echo 'Initialization has been completed.'
-        && echo 'You can re-login with `exec $SHELL -l`.'
+    init_dirs
+    update
+    install_dein
+    install_iterm2_integrations
+    echo
+    echo 'Initialization has been completed.'
+    echo 'You can re-login with `exec $SHELL -l`.'
 elif [ -z "$1" ]
 then
     sureWantTo
