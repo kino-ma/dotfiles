@@ -84,7 +84,8 @@ then
     init_dirs \
         && update \
         && echo "done" \
-        && exec $SHELL -l
+        && echo 'Initialization has been completed.'
+        && echo 'You can re-login with `exec $SHELL -l`.'
 elif [ "$1" = "--init" ]
 then
     echo "initializing..."
@@ -92,8 +93,8 @@ then
         && update \
         && install_dein \
         && install_iterm2_integrations \
-        && echo "done" \
-        && exec $SHELL -l
+        && echo 'Initialization has been completed.'
+        && echo 'You can re-login with `exec $SHELL -l`.'
 elif [ -z "$1" ]
 then
     sureWantTo
@@ -106,8 +107,8 @@ then
     install_tools
     chsh_zsh
     echo ""
-    echo "done"
-    exec $SHELL -l
+    echo 'Instllation has been completed.'
+    echo 'You can re-login with `exec $SHELL -l`.'
 else
     echo "usage: $0 [FLAGS]"
     echo ""
