@@ -46,7 +46,17 @@ install_dein() {
         && rm dein_install.sh
 }
 
-install_gfc() {
+install_gitflow() {
+    if [ "$(uname)" = "Linux" ] && which apt > /dev/null
+    then
+        brew install git-flow
+    elif [ "$(uname)" = "Darwin" ]
+        brew install git-flow
+    else
+        echo 'unknown system. skip git-flow'
+        return
+    fi
+
     curl https://raw.githubusercontent.com/bobthecow/git-flow-completion/master/git-flow-completion.zsh > ~/.zsh/git-flow-completion.zsh
 }
 
@@ -76,7 +86,7 @@ install_tools() {
 
     install_hub
     install_dein
-    install_gfc
+    install_gitflow
     install_iterm2_integrations
 }
 
