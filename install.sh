@@ -27,20 +27,7 @@ init_dirs() {
 }
 
 
-install_tools() {
-    if which apt 1>/dev/null
-    then
-        sudo apt update \
-            && sudo apt install -y zsh git curl vim neovim
-    fi
-
-    install_hub
-    install_dein
-    install_gfc
-    install_iterm2_integrations
-}
-
-isntall_hub() {
+install_hub() {
     if which apt 1>/dev/null
     then
         sudo apt update \
@@ -76,9 +63,26 @@ chsh_zsh() {
     fi
 }
 
+install_iterm2_integrations() {
+    curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
+}
 
+install_tools() {
+    if which apt 1>/dev/null
+    then
+        sudo apt update \
+            && sudo apt install -y zsh git curl vim neovim
+    fi
 
-if [ "$1" = "--update" ]
+    install_hub
+    install_dein
+    install_gfc
+    install_iterm2_integrations
+}
+
+OPTION=${1:-}
+
+if [ "$OPTION" = "--update" ]
 then
     echo "updating..."
     init_dirs
@@ -86,7 +90,7 @@ then
     echo
     echo 'Initialization has been completed.'
     echo 'You can re-login with `exec $SHELL -l`.'
-elif [ "$1" = "--init" ]
+elif [ "$OPTION" = "--init" ]
 then
     echo "initializing..."
     init_dirs
@@ -96,7 +100,7 @@ then
     echo
     echo 'Initialization has been completed.'
     echo 'You can re-login with `exec $SHELL -l`.'
-elif [ -z "$1" ]
+elif [ -z "$OPTION" ]
 then
     sureWantTo
     echo "installing..."
