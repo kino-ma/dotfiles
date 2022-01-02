@@ -155,7 +155,7 @@ then
 fi
 
 # Automatically start tmux session on ssh
-if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]] && which tmux >> /dev/null
+if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]] && [[ "$LC_TERMINAL" == "iTerm2" ]] && which tmux >> /dev/null
 then
     start_tmux() { tmux -CC attach || tmux -CC; }
     exec start_tmux
