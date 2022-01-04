@@ -51,6 +51,7 @@ install_gitflow() {
     then
         brew install git-flow
     elif [ "$(uname)" = "Darwin" ]
+    then
         brew install git-flow
     else
         echo 'unknown system. skip git-flow'
