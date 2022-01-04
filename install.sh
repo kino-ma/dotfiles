@@ -27,20 +27,7 @@ init_dirs() {
 }
 
 
-install_tools() {
-    if which apt 1>/dev/null
-    then
-        sudo apt update \
-            && sudo apt install -y zsh git curl vim neovim
-    fi
-
-    install_hub
-    install_dein
-    install_gfc
-    install_iterm2_integrations
-}
-
-isntall_hub() {
+install_hub() {
     if which apt 1>/dev/null
     then
         sudo apt update \
@@ -59,7 +46,17 @@ install_dein() {
         && rm dein_install.sh
 }
 
-install_gfc() {
+install_gitflow() {
+    if [ "$(uname)" = "Linux" ] && which apt > /dev/null
+    then
+        brew install git-flow
+    elif [ "$(uname)" = "Darwin" ]
+        brew install git-flow
+    else
+        echo 'unknown system. skip git-flow'
+        return
+    fi
+
     curl https://raw.githubusercontent.com/bobthecow/git-flow-completion/master/git-flow-completion.zsh > ~/.zsh/git-flow-completion.zsh
 }
 
@@ -76,25 +73,44 @@ chsh_zsh() {
     fi
 }
 
+install_iterm2_integrations() {
+    curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
+}
 
+install_tools() {
+    if which apt 1>/dev/null
+    then
+        sudo apt update \
+            && sudo apt install -y zsh git curl vim neovim
+    fi
 
-if [ "$1" = "--update" ]
+    install_hub
+    install_dein
+    install_gitflow
+    install_iterm2_integrations
+}
+
+OPTION=${1:-}
+
+if [ "$OPTION" = "--update" ]
 then
     echo "updating..."
-    init_dirs \
-        && update \
-        && echo "done" \
-        && exec $SHELL -l
-elif [ "$1" = "--init" ]
+    init_dirs
+    update
+    echo
+    echo 'Initialization has been completed.'
+    echo 'You can re-login with `exec $SHELL -l`.'
+elif [ "$OPTION" = "--init" ]
 then
     echo "initializing..."
-    init_dirs \
-        && update \
-        && install_dein \
-        && install_iterm2_integrations \
-        && echo "done" \
-        && exec $SHELL -l
-elif [ -z "$1" ]
+    init_dirs
+    update
+    install_dein
+    install_iterm2_integrations
+    echo
+    echo 'Initialization has been completed.'
+    echo 'You can re-login with `exec $SHELL -l`.'
+elif [ -z "$OPTION" ]
 then
     sureWantTo
     echo "installing..."
@@ -106,8 +122,8 @@ then
     install_tools
     chsh_zsh
     echo ""
-    echo "done"
-    exec $SHELL -l
+    echo 'Instllation has been completed.'
+    echo 'You can re-login with `exec $SHELL -l`.'
 else
     echo "usage: $0 [FLAGS]"
     echo ""
