@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AddNewTabAtEndOfTabs</key>
+	<false/>
+	<key>AutoHideTmuxClientSession</key>
+	<false/>
 	<key>ClosingTmuxTabKillsTmuxWindows</key>
 	<true/>
 	<key>ClosingTmuxTabKillsTmuxWindows_selection</key>
@@ -382,9 +386,6 @@
 			<integer>0</integer>
 			<key>Jobs to Ignore</key>
 			<array>
-				<string>rlogin</string>
-				<string>ssh</string>
-				<string>slogin</string>
 				<string>telnet</string>
 				<string>vim</string>
 			</array>
@@ -1652,7 +1653,7 @@
 			<key>Disable Window Resizing</key>
 			<true/>
 			<key>Flashing Bell</key>
-			<false/>
+			<true/>
 			<key>Foreground Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -1672,9 +1673,6 @@
 			<integer>0</integer>
 			<key>Jobs to Ignore</key>
 			<array>
-				<string>rlogin</string>
-				<string>ssh</string>
-				<string>slogin</string>
 				<string>telnet</string>
 				<string>vim</string>
 			</array>
@@ -2058,6 +2056,8 @@
 	</array>
 	<key>OnlyWhenMoreTabs</key>
 	<false/>
+	<key>OpenTmuxWindowsIn</key>
+	<integer>1</integer>
 	<key>PMPrintingExpandedStateForPrint2</key>
 	<false/>
 	<key>PasteSpecialRegex</key>
@@ -2139,6 +2139,8 @@
 		<string>Command History</string>
 	</array>
 	<key>UseBorder</key>
+	<true/>
+	<key>UseTmuxStatusBar</key>
 	<true/>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
