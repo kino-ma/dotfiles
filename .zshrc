@@ -62,10 +62,14 @@ fi
 
 alias la='ls -al'
 
+
+# completion sources
 if type brew &>/dev/null
 then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 fi
+
+FPATH="~/.zsh/completion:$FPATH"
 
 if which nvim &> /dev/null
 then

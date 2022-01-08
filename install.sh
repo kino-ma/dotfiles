@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-set -euo pipefail
+set -euxo pipefail
 
 update() {
     git pull >> /dev/null \
@@ -23,7 +23,7 @@ sureWantTo() {
 }
 
 init_dirs() {
-    mkdir -p $HOME/{.zsh,.vim/{rc,tmp},.config/nvim,.shell_fn}
+    mkdir -p $HOME/{.zsh{,completion},.vim/{rc,tmp},.config/nvim,.shell_fn}
 }
 
 
@@ -57,12 +57,6 @@ install_gitflow() {
         echo 'unknown system. skip git-flow'
         return
     fi
-
-    curl https://raw.githubusercontent.com/bobthecow/git-flow-completion/master/git-flow-completion.zsh > ~/.zsh/git-flow-completion.zsh
-}
-
-isnall_iterm2_integrations() {
-    curl -L https://iterm2.com/shell_integration/install_shell_integration.sh | bash
 }
 
 chsh_zsh() {
@@ -71,6 +65,28 @@ chsh_zsh() {
         chsh -s $(which zsh)
     else
         echo 'zsh not found. skipping.'
+    fi
+}
+
+install_completions() {
+    local completion_root
+    completion_root="~/.zsh/completion"
+
+    # Git Flow
+    curl \
+        -L https://raw.githubusercontent.com/bobthecow/git-flow-completion/master/git-flow-completion.zsh \
+        -o "$completion_root/git-flow-completion.zsh"
+    # Docker Compose
+    curl \
+        -L https://raw.githubusercontent.com/docker/compose/1.29.2/contrib/completion/zsh/_docker-compose \
+        -o "$completion_root/_docker-compose"
+
+    # On mac OS, create symbolic link to completion the script pre-installed by Docker Desktop
+    if [[ "$(uname)" == "Darwin" ]]
+    then
+        docker_etc=/Applications/Docker.app/Contents/Resources/etc
+        ln -s $docker_etc/docker.zsh-completion /usr/local/share/zsh/site-functions/_docker
+        ln -s $docker_etc/docker-compose.zsh-completion /usr/local/share/zsh/site-functions/_docker-compose
     fi
 }
 
@@ -88,6 +104,7 @@ install_tools() {
     install_hub
     install_dein
     install_gitflow
+    install_completions
     install_iterm2_integrations
 }
 
@@ -107,6 +124,7 @@ then
     init_dirs
     update
     install_dein
+    install_completions
     install_iterm2_integrations
     echo
     echo 'Initialization has been completed.'
