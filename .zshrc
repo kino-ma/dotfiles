@@ -8,6 +8,14 @@ done
 # make prompt expanded before manipulated
 setopt PROMPT_SUBST
 
+setopt share_history
+
+# completion options
+setopt list_types
+setopt magic_equal_subst
+zstyle ':completion::complete:*' use-cache true
+zstyle ':completion:*' menu select
+
 # set prompt
 if [[ "$USER" == "kino-ma" ]]
 then
