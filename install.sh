@@ -13,6 +13,7 @@ update() {
 }
 
 sureWantTo() {
+    unset -x
     echo -e -n $'Are you sure you want to install configuration files?(y/\e[04mn\e[00m): '
     read answer
     if [ "$answer" != "y" ]
@@ -20,10 +21,11 @@ sureWantTo() {
         echo "stop."
         exit
     fi
+    set -x
 }
 
 init_dirs() {
-    mkdir -p $HOME/{.zsh{,completion},.vim/{rc,tmp},.config/nvim,.shell_fn}
+    mkdir -p $HOME/{.zsh/{,completion},.vim/{rc,tmp},.config/nvim,.shell_fn}
 }
 
 
