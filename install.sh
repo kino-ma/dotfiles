@@ -13,7 +13,7 @@ update() {
 }
 
 sureWantTo() {
-    unset -x
+    set +x
     echo -e -n $'Are you sure you want to install configuration files?(y/\e[04mn\e[00m): '
     read answer
     if [ "$answer" != "y" ]
