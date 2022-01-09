@@ -87,7 +87,7 @@ then
 fi
 
 function chpwd() {
-    if [ $(ls | wc -l) -le 40 -a $PWD==$HOME ]
+    if [ $(ls | wc -l) -le 40 -a "$PWD" = "$HOME" ]
     then
         ls
     fi
