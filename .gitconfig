@@ -4,6 +4,8 @@
 	signingkey = "F0D7A2F02CAE648A"
 [commit]
     gpgsign = true
+[tag]
+    gpgsign = true
 [init]
     defaultBranch = main
 [filter "lfs"]
