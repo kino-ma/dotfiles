@@ -13,6 +13,7 @@ update() {
 }
 
 sureWantTo() {
+    set +x
     echo -e -n $'Are you sure you want to install configuration files?(y/\e[04mn\e[00m): '
     read answer
     if [ "$answer" != "y" ]
@@ -20,10 +21,11 @@ sureWantTo() {
         echo "stop."
         exit
     fi
+    set -x
 }
 
 init_dirs() {
-    mkdir -p $HOME/{.zsh{,completion},.vim/{rc,tmp},.config/nvim,.shell_fn}
+    mkdir -p $HOME/{.zsh/{,completion},.vim/{rc,tmp},.config/nvim,.shell_fn}
 }
 
 
@@ -42,14 +44,14 @@ install_hub() {
 
 install_dein() {
     curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > dein_install.sh \
-        && sh ./dein_install.sh ~/.vim/dein 1>/dev/null \
+        && sh ./dein_install.sh "$HOME/.vim/dein" 1>/dev/null \
         && rm dein_install.sh
 }
 
 install_gitflow() {
     if [ "$(uname)" = "Linux" ] && which apt > /dev/null
     then
-        brew install git-flow
+        sudo apt install git-flow
     elif [ "$(uname)" = "Darwin" ]
     then
         brew install git-flow
@@ -70,7 +72,7 @@ chsh_zsh() {
 
 install_completions() {
     local completion_root
-    completion_root="~/.zsh/completion"
+    completion_root="$HOME/.zsh/completion"
 
     # Git Flow
     curl \
