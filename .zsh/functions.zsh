@@ -6,3 +6,4 @@ git-commit-with-prefix() {
 }
 
 alias xbrew='BREW_PREFIX=/usr/local arch -x86_64 /usr/local/Homebrew/bin/brew'
+alias k='kubectl'
