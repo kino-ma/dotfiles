@@ -24,6 +24,9 @@ inoremap <C-e> <ESC>A
 inoremap <C-h> <BS>
 inoremap <C-d> <Del>
 
+" completion
+inoremap <C-]> <C-n>
+
 cnoremap <silent> <C-p> <Up>
 cnoremap <silent> <C-n> <Down>
 cnoremap <silent> <C-f> <Right>
