@@ -22,7 +22,8 @@ if dein#load_state('~/.vim/dein')
   call dein#add('HerringtonDarkholme/yats.vim') " typescript syntax
   call dein#add('pangloss/vim-javascript')
   call dein#add('rhysd/vim-wasm')
-  call dein#add('bkad/CamelCaseMotion')         " 
+
+  call dein#load_toml('~/.vim/dein.toml')       " load plugins from toml
 
   " Required:
   call dein#end()
