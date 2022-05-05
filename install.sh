@@ -8,7 +8,6 @@ update() {
         && cp nvim/* $HOME/.config/nvim/ \
         && cp .zsh/* $HOME/.zsh/ \
         && cp .vim/rc/* $HOME/.vim/rc/ \
-        && cp .vim/dein.toml $HOME/.vim/. \
         && cp .shell_fn/* $HOME/.shell_fn/ \
 
 }
