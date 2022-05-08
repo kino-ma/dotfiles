@@ -103,11 +103,11 @@ install_tools() {
             && sudo apt install -y zsh git curl vim neovim
     fi
 
-    install_hub
     install_dein
     install_gitflow
     install_completions
     install_iterm2_integrations
+    install_hub
 }
 
 OPTION=${1:-}
