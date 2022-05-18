@@ -151,6 +151,7 @@ fi
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
+export LANG=en_US.UTF-8
 
 TERM=xterm
 
