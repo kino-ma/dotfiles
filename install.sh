@@ -154,5 +154,6 @@ else
     echo "FLAGS:"
     echo "    --update: Only update vimrc and zshrc, without"
     echo "              installing tools."
-    echo ""
+    echo "    --init:   Installs configs and some tools that"
+    echo "              are independent from platforms"
 fi
