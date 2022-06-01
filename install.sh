@@ -60,6 +60,29 @@ install_brew() {
     fi
 }
 
+install_gpg() {
+    if [ "$(uname)" = "Darwin" ]
+    then
+        if [  "$(uname -m)" = "x86_64" ]
+        then
+            brew install gnupg pinentry-mac
+        elif [ "$(uname -m)" = "arm64" ]
+        then
+            xbrew install gnupg pinentry-mac
+        fi
+    elif [ "$(uname)" = "Linux" ] && which apt &>/dev/null
+    then
+        sudo apt install gpg
+    fi
+
+    mkdir -p ~/.gnupg
+    (
+        echo "enable-ssh-support"
+        echo -n "pinentry-program "
+        which pinentry-mac 2>/dev/null || which pinentry
+    ) | tee ~/.gnupg/gpg-agent.conf
+}
+
 install_dein() {
     curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > dein_install.sh \
         && sh ./dein_install.sh "$HOME/.vim/dein" 1>/dev/null \
@@ -117,6 +140,11 @@ install_iterm2_integrations() {
     curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
 }
 
+install_gpg_key() {
+    curl -L https://www.kino.ma/kino-ma.gpg | gpg --import -
+    echo -e "5\ny\n" | gpg --command-fd 0 --expert --edit-key kino-ma trust
+}
+
 install_tools() {
     if which apt 1>/dev/null
     then
@@ -125,6 +153,7 @@ install_tools() {
     fi
 
     install_brew
+    install_gpg
     install_dein
     install_gitflow
     install_completions
@@ -150,6 +179,7 @@ then
     install_dein
     install_completions
     install_iterm2_integrations
+    install_gpg_key
     echo
     echo 'Initialization has been completed.'
     echo 'You can re-login with `exec $SHELL -l`.'
@@ -163,6 +193,7 @@ then
     echo "next, install other tools."
     echo ""
     install_tools
+    install_gpg_key
     chsh_zsh
     echo ""
     echo 'Instllation has been completed.'
