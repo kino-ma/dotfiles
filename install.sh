@@ -2,6 +2,10 @@
 
 set -euxo pipefail
 
+xbrew() {
+    BREW_PREFIX=/usr/local arch -x86_64 /usr/local/Homebrew/bin/brew $*
+}
+
 update() {
     git pull >> /dev/null \
         && cp .zshrc .vimrc .gitconfig .gitignore_global ~/ \
@@ -30,7 +34,7 @@ init_dirs() {
 
 
 install_hub() {
-    if which apt 1>/dev/null
+    if [ "$(uname)" = "Linux" ] && which apt 1>/dev/null
     then
         sudo apt update \
             && sudo apt install -y git curl vim neovim
@@ -39,6 +43,20 @@ install_hub() {
             && sudo apt-add-repository https://cli.github.com/packages \
             && sudo apt update \
             && sudo apt install -y gh hub
+    fi
+}
+
+install_brew() {
+    if [ "$(uname)" = "Darwin" ] && ! which brew >/dev/null
+    then
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+        if [ "$(uname -m)" = "arm64" ];
+        then
+			# Install x86_64 version of brew
+			arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+		fi
+
     fi
 }
 
@@ -52,7 +70,10 @@ install_gitflow() {
     if [ "$(uname)" = "Linux" ] && which apt > /dev/null
     then
         sudo apt install git-flow
-    elif [ "$(uname)" = "Darwin" ]
+    elif [ "$(uname)" = "Darwin" -a "$(uname -m)" = "arm64" ]
+    then
+        xbrew install git-flow
+    elif [ "$(uname)" = "Darwin" -a "$(uname -m)" = "x86_64" ]
     then
         brew install git-flow
     else
@@ -87,8 +108,8 @@ install_completions() {
     if [[ "$(uname)" == "Darwin" ]]
     then
         docker_etc=/Applications/Docker.app/Contents/Resources/etc
-        ln -s $docker_etc/docker.zsh-completion /usr/local/share/zsh/site-functions/_docker
-        ln -s $docker_etc/docker-compose.zsh-completion /usr/local/share/zsh/site-functions/_docker-compose
+        ln -si $docker_etc/docker.zsh-completion /usr/local/share/zsh/site-functions/_docker
+        ln -si $docker_etc/docker-compose.zsh-completion /usr/local/share/zsh/site-functions/_docker-compose
     fi
 }
 
@@ -103,6 +124,7 @@ install_tools() {
             && sudo apt install -y zsh git curl vim neovim
     fi
 
+    install_brew
     install_dein
     install_gitflow
     install_completions
