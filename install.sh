@@ -76,11 +76,20 @@ install_gpg() {
     fi
 
     mkdir -p ~/.gnupg
+
+    # gpg -agent config
     (
+        # enable ssh support
         echo "enable-ssh-support"
+        # set pinentry program
         echo -n "pinentry-program "
         which pinentry-mac 2>/dev/null || which pinentry
     ) | tee ~/.gnupg/gpg-agent.conf
+
+    # use Authentication key for SSH
+    gpg --list-key --with-keygrip | grep --after-context 1 --max-count 1 '\[A\]' | tail -n 1 | grep -Eo '[^ ]+$' | tee ~/.gnupg/sshcontrol
+    echo 'export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"' | tee ~/.zsh/gpg.zsh
+
 }
 
 install_dein() {
