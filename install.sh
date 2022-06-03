@@ -14,7 +14,7 @@ update() {
         && cp .vim/rc/* $HOME/.vim/rc/ \
         && cp .shell_fn/* $HOME/.shell_fn/ \
 
-}
+    }
 
 sureWantTo() {
     set +x
@@ -53,9 +53,9 @@ install_brew() {
 
         if [ "$(uname -m)" = "arm64" ];
         then
-			# Install x86_64 version of brew
-			arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-		fi
+            # Install x86_64 version of brew
+            arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        fi
 
     fi
 }
@@ -79,11 +79,11 @@ install_gpg() {
 
     # gpg -agent config
     (
-        # enable ssh support
-        echo "enable-ssh-support"
-        # set pinentry program
-        echo -n "pinentry-program "
-        which pinentry-mac 2>/dev/null || which pinentry
+    # enable ssh support
+    echo "enable-ssh-support"
+    # set pinentry program
+    echo -n "pinentry-program "
+    which pinentry-mac 2>/dev/null || which pinentry
     ) | tee ~/.gnupg/gpg-agent.conf
 
     # use Authentication key for SSH
@@ -96,7 +96,7 @@ install_dein() {
     curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > dein_install.sh \
         && sh ./dein_install.sh "$HOME/.vim/dein" 1>/dev/null \
         && rm dein_install.sh
-}
+    }
 
 install_gitflow() {
     if [ "$(uname)" = "Linux" ] && which apt > /dev/null
@@ -131,10 +131,10 @@ install_completions() {
     curl \
         -L https://raw.githubusercontent.com/bobthecow/git-flow-completion/master/git-flow-completion.zsh \
         -o "$completion_root/git-flow-completion.zsh"
-    # Docker Compose
-    curl \
-        -L https://raw.githubusercontent.com/docker/compose/1.29.2/contrib/completion/zsh/_docker-compose \
-        -o "$completion_root/_docker-compose"
+            # Docker Compose
+            curl \
+                -L https://raw.githubusercontent.com/docker/compose/1.29.2/contrib/completion/zsh/_docker-compose \
+                -o "$completion_root/_docker-compose"
 
     # On mac OS, create symbolic link to completion the script pre-installed by Docker Desktop
     if [[ "$(uname)" == "Darwin" ]]
