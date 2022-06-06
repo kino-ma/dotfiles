@@ -43,6 +43,9 @@ install_hub() {
             && sudo apt-add-repository https://cli.github.com/packages \
             && sudo apt update \
             && sudo apt install -y gh hub
+    elif [ "$(uname)" = "Darwin" ]
+    then
+        xbrew install hub
     fi
 }
 
