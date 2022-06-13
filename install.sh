@@ -95,6 +95,22 @@ install_gpg() {
 
 }
 
+install_nvim() {
+    if [ "$(uname)" = "Darwin" ]
+    then
+        if [  "$(uname -m)" = "x86_64" ]
+        then
+            brew install neovim
+        elif [ "$(uname -m)" = "arm64" ]
+        then
+            xbrew install neovim
+        fi
+    elif [ "$(uname)" = "Linux" ] && which apt &>/dev/null
+    then
+        sudo apt install neovim
+    fi
+}
+
 install_dein() {
     curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > dein_install.sh \
         && sh ./dein_install.sh "$HOME/.vim/dein" 1>/dev/null \
@@ -166,6 +182,7 @@ install_tools() {
 
     install_brew
     install_gpg
+    install_nvim
     install_dein
     install_gitflow
     install_completions
