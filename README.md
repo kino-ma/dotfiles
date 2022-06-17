@@ -2,6 +2,8 @@
 
 dotfiles of kino-ma
 
+**WARNING**: Executing `./install.sh` installs my GPG Public key with ultimate trust. Do not use without understanding what you are doing.
+
 ## install
 
 ```
