@@ -49,18 +49,12 @@ noremap _ $
 " manipulating tabs
 " next tab
 function! g:NextTab()
-    :bnext
-    "if &buftype ==# 'terminal'
-    "    call g:NextWindow()
-    "endif
+    :tabn
 endfunction
 
 " previous tab
 function! g:PreviousTab()
-    :bprev
-    "if &buftype ==# 'terminal'
-    "    call g:PreviousWindow()
-    "endif
+    :tabN
 endfunction
 
 
@@ -68,7 +62,7 @@ endfunction
 " next window
 function! g:NextWindow()
     wincmd w
-    if &buftype ==# 'terminal'
+    if &buftype ==# 'terminal' || &buftype ==# 'nofile'
         call g:NextWindow()
     endif
 endfunction
@@ -77,7 +71,7 @@ endfunction
 " previous window
 function! g:PreviousWindow()
     wincmd W
-    if &buftype ==# 'terminal'
+    if &buftype ==# 'terminal' || &buftype ==# 'nofile'
         call g:PreviousWindow()
     endif
 endfunction
@@ -121,6 +115,8 @@ nnoremap <silent> <Leader>n :vnew<CR>
 
 nnoremap <silent> <Leader>s :split<CR>
 nnoremap <silent> <Leader>hn :new<CR>
+
+nnoremap <silent> <Leader>e :NERDTreeFocus<CR>
 
 
 " open terminal
