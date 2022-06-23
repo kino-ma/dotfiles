@@ -39,6 +39,7 @@ cnoremap <silent> <C-d> <Del>
 noremap k d
 noremap l n
 noremap j t
+noremap t k
 
 " shortcuts
 noremap - ^

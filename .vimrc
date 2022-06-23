@@ -30,6 +30,11 @@ endif
 filetype plugin indent on
 
 
+" Automatically open NERDTree for all tabs
+autocmd VimEnter * NERDTree
+autocmd BufWinEnter * NERDTreeMirror
+
+
 
 if has("vms")
     set nobackup        " do not keep a backup file, use versions instead

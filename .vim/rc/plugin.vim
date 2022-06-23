@@ -23,6 +23,8 @@ if dein#load_state('~/.vim/dein')
   call dein#add('pangloss/vim-javascript')
   call dein#add('rhysd/vim-wasm')
   call dein#add('bkad/CamelCaseMotion')         " 
+  call dein#add('preservim/nerdtree')           " File explorer with tree view
+  "call dein#add('jistr/vim-nerdtree-tabs')      " Sync NERDTree for all tabs
 
   " Required:
   call dein#end()

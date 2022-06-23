@@ -33,4 +33,7 @@ set scrolloff=8                     " the least scroll row count
 
 set splitbelow
 
+" Always show hidden files in NERDTree
+let NERDTreeShowHidden=1
+
 hi MatchParen ctermfg=Black ctermbg=Brown
