@@ -14,6 +14,23 @@ noremap h gj
 noremap t gk
 noremap n l
 
+noremap k d
+noremap l n
+noremap j t
+noremap t k
+
+" Map t to UP, not Open In New Tab, in netrw & nerdtree mode
+augroup netrw_mapping
+    autocmd!
+    autocmd filetype nerdtree call NetrwMapping()
+    autocmd filetype netrw call NetrwMapping()
+augroup END
+
+function! NetrwMapping()
+    noremap <buffer> t k
+    noremap <buffer> k t
+endfunction
+
 " emacs keybind on insert mode
 inoremap <C-p> <Up>
 inoremap <C-n> <Down>
@@ -34,12 +51,6 @@ cnoremap <silent> <C-b> <Left>
 cnoremap <silent> <C-a> <Home>
 cnoremap <silent> <C-e> <End>
 cnoremap <silent> <C-d> <Del>
-
-
-noremap k d
-noremap l n
-noremap j t
-noremap t k
 
 " shortcuts
 noremap - ^
