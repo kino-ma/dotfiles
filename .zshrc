@@ -1,6 +1,6 @@
 # first load other rcs
 # because some may include paths configuration
-for rc in $HOME/.zsh/*.*sh
+for rc in $HOME/.zsh/*.*sh $HOME/.zsh/local/*.*sh
 do
     source $rc
 done
