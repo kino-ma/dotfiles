@@ -79,6 +79,7 @@ install_gpg() {
     fi
 
     mkdir -p ~/.gnupg
+    chomd go-rwx ~/.gnupg
 
     # gpg -agent config
     (
@@ -88,6 +89,8 @@ install_gpg() {
     echo -n "pinentry-program "
     which pinentry-mac 2>/dev/null || which pinentry
     ) | tee ~/.gnupg/gpg-agent.conf
+
+    install_gpg_key
 
     # use Authentication key for SSH
     gpg --list-key --with-keygrip | grep --after-context 1 --max-count 1 '\[A\]' | tail -n 1 | grep -Eo '[^ ]+$' | tee ~/.gnupg/sshcontrol
@@ -222,7 +225,6 @@ then
     echo "next, install other tools."
     echo ""
     install_tools
-    install_gpg_key
     chsh_zsh
     echo ""
     echo 'Instllation has been completed.'
