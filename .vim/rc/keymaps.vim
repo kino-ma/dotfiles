@@ -103,13 +103,8 @@ nnoremap q :q
 nnoremap <Leader>q :q!
 nnoremap <silent> <Leader>Q :w<CR>:bd<CR>
 
-
-" input CR
-nnoremap <silent>  o<ESC><UP>
-nnoremap <silent> <Leader><CR> O<ESC>
-
-" delete left character
-nnoremap <silent> <BS> hx
+" insert CR
+nnoremap <silent> <Leader><CR> o<ESC><UP>
 
 " treating with clipboard
 nnoremap <Leader>y "+y
