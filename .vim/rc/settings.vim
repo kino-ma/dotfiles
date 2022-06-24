@@ -37,3 +37,7 @@ set splitbelow
 let NERDTreeShowHidden=1
 
 hi MatchParen ctermfg=Black ctermbg=Brown
+
+" Quit vim if NERDTree is the last window
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
