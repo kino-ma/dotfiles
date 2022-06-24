@@ -1,6 +1,6 @@
 # first load other rcs
 # because some may include paths configuration
-for rc in $HOME/.zsh/*.*sh
+for rc in $(find "$HOME/.zsh" -type f -depth 1)
 do
     source $rc
 done
@@ -163,7 +163,7 @@ then
 fi
 
 # Load local script at the last
-for rc in $HOME/.zsh/local/*.*sh
+for rc in $(find "$HOME/.zsh" -name 'local/*.*sh')
 do
     source $rc
 done
