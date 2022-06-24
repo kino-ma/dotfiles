@@ -1,6 +1,6 @@
 # first load other rcs
 # because some may include paths configuration
-for rc in $HOME/.zsh/*.*sh $HOME/.zsh/local/*.*sh
+for rc in $HOME/.zsh/*.*sh
 do
     source $rc
 done
@@ -161,6 +161,12 @@ if [[ -e ${ITERM2_INTEGRATIONS:=~/.iterm2_shell_integration.zsh} ]]
 then
     . $ITERM2_INTEGRATIONS
 fi
+
+# Load local script at the last
+for rc in $HOME/.zsh/local/*.*sh
+do
+    source $rc
+done
 
 # Automatically start tmux session on ssh
 if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]] && [[ "$LC_TERMINAL" == "iTerm2" ]] && which tmux >> /dev/null
