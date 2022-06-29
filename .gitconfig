@@ -35,6 +35,9 @@
     # commit with message
     c = commit -m
 
+    # commit with message, without gpg sign
+    c = commit --no-gpg-sign -m
+
     # A new feature
     commit-feat = !". $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'feat'"
     c-feat = !". $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'feat'"
