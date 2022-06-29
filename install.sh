@@ -77,17 +77,19 @@ install_gpg() {
     then
         sudo apt install gpg
     fi
+}
 
+configure_gpg() {
     mkdir -p ~/.gnupg
-    chomd go-rwx ~/.gnupg
+    chmod go-rwx ~/.gnupg
 
     # gpg -agent config
     (
-    # enable ssh support
-    echo "enable-ssh-support"
-    # set pinentry program
-    echo -n "pinentry-program "
-    which pinentry-mac 2>/dev/null || which pinentry
+        # enable ssh support
+        echo "enable-ssh-support"
+        # set pinentry program
+        echo -n "pinentry-program "
+        { which pinentry-mac 2>/dev/null || which pinentry; } | tail -n 1 | xargs readlink -f
     ) | tee ~/.gnupg/gpg-agent.conf
 
     install_gpg_key
@@ -212,6 +214,7 @@ then
     install_completions
     install_iterm2_integrations
     install_gpg_key
+    configure_gpg
     echo
     echo 'Initialization has been completed.'
     echo 'You can re-login with `exec $SHELL -l`.'
@@ -225,6 +228,7 @@ then
     echo "next, install other tools."
     echo ""
     install_tools
+    configure_gpg
     chsh_zsh
     echo ""
     echo 'Instllation has been completed.'
