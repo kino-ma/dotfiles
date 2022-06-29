@@ -1,7 +1,7 @@
 [user]
-	name = kino-ma
-	email = ma@kino.ma
-	signingkey = "F0D7A2F02CAE648A"
+    name = kino-ma
+    email = ma@kino.ma
+    signingkey = "F0D7A2F02CAE648A"
 [commit]
     gpgsign = true
 [tag]
@@ -9,22 +9,22 @@
 [init]
     defaultBranch = main
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
 [core]
-	excludesfile = ~/.gitignore_global
+    excludesfile = ~/.gitignore_global
 [pull]
-	ff = only
+    ff = only
 [alias]
     ##
     #  Shortcut for commands that frequently used
     ##
 
-	s = status
-	d = diff
-	ds = diff --staged
+    s = status
+    d = diff
+    ds = diff --staged
     force-clean = clean -fdX
 
 
@@ -33,7 +33,7 @@
     ##
 
     # commit with message
-	c = commit -m
+    c = commit -m
 
     # A new feature
     commit-feat = !". $HOME/.shell_fn/cmt_pfx.sh; git_commit_with_prefix 'feat'"
@@ -78,7 +78,7 @@
 
 
     # show commit logs in pretty style
-	gr = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
+    gr = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
 
     # initialize submodules
     m-init = submodule update --init --recursive
