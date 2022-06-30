@@ -96,7 +96,6 @@ configure_gpg() {
 
     # use Authentication key for SSH
     gpg --list-key --with-keygrip | grep --after-context 1 --max-count 1 '\[A\]' | tail -n 1 | grep -Eo '[^ ]+$' | tee ~/.gnupg/sshcontrol
-    echo 'export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"' | tee ~/.zsh/gpg.zsh
 
 }
 
