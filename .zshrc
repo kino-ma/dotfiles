@@ -22,7 +22,6 @@ then
 else
     nix_prefix=''
 fi
-echo $nix_prefix
 
 # set prompt
 if [[ "$USER" == "kino-ma" ]]
