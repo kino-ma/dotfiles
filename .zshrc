@@ -16,6 +16,14 @@ setopt magic_equal_subst
 zstyle ':completion::complete:*' use-cache true
 zstyle ':completion:*' menu select
 
+if [[ -n "$IN_NIX_SHELL" ]]
+then
+    nix_prefix=$'%{\e[36m%}($IN_NIX_SHELL)%{\e[39m%} '
+else
+    nix_prefix=''
+fi
+echo $nix_prefix
+
 # set prompt
 if [[ "$USER" == "kino-ma" ]]
 then
@@ -24,7 +32,7 @@ then
     # 00:00:00 hostname:~
     # $
     # ```
-    export PROMPT=$'%{\e[01;34m%}%*%{\e[00m%} %{\e[01;32m%}%m:%~%{\e[00m%}\n$ '
+    export PROMPT=$'%{\e[01;34m%}%*%{\e[00m%} '$nix_prefix$'%{\e[01;32m%}%m:%~%{\e[00m%}\n$ '
 elif [[ "$USER" == "root" ]]
 then
     # If I am root
@@ -32,14 +40,14 @@ then
     # 00:00:00 root@hostname:~  # <- red color
     # $
     # ```
-    export PROMPT=$'%{\e[01;34m%}%*%{\e[00m%} %{\e[01;33m%}$USER@%(!.%{\e[01;31m%}.%{\e[01;32m%})%m:%~%{\e[00m%}\n$ '
+    export PROMPT=$'%{\e[01;34m%}%*%{\e[00m%} '$nix_prefix$'%{\e[01;33m%}$USER@%(!.%{\e[01;31m%}.%{\e[01;32m%})%m:%~%{\e[00m%}\n$ '
 else
     # Other
     # ```
     # 00:00:00 hoge@hostname:~  # <- green color
     # $
     # ```
-    export PROMPT=$'%{\e[01;34m%}%*%{\e[00m%} %{\e[01;33m%}$USER@%(!.%{\e[01;31m%}.%{\e[01;32m%})%m:%~%{\e[00m%}\n$ '
+    export PROMPT=$'%{\e[01;34m%}%*%{\e[00m%} '$nix_prefix$'%{\e[01;33m%}$USER@%(!.%{\e[01;31m%}.%{\e[01;32m%})%m:%~%{\e[00m%}\n$ '
 fi
 
 # dan't log out with control+D
