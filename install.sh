@@ -201,6 +201,7 @@ then
     echo "updating..."
     init_dirs
     update
+    set +x
     echo
     echo 'Initialization has been completed.'
     echo 'You can re-login with `exec $SHELL -l`.'
@@ -215,6 +216,7 @@ then
     install_gpg_key
     configure_gpg
     echo
+    set +x
     echo 'Initialization has been completed.'
     echo 'You can re-login with `exec $SHELL -l`.'
 elif [ -z "$OPTION" ]
@@ -233,6 +235,7 @@ then
     echo 'Instllation has been completed.'
     echo 'You can re-login with `exec $SHELL -l`.'
 else
+    set +x
     echo "usage: $0 [FLAGS]"
     echo ""
     echo "    For default, setup whole enviroment."
