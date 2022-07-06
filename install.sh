@@ -7,14 +7,13 @@ xbrew() {
 }
 
 update() {
-    git pull >> /dev/null \
-        && cp .zshrc .vimrc .gitconfig .gitignore_global ~/ \
-        && cp nvim/* $HOME/.config/nvim/ \
-        && cp .zsh/* $HOME/.zsh/ \
-        && cp .vim/rc/* $HOME/.vim/rc/ \
-        && cp .shell_fn/* $HOME/.shell_fn/ \
-
-    }
+    git pull >> /dev/null
+    cp .zshrc .vimrc .gitconfig .gitignore_global ~/
+    cp nvim/* $HOME/.config/nvim/
+    cp .zsh/* $HOME/.zsh/
+    cp .vim/rc/* $HOME/.vim/rc/
+    cp .shell_fn/* $HOME/.shell_fn/
+}
 
 sureWantTo() {
     set +x
@@ -36,13 +35,13 @@ init_dirs() {
 install_hub() {
     if [ "$(uname)" = "Linux" ] && which apt 1>/dev/null
     then
-        sudo apt update \
-            && sudo apt install -y git curl vim neovim
+        sudo apt update
+        sudo apt install -y git curl vim neovim
 
-        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0 \
-            && sudo apt-add-repository https://cli.github.com/packages \
-            && sudo apt update \
-            && sudo apt install -y gh hub
+        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+        sudo apt-add-repository https://cli.github.com/packages
+        sudo apt update
+        sudo apt install -y gh hub
     elif [ "$(uname)" = "Darwin" ]
     then
         xbrew install hub
@@ -85,11 +84,12 @@ configure_gpg() {
 
     # gpg -agent config
     (
-        # enable ssh support
-        echo "enable-ssh-support"
-        # set pinentry program
-        echo -n "pinentry-program "
-        { which pinentry-mac 2>/dev/null || which pinentry; } | tail -n 1 | xargs readlink -f
+    # enable ssh support
+    echo "enable-ssh-support"
+    # set pinentry program
+    echo -n "pinentry-program "
+    {
+        which pinentry-mac 2>/dev/null || which pinentry; } | tail -n 1 | xargs readlink -f
     ) | tee ~/.gnupg/gpg-agent.conf
 
     install_gpg_key
@@ -116,9 +116,9 @@ install_nvim() {
 }
 
 install_dein() {
-    curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > dein_install.sh \
-        && sh ./dein_install.sh "$HOME/.vim/dein" 1>/dev/null \
-        && rm dein_install.sh
+    curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > dein_install.sh
+    sh ./dein_install.sh "$HOME/.vim/dein" 1>/dev/null
+    rm dein_install.sh
     }
 
 install_gitflow() {
@@ -154,10 +154,10 @@ install_completions() {
     curl \
         -L https://raw.githubusercontent.com/bobthecow/git-flow-completion/master/git-flow-completion.zsh \
         -o "$completion_root/git-flow-completion.zsh"
-            # Docker Compose
-            curl \
-                -L https://raw.githubusercontent.com/docker/compose/1.29.2/contrib/completion/zsh/_docker-compose \
-                -o "$completion_root/_docker-compose"
+    # Docker Compose
+    curl \
+        -L https://raw.githubusercontent.com/docker/compose/1.29.2/contrib/completion/zsh/_docker-compose \
+        -o "$completion_root/_docker-compose"
 
     # On mac OS, create symbolic link to completion the script pre-installed by Docker Desktop
     if [[ "$(uname)" == "Darwin" ]]
@@ -180,8 +180,8 @@ install_gpg_key() {
 install_tools() {
     if which apt 1>/dev/null
     then
-        sudo apt update \
-            && sudo apt install -y zsh git curl vim neovim
+        sudo apt update
+        sudo apt install -y zsh git curl vim neovim
     fi
 
     install_brew
@@ -225,12 +225,15 @@ then
     echo "installing..."
     init_dirs
     update
+    set +x
     echo "cofiguring vimrc and zshrc has been done."
     echo "next, install other tools."
     echo ""
+    set -x
     install_tools
     configure_gpg
     chsh_zsh
+    set +x
     echo ""
     echo 'Instllation has been completed.'
     echo 'You can re-login with `exec $SHELL -l`.'
