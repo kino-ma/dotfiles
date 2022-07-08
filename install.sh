@@ -194,6 +194,31 @@ install_tools() {
     install_hub
 }
 
+nixos_install() {
+    sudo nix-channel --add "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz" home-manager
+    sudo nix-channel --update
+
+    configure_home_manager "${1:-}"
+}
+
+configure_home_manager() {
+    home_manager_dir="$HOME/.config/nixpkgs"
+    host_env=${1:-default}  # "desktop" or something
+    cwd=$(pwd | xargs readlink -f)
+    ln -fs "$cwd/nix/home.nix" "$home_manager_dir/home.nix"
+
+    custom_pkgs="$cwd/nix/$host_env.nix"
+    if [ -f "$custom_pkgs" ]
+    then
+        ln -fs "$custom_pkgs" "$home_manager_dir/custom-pkgs.nix"
+    fi
+
+    if [ -z "$__HM_SESS_VARS_SOURCED" ]
+    then
+        echo '. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"' | tee -a "$HOME/.profile"
+    fi
+}
+
 OPTION=${1:-}
 
 if [ "$OPTION" = "--update" ]
@@ -219,6 +244,35 @@ then
     set +x
     echo 'Initialization has been completed.'
     echo 'You can re-login with `exec $SHELL -l`.'
+elif [ "$OPTION" = "--nixos" ]
+then
+    echo "Installing for NixOS..."
+
+    host_env=""
+    second_option="${2:-}"
+
+    if [ "$second_option" = "--desktop" ]
+    then
+        host_env="desktop"
+    fi
+
+    nixos_install "$host_env"
+
+    set +x
+    echo -e ""
+    echo -e "configuration done."
+    echo -e ""
+    echo -e "Please edit configuration files as follows:"
+    echo -e "(/etc/nixos/configuration.nix)"
+    echo -e "  {"
+    echo -e "    # ..."
+    echo -e "    imports = [ <home-manager/nixos> ];"
+    echo -e "    home-manager.users.$USER = import $HOME/.config/nixpkgs/home.nix"
+    echo -e "    # ..."
+    echo -e "  }"
+    echo -e ""
+    echo -e "Then, run:"
+    echo -e "\t$ sudo nixos-rebuild switch"
 elif [ -z "$OPTION" ]
 then
     sureWantTo
