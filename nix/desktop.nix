@@ -5,6 +5,7 @@ with pkgs; [
   google-chrome
   pinentry-gnome
   slack
+  tldr
   vscode
   zoom
 ]
