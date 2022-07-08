@@ -19,7 +19,14 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  home.packages = [
-    pkgs.tldr
-  ];
+  nixpkgs.config.allowUnfree = true;
+
+  home.packages = (with pkgs; [
+    git
+    hub
+    htop
+    neovim
+    python3
+    tmux
+  ]) ++ (import /home/kino-ma/.config/nixpkgs/custom-pkgs.nix { pkgs = pkgs; });
 }
