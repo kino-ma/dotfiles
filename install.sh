@@ -268,9 +268,7 @@ then
     set +x
     echo 'Initialization has been completed.'
     echo 'You can re-login with `exec $SHELL -l`.'
-elif [ "$OPTION" = "--nixos" ]
-then
-elif [ (-z "$OPTION") -o ("$OPTION" = "--desktop" ]
+elif [ -z "$OPTION" ] || [ "$OPTION" = "--desktop" ] || [ "$OPTION" = "--no-desktop" ]
 then
     sureWantTo
     echo "installing..."
@@ -321,6 +319,25 @@ then
             if [ "$OPTION" = "--desktop" ]
             then
                 host_env="desktop"
+            elif [ "$OPTION" = "--no-desktop" ]
+            then
+                host_env="default"
+            else
+                while [ -z "$host_env" ]
+                do
+                    echo "Please specify which environment are you setting up:"
+                    echo    "  1) Desktop"
+                    echo    "  2) Non-desktop"
+                    echo -n "1/2?) "
+                    read env_choice
+                    if [ "$env_choice" = "1" ]
+                    then
+                        host_env="desktop"
+                    elif [ "$env_choice" = "2"]
+                    then
+                        host_env="default"
+                    fi
+                done
             fi
 
             nixos_install "$host_env"
