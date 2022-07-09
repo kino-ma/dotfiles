@@ -25,11 +25,15 @@ in
   nixpkgs.config.allowUnfree = true;
 
   home.packages = (with pkgs; [
+    curl
     git
     hub
     htop
+    gnupg
     neovim
     python3
     tmux
+    vim
+    zsh
   ]) ++ (import "${homeDir}/.config/nixpkgs/custom-pkgs.nix" { pkgs = pkgs; });
 }

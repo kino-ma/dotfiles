@@ -119,7 +119,7 @@ install_dein() {
     curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > dein_install.sh
     sh ./dein_install.sh "$HOME/.vim/dein" 1>/dev/null
     rm dein_install.sh
-    }
+}
 
 install_gitflow() {
     if [ "$(uname)" = "Linux" ] && which apt > /dev/null
@@ -154,6 +154,7 @@ install_completions() {
     curl \
         -L https://raw.githubusercontent.com/bobthecow/git-flow-completion/master/git-flow-completion.zsh \
         -o "$completion_root/git-flow-completion.zsh"
+
     # Docker Compose
     curl \
         -L https://raw.githubusercontent.com/docker/compose/1.29.2/contrib/completion/zsh/_docker-compose \
@@ -163,8 +164,8 @@ install_completions() {
     if [[ "$(uname)" == "Darwin" ]]
     then
         docker_etc=/Applications/Docker.app/Contents/Resources/etc
-        ln -si $docker_etc/docker.zsh-completion /usr/local/share/zsh/site-functions/_docker
-        ln -si $docker_etc/docker-compose.zsh-completion /usr/local/share/zsh/site-functions/_docker-compose
+        ln -sf $docker_etc/docker.zsh-completion /usr/local/share/zsh/site-functions/_docker
+        ln -sf $docker_etc/docker-compose.zsh-completion /usr/local/share/zsh/site-functions/_docker-compose
     fi
 }
 
@@ -177,21 +178,11 @@ install_gpg_key() {
     echo -e "5\ny\n" | gpg --command-fd 0 --expert --edit-key kino-ma trust
 }
 
-install_tools() {
-    if which apt 1>/dev/null
-    then
-        sudo apt update
-        sudo apt install -y zsh git curl vim neovim
-    fi
-
-    install_brew
-    install_gpg
-    install_nvim
+init() {
     install_dein
-    install_gitflow
     install_completions
     install_iterm2_integrations
-    install_hub
+    configure_gpg
 }
 
 darwin_install() {
@@ -205,10 +196,10 @@ darwin_install() {
     if [ -z "$(which darwin-rebuild 2> /dev/null)" ]
     then
         (
-            cd /tmp
-            nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
-            ./result/bin/darwin-installer
-        )
+        cd /tmp
+        nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
+        ./result/bin/darwin-installer
+    )
     fi
 
     nix_darwin_dir="$HOME/.nixpkgs"
@@ -272,68 +263,86 @@ then
     echo "initializing..."
     init_dirs
     update
-    install_dein
-    install_completions
-    install_iterm2_integrations
-    install_gpg_key
-    configure_gpg
+    init
     echo
     set +x
     echo 'Initialization has been completed.'
     echo 'You can re-login with `exec $SHELL -l`.'
 elif [ "$OPTION" = "--nixos" ]
 then
-    echo "Installing for NixOS..."
-
-    host_env=""
-    second_option="${2:-}"
-
-    if [ "$second_option" = "--desktop" ]
-    then
-        host_env="desktop"
-    fi
-
-    nixos_install "$host_env"
-
-    set +x
-    echo -e ""
-    echo -e "configuration done."
-    echo -e ""
-    echo -e "Please edit configuration files as follows:"
-    echo -e "(/etc/nixos/configuration.nix)"
-    echo -e "  {"
-    echo -e "    # ..."
-    echo -e "    imports = [ <home-manager/nixos> ];"
-    echo -e "    home-manager.users.$USER = import $HOME/.config/nixpkgs/home.nix"
-    echo -e "    # ..."
-    echo -e "  }"
-    echo -e ""
-    echo -e "Then, run:"
-    echo -e "\t$ sudo nixos-rebuild switch"
-elif [ -z "$OPTION" ]
+elif [ (-z "$OPTION") -o ("$OPTION" = "--desktop" ]
 then
-    echo "Installing for Darwin..."
+    sureWantTo
+    echo "installing..."
 
-    darwin_install "darwin"
+    init_dirs
+    update
+    set +x
+    echo "cofiguring vimrc and zshrc has been done."
+    echo "next, install system environment."
+    echo ""
+    set -x
 
-    darwin-rebuild switch
+    if [ "$(uname)" = "Darwin" ]
+    then
+        echo "Installing for Darwin..."
 
-    #sureWantTo
-    #echo "installing..."
-    #init_dirs
-    #update
-    #set +x
-    #echo "cofiguring vimrc and zshrc has been done."
-    #echo "next, install other tools."
-    #echo ""
-    #set -x
-    #install_tools
-    #configure_gpg
-    #chsh_zsh
-    #set +x
-    #echo ""
-    #echo 'Instllation has been completed.'
-    #echo 'You can re-login with `exec $SHELL -l`.'
+        darwin_install "darwin"
+        darwin-rebuild switch
+        install_brew
+        install_gitflow
+        init
+        set +x
+        echo ""
+        echo 'Instllation has been completed.'
+        echo 'You can re-login with `exec $SHELL -l`.'
+    elif [ "$(uname)" = "Linux" ]
+    then
+        if [ -n "$(which apt 2>/dev/null)" ]
+        then
+            echo "Installing for Ubuntu/Debian..."
+            sudo apt update
+            install_gitflow
+            install_gpg
+
+            init
+            set +x
+            echo ""
+            echo 'Instllation has been completed.'
+            echo 'You can re-login with `exec $SHELL -l`.'
+        fi
+
+        if [ -n "$(which nixos-version 2>/dev/null)" ]
+        then
+            echo "Installing for NixOS..."
+
+            host_env="default"
+
+            if [ "$OPTION" = "--desktop" ]
+            then
+                host_env="desktop"
+            fi
+
+            nixos_install "$host_env"
+            init
+
+            set +x
+            echo -e ""
+            echo -e "configuration done."
+            echo -e ""
+            echo -e "Please edit configuration files as follows:"
+            echo -e "(/etc/nixos/configuration.nix)"
+            echo -e "  {"
+            echo -e "    # ..."
+            echo -e "    imports = [ <home-manager/nixos> ];"
+            echo -e "    home-manager.users.$USER = import $HOME/.config/nixpkgs/home.nix"
+            echo -e "    # ..."
+            echo -e "  }"
+            echo -e ""
+            echo -e "Then, run:"
+            echo -e "\t$ sudo nixos-rebuild switch"
+        fi
+    fi
 else
     set +x
     echo "usage: $0 [FLAGS]"
