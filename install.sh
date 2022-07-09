@@ -194,6 +194,41 @@ install_tools() {
     install_hub
 }
 
+darwin_install() {
+    if [ -z "$NIX_PROFILES" ]
+    then
+        sh <(curl -L https://nixos.org/nix/install)
+    else
+        echo "Nix already installed. Skipped"
+    fi
+
+    if [ -z "$(which darwin-rebuild 2> /dev/null)" ]
+    then
+        (
+            cd /tmp
+            nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
+            ./result/bin/darwin-installer
+        )
+    fi
+
+    nix_darwin_dir="$HOME/.nixpkgs"
+    cwd=$(pwd | xargs readlink -f)
+    ln -fs "$cwd/darwin/darwin-configuration.nix" "$nix_darwin_dir/darwin-configuration.nix"
+
+    local_config="$nix_darwin_dir/local-configuration.nix"
+    if [ ! -f "$local_config" ]
+    then
+        echo "generating local-configuration.nix..."
+        echo '{ config, pkgs, ... }: {}' | tee "$local_config"
+
+    fi
+
+    nix-channel --add "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz" home-manager
+    nix-channel --update
+
+    configure_home_manager "${1:-darwin}"
+}
+
 nixos_install() {
     sudo nix-channel --add "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz" home-manager
     sudo nix-channel --update
@@ -205,6 +240,8 @@ configure_home_manager() {
     home_manager_dir="$HOME/.config/nixpkgs"
     host_env=${1:-default}  # "desktop" or something
     cwd=$(pwd | xargs readlink -f)
+
+    mkdir -p "$home_manager_dir"
     ln -fs "$cwd/nix/home.nix" "$home_manager_dir/home.nix"
 
     custom_pkgs="$cwd/nix/$host_env.nix"
@@ -213,7 +250,7 @@ configure_home_manager() {
         ln -fs "$custom_pkgs" "$home_manager_dir/custom-pkgs.nix"
     fi
 
-    if [ -z "$__HM_SESS_VARS_SOURCED" ]
+    if [ -z "${__HM_SESS_VARS_SOURCED:-}" ]
     then
         echo '. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"' | tee -a "$HOME/.profile"
     fi
@@ -275,22 +312,28 @@ then
     echo -e "\t$ sudo nixos-rebuild switch"
 elif [ -z "$OPTION" ]
 then
-    sureWantTo
-    echo "installing..."
-    init_dirs
-    update
-    set +x
-    echo "cofiguring vimrc and zshrc has been done."
-    echo "next, install other tools."
-    echo ""
-    set -x
-    install_tools
-    configure_gpg
-    chsh_zsh
-    set +x
-    echo ""
-    echo 'Instllation has been completed.'
-    echo 'You can re-login with `exec $SHELL -l`.'
+    echo "Installing for Darwin..."
+
+    darwin_install "darwin"
+
+    darwin-rebuild switch
+
+    #sureWantTo
+    #echo "installing..."
+    #init_dirs
+    #update
+    #set +x
+    #echo "cofiguring vimrc and zshrc has been done."
+    #echo "next, install other tools."
+    #echo ""
+    #set -x
+    #install_tools
+    #configure_gpg
+    #chsh_zsh
+    #set +x
+    #echo ""
+    #echo 'Instllation has been completed.'
+    #echo 'You can re-login with `exec $SHELL -l`.'
 else
     set +x
     echo "usage: $0 [FLAGS]"
