@@ -314,7 +314,7 @@ then
         then
             echo "Installing for NixOS..."
 
-            host_env="default"
+            host_env=""
 
             if [ "$OPTION" = "--desktop" ]
             then
@@ -323,6 +323,7 @@ then
             then
                 host_env="default"
             else
+                set +x
                 while [ -z "$host_env" ]
                 do
                     echo "Please specify which environment are you setting up:"
@@ -333,11 +334,12 @@ then
                     if [ "$env_choice" = "1" ]
                     then
                         host_env="desktop"
-                    elif [ "$env_choice" = "2"]
+                    elif [ "$env_choice" = "2" ]
                     then
                         host_env="default"
                     fi
                 done
+                set -x
             fi
 
             nixos_install "$host_env"
