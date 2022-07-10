@@ -204,7 +204,7 @@ darwin_install() {
 
     nix_darwin_dir="$HOME/.nixpkgs"
     cwd=$(pwd | xargs readlink -f)
-    ln -fs "$cwd/darwin/darwin-configuration.nix" "$nix_darwin_dir/darwin-configuration.nix"
+    ln -fs "$cwd/system-config/darwin-configuration.nix" "$nix_darwin_dir/darwin-configuration.nix"
 
     local_config="$nix_darwin_dir/local-configuration.nix"
     if [ ! -f "$local_config" ]
