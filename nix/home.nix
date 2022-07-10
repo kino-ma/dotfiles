@@ -1,13 +1,9 @@
 { config, pkgs, ... }:
-let
-  homeDir = builtins.getEnv "HOME";
 
-in
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "kino-ma";
-  home.homeDirectory = homeDir;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -29,11 +25,8 @@ in
     git
     hub
     htop
-    gnupg
     neovim
-    python3
     tmux
     vim
-    zsh
-  ]) ++ (import "${homeDir}/.config/nixpkgs/custom-pkgs.nix" { pkgs = pkgs; });
+  ]);
 }

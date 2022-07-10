@@ -224,7 +224,26 @@ nixos_install() {
     sudo nix-channel --add "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz" home-manager
     sudo nix-channel --update
 
+    configure_nixos_system
     configure_home_manager "${1:-}"
+}
+
+configure_nixos_system() {
+    config="/etc/nixos/configuration.nix"
+    config_bak="$config.dotfiles-bak"
+    local_config="/etc/nixos/configuration.nix"
+
+    if [ ! -f "$config_bak" ]
+    then
+        sudo cp "/etc/nixos/configuration.nix" "$config_bak"
+    fi
+
+    sudo cp "./system-config/nixos-configuration.nix" "$config"
+
+    if [ ! -f "$config_bak" ]
+    then
+        sudo cp "/etc/nixos/configuration.nix" "$config_bak"
+    fi
 }
 
 configure_home_manager() {
@@ -235,10 +254,10 @@ configure_home_manager() {
     mkdir -p "$home_manager_dir"
     ln -fs "$cwd/nix/home.nix" "$home_manager_dir/home.nix"
 
-    custom_pkgs="$cwd/nix/$host_env.nix"
-    if [ -f "$custom_pkgs" ]
+    custom="$cwd/nix/$host_env.nix"
+    if [ -f "$custom" ]
     then
-        ln -fs "$custom_pkgs" "$home_manager_dir/custom-pkgs.nix"
+        ln -fs "$custom" "$home_manager_dir/custom.nix"
     fi
 
     if [ -z "${__HM_SESS_VARS_SOURCED:-}" ]
@@ -344,6 +363,8 @@ then
 
             nixos_install "$host_env"
             init
+
+            sudo nixos-rebuild switch
 
             set +x
             echo -e ""
