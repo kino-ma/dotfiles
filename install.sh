@@ -209,9 +209,7 @@ darwin_install() {
     local_config="$nix_darwin_dir/local-configuration.nix"
     if [ ! -f "$local_config" ]
     then
-        echo "generating local-configuration.nix..."
-        echo '{ config, pkgs, ... }: {}' | tee "$local_config"
-
+        cp "$cwd/system-config/darwin-local-configuration.nix" "$local_config"
     fi
 
     nix-channel --add "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz" home-manager
@@ -260,7 +258,7 @@ configure_home_manager() {
         ln -fs "$custom" "$home_manager_dir/custom.nix"
     fi
 
-    if [ -z "${__HM_SESS_VARS_SOURCED:-}" ]
+    if ! grep 'hm-session-vars.sh' "$HOME/.profile" >& /dev/null
     then
         echo '. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"' | tee -a "$HOME/.profile"
     fi

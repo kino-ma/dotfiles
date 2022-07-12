@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ <home-manager/nix-darwin> ];
+  imports = [
+    <home-manager/nix-darwin>
+    "/Users/kino-ma/.nixpkgs/local-configuration.nix"
+  ];
   users.users.kino-ma = {
     name = "kino-ma";
     home = "/Users/kino-ma";
