@@ -111,7 +111,9 @@ install_nvim() {
         fi
     elif [ "$(uname)" = "Linux" ] && which apt &>/dev/null
     then
-        sudo apt install neovim
+        sudo add-apt-repository ppa:neovim-ppa/stable
+        sudo apt-get update
+        sudo apt-get install neovim
     fi
 }
 
@@ -319,6 +321,7 @@ then
             sudo apt update
             install_gitflow
             install_gpg
+            install_nvim
 
             init
             set +x
