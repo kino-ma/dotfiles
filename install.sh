@@ -188,14 +188,15 @@ init() {
 }
 
 darwin_install() {
-    if [ -z "$NIX_PROFILES" ]
+    if [ -z "${NIX_PROFILES-}" ]
     then
         sh <(curl -L https://nixos.org/nix/install)
+        source /etc/bashrc || true
     else
         echo "Nix already installed. Skipped"
     fi
 
-    if [ -z "$(which darwin-rebuild 2> /dev/null)" ]
+    if ! which darwin-rebuild 2> /dev/null
     then
         (
         cd /tmp
@@ -263,6 +264,7 @@ configure_home_manager() {
     if ! grep 'hm-session-vars.sh' "$HOME/.profile" >& /dev/null
     then
         echo '. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"' | tee -a "$HOME/.profile"
+        . ~/.profile
     fi
 }
 
