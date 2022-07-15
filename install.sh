@@ -266,10 +266,7 @@ configure_home_manager() {
     fi
 }
 
-OPTION=${1:-}
-
-if [ "$OPTION" = "--update" ]
-then
+run_update() {
     echo "updating..."
     init_dirs
     update
@@ -277,8 +274,9 @@ then
     echo
     echo 'Initialization has been completed.'
     echo 'You can re-login with `exec $SHELL -l`.'
-elif [ "$OPTION" = "--init" ]
-then
+}
+
+run_init() {
     echo "initializing..."
     init_dirs
     update
@@ -287,6 +285,123 @@ then
     set +x
     echo 'Initialization has been completed.'
     echo 'You can re-login with `exec $SHELL -l`.'
+}
+
+run_usage() {
+    set +x
+    echo "usage: $0 [FLAGS]"
+    echo ""
+    echo "    For default, setup whole enviroment."
+    echo ""
+    echo ""
+    echo "FLAGS:"
+    echo "    --update: Only update vimrc and zshrc, without"
+    echo "              installing tools."
+    echo "    --init:   Installs configs and some tools that"
+    echo "              are independent from platforms"
+}
+
+run_darwin() {
+    echo "Installing for Darwin..."
+
+    darwin_install "darwin"
+    darwin-rebuild switch
+    install_brew
+    install_gitflow
+    init
+    set +x
+    echo ""
+    echo 'Instllation has been completed.'
+    echo 'You can re-login with `exec $SHELL -l`.'
+}
+
+run_debian() {
+    echo "Installing for Ubuntu/Debian..."
+    sudo apt update
+    install_gitflow
+    install_gpg
+    install_nvim
+
+    init
+    set +x
+    echo ""
+    echo 'Instllation has been completed.'
+    echo 'You can re-login with `exec $SHELL -l`.'
+}
+
+run_nixos() {
+    echo "Installing for NixOS..."
+
+    host_env=""
+
+    if [ "$OPTION" = "--desktop" ]
+    then
+        host_env="desktop"
+    elif [ "$OPTION" = "--no-desktop" ]
+    then
+        host_env="default"
+    else
+        set +x
+        while [ -z "$host_env" ]
+        do
+            echo "Please specify which environment are you setting up:"
+            echo    "  1) Desktop"
+            echo    "  2) Non-desktop"
+            echo -n "1/2?) "
+            read env_choice
+            if [ "$env_choice" = "1" ]
+            then
+                host_env="desktop"
+            elif [ "$env_choice" = "2" ]
+            then
+                host_env="default"
+            fi
+        done
+        set -x
+    fi
+
+    nixos_install "$host_env"
+    init
+
+    sudo nixos-rebuild switch
+
+    set +x
+    echo -e ""
+    echo -e "configuration done."
+    echo -e ""
+    echo -e "Please edit configuration files as follows:"
+    echo -e "(/etc/nixos/configuration.nix)"
+    echo -e "  {"
+    echo -e "    # ..."
+    echo -e "    imports = [ <home-manager/nixos> ];"
+    echo -e "    home-manager.users.$USER = import $HOME/.config/nixpkgs/home.nix"
+    echo -e "    # ..."
+    echo -e "  }"
+    echo -e ""
+    echo -e "Then, run:"
+    echo -e "\t$ sudo nixos-rebuild switch"
+}
+
+run_linux() {
+    if [ -n "$(which apt 2>/dev/null)" ]
+    then
+        run_debian
+    fi
+
+    if [ -n "$(which nixos-version 2>/dev/null)" ]
+    then
+        run_nixos
+    fi
+}
+
+OPTION=${1:-}
+
+if [ "$OPTION" = "--update" ]
+then
+    run_update
+elif [ "$OPTION" = "--init" ]
+then
+    run_init
 elif [ -z "$OPTION" ] || [ "$OPTION" = "--desktop" ] || [ "$OPTION" = "--no-desktop" ]
 then
     sureWantTo
@@ -302,98 +417,11 @@ then
 
     if [ "$(uname)" = "Darwin" ]
     then
-        echo "Installing for Darwin..."
-
-        darwin_install "darwin"
-        darwin-rebuild switch
-        install_brew
-        install_gitflow
-        init
-        set +x
-        echo ""
-        echo 'Instllation has been completed.'
-        echo 'You can re-login with `exec $SHELL -l`.'
+        run_darwin
     elif [ "$(uname)" = "Linux" ]
     then
-        if [ -n "$(which apt 2>/dev/null)" ]
-        then
-            echo "Installing for Ubuntu/Debian..."
-            sudo apt update
-            install_gitflow
-            install_gpg
-            install_nvim
-
-            init
-            set +x
-            echo ""
-            echo 'Instllation has been completed.'
-            echo 'You can re-login with `exec $SHELL -l`.'
-        fi
-
-        if [ -n "$(which nixos-version 2>/dev/null)" ]
-        then
-            echo "Installing for NixOS..."
-
-            host_env=""
-
-            if [ "$OPTION" = "--desktop" ]
-            then
-                host_env="desktop"
-            elif [ "$OPTION" = "--no-desktop" ]
-            then
-                host_env="default"
-            else
-                set +x
-                while [ -z "$host_env" ]
-                do
-                    echo "Please specify which environment are you setting up:"
-                    echo    "  1) Desktop"
-                    echo    "  2) Non-desktop"
-                    echo -n "1/2?) "
-                    read env_choice
-                    if [ "$env_choice" = "1" ]
-                    then
-                        host_env="desktop"
-                    elif [ "$env_choice" = "2" ]
-                    then
-                        host_env="default"
-                    fi
-                done
-                set -x
-            fi
-
-            nixos_install "$host_env"
-            init
-
-            sudo nixos-rebuild switch
-
-            set +x
-            echo -e ""
-            echo -e "configuration done."
-            echo -e ""
-            echo -e "Please edit configuration files as follows:"
-            echo -e "(/etc/nixos/configuration.nix)"
-            echo -e "  {"
-            echo -e "    # ..."
-            echo -e "    imports = [ <home-manager/nixos> ];"
-            echo -e "    home-manager.users.$USER = import $HOME/.config/nixpkgs/home.nix"
-            echo -e "    # ..."
-            echo -e "  }"
-            echo -e ""
-            echo -e "Then, run:"
-            echo -e "\t$ sudo nixos-rebuild switch"
-        fi
+        run_linux
     fi
 else
-    set +x
-    echo "usage: $0 [FLAGS]"
-    echo ""
-    echo "    For default, setup whole enviroment."
-    echo ""
-    echo ""
-    echo "FLAGS:"
-    echo "    --update: Only update vimrc and zshrc, without"
-    echo "              installing tools."
-    echo "    --init:   Installs configs and some tools that"
-    echo "              are independent from platforms"
+    run_usage
 fi
