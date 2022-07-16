@@ -301,6 +301,28 @@ run_usage() {
     echo "              are independent from platforms"
 }
 
+run_install() {
+    sureWantTo
+    echo "installing..."
+
+    init_dirs
+    update
+    set +x
+    echo "cofiguring vimrc and zshrc has been done."
+    echo "next, install system environment."
+    echo ""
+    set -x
+
+    if [ "$(uname)" = "Darwin" ]
+    then
+        run_darwin
+    elif [ "$(uname)" = "Linux" ]
+    then
+        run_linux
+    fi
+
+}
+
 run_darwin() {
     echo "Installing for Darwin..."
 
@@ -394,34 +416,17 @@ run_linux() {
     fi
 }
 
-OPTION=${1:-}
+export OPTION=${1:-}
 
 if [ "$OPTION" = "--update" ]
 then
-    run_update
+    run_update $@
 elif [ "$OPTION" = "--init" ]
 then
-    run_init
+    run_init $@
 elif [ -z "$OPTION" ] || [ "$OPTION" = "--desktop" ] || [ "$OPTION" = "--no-desktop" ]
 then
-    sureWantTo
-    echo "installing..."
-
-    init_dirs
-    update
-    set +x
-    echo "cofiguring vimrc and zshrc has been done."
-    echo "next, install system environment."
-    echo ""
-    set -x
-
-    if [ "$(uname)" = "Darwin" ]
-    then
-        run_darwin
-    elif [ "$(uname)" = "Linux" ]
-    then
-        run_linux
-    fi
+    run_install $@
 else
-    run_usage
+    run_usage $@
 fi
