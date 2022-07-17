@@ -289,16 +289,18 @@ run_init() {
 
 run_usage() {
     set +x
-    echo "usage: $0 [FLAGS]"
-    echo ""
-    echo "    For default, setup whole enviroment."
-    echo ""
-    echo ""
-    echo "FLAGS:"
-    echo "    --update: Only update vimrc and zshrc, without"
-    echo "              installing tools."
-    echo "    --init:   Installs configs and some tools that"
-    echo "              are independent from platforms"
+    cat << EOS
+usage: $0 [FLAGS]
+
+    For default, setup whole enviroment.
+
+
+FLAGS:
+    --update: Only update vimrc and zshrc, without
+              installing tools.
+    --init:   Installs configs and some tools that
+              are independent from platforms
+EOS
 }
 
 run_install() {
@@ -332,9 +334,11 @@ run_darwin() {
     install_gitflow
     init
     set +x
-    echo ""
-    echo 'Instllation has been completed.'
-    echo 'You can re-login with `exec $SHELL -l`.'
+    cat << 'EOS'
+
+Instllation has been completed.
+You can re-login with `exec $SHELL -l`.
+EOS
 }
 
 run_debian() {
@@ -346,9 +350,11 @@ run_debian() {
 
     init
     set +x
-    echo ""
-    echo 'Instllation has been completed.'
-    echo 'You can re-login with `exec $SHELL -l`.'
+    cat << 'EOS'
+
+Instllation has been completed.'
+You can re-login with `exec $SHELL -l`.'
+EOS
 }
 
 run_nixos() {
@@ -366,9 +372,12 @@ run_nixos() {
         set +x
         while [ -z "$host_env" ]
         do
-            echo "Please specify which environment are you setting up:"
-            echo    "  1) Desktop"
-            echo    "  2) Non-desktop"
+            cat << EOS
+
+Please specify which environment are you setting up:
+  1) Desktop
+  2) Non-desktop
+EOS
             echo -n "1/2?) "
             read env_choice
             if [ "$env_choice" = "1" ]
@@ -388,20 +397,22 @@ run_nixos() {
     sudo nixos-rebuild switch
 
     set +x
-    echo -e ""
-    echo -e "configuration done."
-    echo -e ""
-    echo -e "Please edit configuration files as follows:"
-    echo -e "(/etc/nixos/configuration.nix)"
-    echo -e "  {"
-    echo -e "    # ..."
-    echo -e "    imports = [ <home-manager/nixos> ];"
-    echo -e "    home-manager.users.$USER = import $HOME/.config/nixpkgs/home.nix"
-    echo -e "    # ..."
-    echo -e "  }"
-    echo -e ""
-    echo -e "Then, run:"
-    echo -e "\t$ sudo nixos-rebuild switch"
+    cat << EOS
+
+configuration done.
+
+Please edit configuration files as follows:
+(/etc/nixos/configuration.nix)
+  {
+    # ...
+    imports = [ <home-manager/nixos> ];
+    home-manager.users.$USER = import $HOME/.config/nixpkgs/home.nix
+    # ...
+  }
+
+Then, run:
+	$ sudo nixos-rebuild switch
+EOS
 }
 
 run_linux() {
