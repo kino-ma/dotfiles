@@ -33,6 +33,7 @@ filetype plugin indent on
 " Automatically open NERDTree for all tabs
 autocmd VimEnter * NERDTree | wincmd w
 autocmd BufWinEnter * NERDTreeMirror
+let NERDTreeMapOpenInTab='<ENTER>'
 
 
 
