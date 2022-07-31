@@ -8,6 +8,7 @@
     slack
     tldr
     vscode
+    xclip
     zoom
   ]);
 }
