@@ -11,6 +11,22 @@
     xclip
     xdotool
     zoom
+
+    # Japanese input
+    fcitx5-mozc
+    #fcitx-engines.anthy
+
+    ## Fonts
+    #noto-fonts
+    #noto-fonts-extra
+    #noto-fonts-cjk
+    #noto-fonts-emoji
+    #fira-code
+    #fira-code-symbols
+    ##mplus-outline-fonts
+    #dina-font
+    #proggyfonts
+    #dejavu_fonts
   ]);
 
   dconf.settings = {

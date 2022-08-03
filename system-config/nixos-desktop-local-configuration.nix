@@ -59,6 +59,18 @@
     ];
   };
 
+  #fontconfig = {
+  #   enable = true;
+
+  #   defaultFonts = {
+  #     sansSerif = [ "Noto Sans CJK JP" "DejaVu Sans" ];
+  #     serif = [ "Noto Serif JP" "DejaVu Serif" ];
+  #   };
+
+  #   subpixel = { lcdfilter = "light"; };
+  #  };
+  # };
+
   # Japanese input
   i18n.inputMethod = {
     enabled = "fcitx";
