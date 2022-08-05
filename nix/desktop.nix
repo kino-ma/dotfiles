@@ -36,4 +36,10 @@
       name = "Move curosr to the center of active window";
     };
   };
+
+  services.gpg-agent = {
+    enable = true;
+    enableSshSupport = true;
+    sshKeys = [ "176574DCBA1AC7D10845FC11D19AC6E381325B36" ];
+  };
 }
