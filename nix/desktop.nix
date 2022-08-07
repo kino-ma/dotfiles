@@ -37,9 +37,10 @@
     };
   };
 
-  services.gpg-agent = {
-    enable = true;
-    enableSshSupport = true;
-    sshKeys = [ "176574DCBA1AC7D10845FC11D19AC6E381325B36" ];
-  };
+  # FIXME: We cannot use both of gpg-agent.conf and Home Manager configuration like below
+  # services.gpg-agent = {
+  #   enable = true;
+  #   enableSshSupport = true;
+  #   sshKeys = [ "176574DCBA1AC7D10845FC11D19AC6E381325B36" ];
+  # };
 }
