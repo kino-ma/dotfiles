@@ -1,14 +1,5 @@
 { pkgs, lib, ... }:
 
-let
-  emptyArray = {
-    _type = "gvariant";
-    type = "@as";
-    value = [];
-    __toString = self: "@${self.type} ${toString self.value}";
-  };
-
-in
 {
   home.packages = (with pkgs; [
     discord
@@ -23,19 +14,6 @@ in
 
     # Japanese input
     fcitx5-mozc
-    #fcitx-engines.anthy
-
-    ## Fonts
-    #noto-fonts
-    #noto-fonts-extra
-    #noto-fonts-cjk
-    #noto-fonts-emoji
-    #fira-code
-    #fira-code-symbols
-    ##mplus-outline-fonts
-    #dina-font
-    #proggyfonts
-    #dejavu_fonts
   ]);
 
   dconf.enable = true;
