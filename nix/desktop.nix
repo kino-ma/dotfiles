@@ -1,5 +1,14 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
+let
+  emptyArray = {
+    _type = "gvariant";
+    type = "@as";
+    value = [];
+    __toString = self: "@${self.type} ${toString self.value}";
+  };
+
+in
 {
   home.packages = (with pkgs; [
     discord
@@ -29,7 +38,15 @@
     #dejavu_fonts
   ]);
 
+  dconf.enable = true;
   dconf.settings = {
+    "org/gnome/desktop/wm/keybindings" = {
+      "cycle-windows" = [];
+      "cycle-windows-backward" = [];
+      "switch-windows" = [ "<Alt>Escape" ];
+      "switch-windows-backward" = [ "<Shift><Alt>Escape" ];
+    };
+
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       binding = "<Control><Alt>a";
       command ="/home/kino-ma/dotfiles/scripts/move-cursor-center.sh";
