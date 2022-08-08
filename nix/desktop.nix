@@ -18,6 +18,18 @@
 
   dconf.enable = true;
   dconf.settings = {
+    "org/gnome/desktop/input-sources" = {
+      per-window = true;
+      sources = [ (lib.hm.gvariant.mkTuple [ "xkb" "us+dvorak" ]) ];
+      xkb-options = [ "terminate:ctrl_alt_bksp" ];
+    };
+
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+      enable-hot-corners = false;
+      locate-pointer = true;
+    };
+
     "org/gnome/desktop/wm/keybindings" = {
       "cycle-windows" = [];
       "cycle-windows-backward" = [];
