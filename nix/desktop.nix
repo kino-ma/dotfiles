@@ -30,6 +30,10 @@
       locate-pointer = true;
     };
 
+    "org/gnome/desktop/peripherals/mouse" = {
+      natural-scroll = true;
+    };
+
     "org/gnome/desktop/wm/keybindings" = {
       "cycle-windows" = [];
       "cycle-windows-backward" = [];
