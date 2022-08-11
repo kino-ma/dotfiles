@@ -15,15 +15,25 @@ update() {
     cp .shell_fn/* $HOME/.shell_fn/
 }
 
+prompt_yes() {
+    set +x
+    echo -e -n "${1:-}"
+    read 'answer'
+    set -x
+    [ "$answer" = 'y' ]
+}
+
 sureWantTo() {
     set +x
-    echo -e -n $'Are you sure you want to install configuration files?(y/\e[04mn\e[00m): '
-    read answer
-    if [ "$answer" != "y" ]
+    prompt_text=$'Are you sure you want to install configuration files?(y/\e[04mn\e[00m): '
+
+    if ! prompt_yes "$prompt_text"
     then
+        set +x
         echo "stop."
         exit
     fi
+
     set -x
 }
 
