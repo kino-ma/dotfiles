@@ -15,6 +15,16 @@ update() {
     cp .shell_fn/* $HOME/.shell_fn/
 }
 
+echo_done() {
+    set +x
+    cat << 'EOS'
+
+Instllation has been completed.'
+You can re-login with `exec $SHELL -l`.'
+EOS
+    set -x
+}
+
 prompt_yes() {
     set +x
     echo -e -n "${1:-}"
@@ -345,12 +355,8 @@ run_darwin() {
     install_brew
     install_gitflow
     init
-    set +x
-    cat << 'EOS'
 
-Instllation has been completed.
-You can re-login with `exec $SHELL -l`.
-EOS
+    echo_done
 }
 
 run_debian() {
@@ -361,12 +367,8 @@ run_debian() {
     install_nvim
 
     init
-    set +x
-    cat << 'EOS'
 
-Instllation has been completed.'
-You can re-login with `exec $SHELL -l`.'
-EOS
+    echo_done
 }
 
 run_nixos() {
@@ -408,23 +410,7 @@ EOS
 
     sudo nixos-rebuild switch
 
-    set +x
-    cat << EOS
-
-configuration done.
-
-Please edit configuration files as follows:
-(/etc/nixos/configuration.nix)
-  {
-    # ...
-    imports = [ <home-manager/nixos> ];
-    home-manager.users.$USER = import $HOME/.config/nixpkgs/home.nix
-    # ...
-  }
-
-Then, run:
-	$ sudo nixos-rebuild switch
-EOS
+    echo_done
 }
 
 run_linux() {
