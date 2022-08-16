@@ -45,6 +45,8 @@
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/move-cursor-center/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/open-slack/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/open-discord/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/open-google-chrome/"
       ];
     };
 
@@ -58,6 +60,18 @@
       binding = "<Control><Alt>s";
       command = "/home/kino-ma/dotfiles/scripts/open-app.sh slack";
       name = "Open Slack app";
+    };
+
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/open-discord" = {
+      binding = "<Control><Alt>d";
+      command = "/home/kino-ma/dotfiles/scripts/open-app.sh discord";
+      name = "Open Discord app";
+    };
+
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/open-google-chrome" = {
+      binding = "<Control><Alt>c";
+      command = "/home/kino-ma/dotfiles/scripts/open-app.sh google-chrome";
+      name = "Open Google Chrome app";
     };
   };
 

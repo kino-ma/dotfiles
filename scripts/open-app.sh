@@ -1,1 +1,1 @@
-xdotool search --onlyvisible --name "$1" windowactivate --sync || "${2:-$1}"
+xdotool search --onlyvisible --class "$1" windowactivate --sync || "${2:-$1}"
