@@ -41,10 +41,23 @@
       "switch-windows-backward" = [ "<Shift><Alt>Escape" ];
     };
 
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      custom-keybindings = [
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/move-cursor-center/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/open-slack/"
+      ];
+    };
+
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/move-cursor-center" = {
       binding = "<Control><Alt>a";
       command ="/home/kino-ma/dotfiles/scripts/move-cursor-center.sh";
       name = "Move curosr to the center of active window";
+    };
+
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/open-slack" = {
+      binding = "<Control><Alt>s";
+      command = "/home/kino-ma/dotfiles/scripts/open-app.sh slack";
+      name = "Open Slack app";
     };
   };
 
