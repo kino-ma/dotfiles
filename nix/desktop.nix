@@ -47,6 +47,7 @@
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/open-slack/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/open-discord/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/open-google-chrome/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/open-terminal/"
       ];
     };
 
@@ -72,6 +73,12 @@
       binding = "<Control><Alt>c";
       command = "/home/kino-ma/dotfiles/scripts/open-app.sh google-chrome";
       name = "Open Google Chrome app";
+    };
+
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/open-terminal" = {
+      binding = "<Control><Alt>t";
+      command = "/home/kino-ma/dotfiles/scripts/open-app.sh kgx";
+      name = "Open Terminal app (kgx)";
     };
   };
 
