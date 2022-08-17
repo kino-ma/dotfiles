@@ -71,7 +71,7 @@
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/open-google-chrome" = {
       binding = "<Control><Alt>c";
-      command = "/home/kino-ma/dotfiles/scripts/open-app.sh google-chrome";
+      command = "/home/kino-ma/dotfiles/scripts/open-app.sh google-chrome google-chrome-stable";
       name = "Open Google Chrome app";
     };
 
