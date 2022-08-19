@@ -237,6 +237,7 @@ darwin_install() {
 
     nix-channel --add "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz" home-manager
     nix-channel --update
+    darwin-rebuild switch
 
     configure_home_manager "${1:-darwin}"
 }
