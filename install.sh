@@ -211,7 +211,7 @@ darwin_install() {
     if [ -z "${NIX_PROFILES-}" ]
     then
         sh <(curl -L https://nixos.org/nix/install)
-        source /etc/bashrc || true
+        ( source /etc/bashrc || true )
     else
         echo "Nix already installed. Skipped"
     fi
