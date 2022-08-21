@@ -5,5 +5,6 @@
     iterm2
     pinentry_mac
     tldr
+    vscode
   ]);
 }
