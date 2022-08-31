@@ -9,7 +9,16 @@
     name = "kino-ma";
     home = "/Users/kino-ma";
   };
-  home-manager.users.kino-ma = import /Users/kino-ma/.config/nixpkgs/home.nix;
+
+  # Home Manager
+  home-manager.users.kino-ma = { config, pkgs, ... }: {
+      imports = [
+        /Users/kino-ma/.config/nixpkgs/home.nix
+        /Users/kino-ma/.config/nixpkgs/custom.nix
+      ];
+
+      home.homeDirectory = "/Users/kino-ma";
+  };
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
