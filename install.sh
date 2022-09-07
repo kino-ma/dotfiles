@@ -210,8 +210,10 @@ init() {
 darwin_install() {
     if [ -z "${NIX_PROFILES-}" ]
     then
+        set +eu
         sh <(curl -L https://nixos.org/nix/install)
         ( source /etc/bashrc || true )
+        set -eu
     else
         echo "Nix already installed. Skipped"
     fi
