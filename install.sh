@@ -13,6 +13,7 @@ update() {
     cp .zsh/* $HOME/.zsh/
     cp .vim/rc/* $HOME/.vim/rc/
     cp .shell_fn/* $HOME/.shell_fn/
+    ln -sf "$(readlink -f ./xdg/nix/nix.conf)" $HOME/.config/nix.conf
 }
 
 echo_done() {
@@ -48,7 +49,7 @@ sureWantTo() {
 }
 
 init_dirs() {
-    mkdir -p $HOME/{.zsh/{,completion},.vim/{rc,tmp},.config/nvim,.shell_fn}
+    mkdir -p $HOME/{.zsh/{,completion},.vim/{rc,tmp},.config/{nvim,nix},.shell_fn}
 }
 
 
