@@ -13,7 +13,7 @@ update() {
     cp .zsh/* $HOME/.zsh/
     cp .vim/rc/* $HOME/.vim/rc/
     cp .shell_fn/* $HOME/.shell_fn/
-    ln -sf "$(readlink -f ./xdg/nix/nix.conf)" $HOME/.config/nix.conf
+    ln -sf "$(readlink -f ./xdg/nix/nix.conf)" $HOME/.config/nix/nix.conf
 }
 
 echo_done() {
