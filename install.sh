@@ -282,7 +282,7 @@ configure_home_manager() {
     custom="$cwd/nix/$host_env.nix"
     if [ -f "$custom" ]
     then
-        ln -fs "$custom" "$home_manager_dir/custom.nix"
+        cp "$custom" "$home_manager_dir/custom.nix"
     fi
 
     if ! grep 'hm-session-vars.sh' "$HOME/.profile" >& /dev/null
