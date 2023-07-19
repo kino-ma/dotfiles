@@ -4,8 +4,10 @@
   home.packages = (with pkgs; [
     discord
     google-chrome
+    home-manager
     pinentry-gnome
     slack
+    tailscale
     tldr
     vscode
     xclip
@@ -15,6 +17,10 @@
     # Japanese input
     fcitx5-mozc
   ]);
+
+  gtk = {
+    enable = true;
+  };
 
   dconf.enable = true;
   dconf.settings = {
@@ -48,6 +54,7 @@
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/open-discord/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/open-google-chrome/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/open-terminal/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/open-vscode/"
       ];
     };
 
@@ -79,6 +86,12 @@
       binding = "<Control><Alt>t";
       command = "/home/kino-ma/dotfiles/scripts/open-app.sh kgx";
       name = "Open Terminal app (kgx)";
+    };
+
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/open-vscode" = {
+      binding = "<Control><Alt>v";
+      command = "/home/kino-ma/dotfiles/scripts/open-app.sh code";
+      name = "Open VSCode app";
     };
   };
 
