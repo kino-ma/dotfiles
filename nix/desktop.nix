@@ -1,7 +1,12 @@
 { pkgs, lib, ... }:
 
 {
+  imports = [
+    /home/kino-ma/.config/nixpkgs/common.nix
+  ];
+
   home.packages = (with pkgs; [
+    bc
     discord
     google-chrome
     home-manager

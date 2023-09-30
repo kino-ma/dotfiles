@@ -27,6 +27,9 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
 
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   # Timezone
   time.timeZone = "Asia/Tokyo";
 
@@ -48,11 +51,20 @@
   # Configure console keymap
   console.keyMap = "dvorak";
 
+  # Nix configuration
+  nix = {
+    # Garbage collection
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
+
+    settings.experimental-features = [ "nix-command" "flakes" ];
+  };
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     docker
@@ -67,8 +79,8 @@
 
   # Enable SSH access
   services.openssh.enable = true;
-  services.openssh.permitRootLogin = "no";
-  services.openssh.passwordAuthentication = false;
+  services.openssh.settings.permitRootLogin = "no";
+  services.openssh.settings.passwordAuthentication = false;
 
   # Enable Docker service
   virtualisation.docker.enable = true;
@@ -76,9 +88,10 @@
   # User account
   users.users.kino-ma = {
     isNormalUser = true;
-    description = "Seiki Makino";
+    description = "MAKINO Seiki";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; []; # We will add user packages by Home Manager
+    # User packages will be added by Home Manager
+    #packages = with pkgs; [];
 
     # change the login shell
     shell = pkgs.zsh;
@@ -96,10 +109,7 @@
   # Home Manager
   home-manager.users.kino-ma = { config, pkgs, ... }: {
     imports = [
-      /home/kino-ma/.config/nixpkgs/home.nix
-      /home/kino-ma/.config/nixpkgs/custom.nix
+      /home/kino-ma/.config/home-manager/home.nix
     ];
-
-    home.homeDirectory = "/home/kino-ma";
   };
 }

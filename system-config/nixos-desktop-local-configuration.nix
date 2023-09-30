@@ -56,6 +56,7 @@
       dina-font
       proggyfonts
       dejavu_fonts
+      IPAMincho
     ];
   };
 
