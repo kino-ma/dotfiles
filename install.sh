@@ -138,14 +138,6 @@ install_nvim() {
     fi
 }
 
-install_dein() {
-    # Dein.vim is Installed in plugin.vim
-    # curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > dein_install.sh
-    # sh ./dein_install.sh "$HOME/.vim/dein" 1>/dev/null
-    # rm dein_install.sh
-    :
-}
-
 install_gitflow() {
     if [ "$(uname)" = "Linux" ] && which apt > /dev/null
     then
@@ -204,7 +196,6 @@ install_gpg_key() {
 }
 
 init() {
-    install_dein
     install_completions
     install_iterm2_integrations
     configure_gpg
