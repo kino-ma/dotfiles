@@ -130,11 +130,13 @@ install_nvim() {
         then
             xbrew install neovim
         fi
-    elif [ "$(uname)" = "Linux" ] && which apt &>/dev/null
+    elif [ "$(uname)" = "Linux" ]
     then
-        sudo add-apt-repository ppa:neovim-ppa/stable
-        sudo apt-get update
-        sudo apt-get install neovim
+        BIN_DIR= "$HOME/bin"
+        mkdir -p "$BIN_DIR"
+        curl --location --output "$BIN_DIR/nvim.appimage" https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+        chmod u+x "$BIN_DIR/nvim.appimage"
+        ln -s "$BIN_DIR/nvim.appimage" "$BIN_DIR/nvim"
     fi
 }
 
