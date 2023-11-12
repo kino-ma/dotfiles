@@ -58,6 +58,8 @@ setopt correct
 # auto cd
 setopt auto_cd
 
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
 if ls --version &> /dev/null
 then
     alias ls='ls --color=auto'
