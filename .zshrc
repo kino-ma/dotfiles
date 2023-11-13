@@ -96,7 +96,13 @@ then
 fi
 
 export PUSHD_SILENT=1
-alias cd="pushd >/dev/null"
+function cd() {
+    if [[ "$#" == '0' ]]; then
+        TARGET="$HOME"
+    fi
+    TARGET="$1"
+    pushd $TARGET >/dev/null
+}
 
 function chpwd() {
     if [ $(ls | wc -l) -le 40 -a "$PWD" != "$HOME" ]
