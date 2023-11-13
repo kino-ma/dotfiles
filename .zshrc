@@ -95,6 +95,9 @@ then
     eval "$(hub alias -s)"
 fi
 
+export PUSHD_SILENT=1
+alias cd="pushd >/dev/null"
+
 function chpwd() {
     if [ $(ls | wc -l) -le 40 -a "$PWD" != "$HOME" ]
     then
