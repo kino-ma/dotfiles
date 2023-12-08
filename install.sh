@@ -8,7 +8,7 @@ xbrew() {
 
 update() {
     git pull >> /dev/null
-    cp .zshrc .vimrc .gitconfig .gitignore_global ~/
+    cp .zshrc .vimrc .gitconfig .gitignore_global .tmux.conf ~/
     cp nvim/* $HOME/.config/nvim/
     cp .zsh/* $HOME/.zsh/
     cp .vim/rc/* $HOME/.vim/rc/
