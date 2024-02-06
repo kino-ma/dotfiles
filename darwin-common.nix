@@ -23,11 +23,7 @@
     { home = "/Users/kino-ma";
     };
 
-  home-manager.users."kino-ma" = 
-    { home.stateVersion = "24.05"; 
-      home.packages = with pkgs; [ git gnupg iterm2 slack discord ];
-      programs.neovim = import ./neovim.nix;
-    };
+  home-manager.users."kino-ma" = import ./home.nix;
 
   nixpkgs.config =
     { allowUnfree = true;
