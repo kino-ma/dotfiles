@@ -2,7 +2,17 @@
 
 {
   home.stateVersion = "24.05"; 
-  home.packages = with pkgs; [ home-manager git gnupg iterm2 pinentry_mac slack discord ];
+  home.packages = with pkgs;
+    [ git
+      gnupg
+      home-manager
+      iterm2
+      pinentry_mac
+
+      # Unfree packages
+      discord
+      slack
+    ];
 
   programs.home-manager.enable = true;
 
