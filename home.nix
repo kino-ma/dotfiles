@@ -2,7 +2,9 @@
 
 {
   home.stateVersion = "24.05"; 
-  home.packages = with pkgs; [ git gnupg iterm2 pinentry_mac slack discord ];
+  home.packages = with pkgs; [ home-manager git gnupg iterm2 pinentry_mac slack discord ];
+
+  programs.home-manager.enable = true;
 
   programs.neovim = import ./neovim.nix;
 
@@ -63,6 +65,10 @@
         [ { source = ./keys/gpg/pubkey.txt; trust = "ultimate"; }
         ];
     };
-  home.file.".gnupg/gpg-agent.conf".text = "pinentry-program ${pkgs.pinentry_mac}";
+  home.file.".gnupg/gpg-agent.conf".text =
+    ''
+      pinentry-program ${pkgs.pinentry_mac}";
+      enable-ssh-support
+    '';
 
 }
