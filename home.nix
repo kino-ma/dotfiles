@@ -25,7 +25,7 @@
 
   programs.home-manager.enable = true;
 
-  programs.neovim = import ./neovim.nix;
+  programs.neovim = import ./programs/neovim.nix;
   programs.git = import ./programs/git.nix;
   programs.gpg = import ./programs/gpg.nix;
   home.file.".gnupg/gpg-agent.conf".text =
