@@ -8,10 +8,13 @@
       home-manager
       iterm2
       pinentry_mac
+      vscode
 
       # Unfree packages
+      _1password-gui
       discord
       slack
+      zoom-us
     ];
 
   programs.home-manager.enable = true;
