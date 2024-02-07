@@ -25,11 +25,6 @@
   programs.git = import ./programs/git.nix;
 
   programs.gpg = import ./programs/gpg.nix;
-  home.file.".gnupg/gpg-agent.conf".text =
-    ''
-      pinentry-program ${pkgs.pinentry_mac}/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac
-      enable-ssh-support
-    '';
 
   programs.neovim = import ./programs/neovim.nix {
     inherit pkgs;
