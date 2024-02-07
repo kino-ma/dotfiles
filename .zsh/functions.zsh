@@ -5,6 +5,14 @@ git-commit-with-prefix() {
     git commit -m "[$GIT_PREFIX] $GIT_COMMIT_MESSAGE" "$@"
 }
 
+prompt_status () {
+	local -a symbols
+	[[ $RETVAL -ne 0 ]] && symbols+="%{%F{blue}%}✘" 
+	[[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}⚡" 
+	[[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}⚙" 
+	[[ -n "$symbols" ]] && prompt_segment black default "$symbols"
+}
+
 prompt_context() {
     # If the current user is not in default users (kinoma & kino-ma), then display the name
     # Also, if the session is run with privilege, display in yellow text
