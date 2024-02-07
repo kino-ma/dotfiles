@@ -24,10 +24,8 @@
 
   programs.home-manager.enable = true;
 
-  programs.neovim = import ./programs/neovim.nix {
-    inherit pkgs;
-  };
   programs.git = import ./programs/git.nix;
+
   programs.gpg = import ./programs/gpg.nix;
   home.file.".gnupg/gpg-agent.conf".text =
     ''
@@ -35,4 +33,11 @@
       enable-ssh-support
     '';
 
+  programs.neovim = import ./programs/neovim.nix {
+    inherit pkgs;
+  };
+
+  programs.zsh = import ./programs/zsh.nix {
+    inherit pkgs;
+  };
 }
