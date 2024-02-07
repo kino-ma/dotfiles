@@ -17,6 +17,9 @@
     enable = true;
     theme = "agnoster";
   };
+  sessionVariables = {
+    DEFAULT_USERS = [ "kino-ma" "kinoma" ];
+  };
 
   shellAliases = {
     xbrew = "BREW_PREFIX=/usr/local arch -x86_64 /usr/local/Homebrew/bin/brew";
@@ -44,10 +47,11 @@
   '';
 
   # Export LSCOLORS here instead of sessionVariables, because some plugins seem to override them.
-  loginExtra = ''
+  initExtra = ''
     export LSCOLORS="ExGxdxdxCxDxDxBxBxegeg"
-    . ${../.zsh/keys.zsh}
-    . ${../.zsh/gpg.zsh}
-    . ${../.zsh/functions.zsh}
+    . ${../../.zsh/functions.zsh}
+    . ${../../.zsh/keys.zsh}
+    . ${../../.zsh/gpg.zsh}
   '';
+
 }

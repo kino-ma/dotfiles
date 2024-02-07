@@ -26,7 +26,7 @@
     home = "/Users/kino-ma";
   };
 
-  home-manager.users."kino-ma" = import ./home.nix;
+  home-manager.users."kino-ma" = import ../home/darwin.nix;
 
   nixpkgs.config = {
     allowUnfree = true;
