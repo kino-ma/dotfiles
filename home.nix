@@ -13,7 +13,6 @@
       vscode
 
       # Unfree packages
-      _1password-gui
       discord
       slack
       zoom-us
