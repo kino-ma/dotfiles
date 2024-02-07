@@ -48,7 +48,7 @@
     };
 
     "org/gnome/desktop/peripherals/mouse" = {
-      natural-scroll = true;
+      natural-scroll = false;
     };
 
     "org/gnome/desktop/wm/keybindings" = {
