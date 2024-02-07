@@ -3,6 +3,8 @@
 {
   imports = [ ./common.nix ];
 
+  home.stateVersion = "24.05";
+
   home.packages = with pkgs;
     [
       iterm2

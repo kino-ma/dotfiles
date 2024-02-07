@@ -1,13 +1,18 @@
 { pkgs, ... }:
 
 {
-  home.stateVersion = "24.05";
   home.packages = with pkgs;
     [
+      bc
+      curl
       git
       gnupg
+      htop
+      hub
       home-manager
       nixpkgs-fmt
+      tldr
+      tmux
       vscode
 
       # Unfree packages
