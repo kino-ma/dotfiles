@@ -46,14 +46,12 @@
     fi
   '';
 
-  initExtra = ''
-    . ${../../.zsh/functions.zsh}
-  '';
-
   # Export LSCOLORS here instead of sessionVariables, because some plugins seem to override them.
-  loginExtra = ''
+  initExtra = ''
     export LSCOLORS="ExGxdxdxCxDxDxBxBxegeg"
+    . ${../../.zsh/functions.zsh}
     . ${../../.zsh/keys.zsh}
     . ${../../.zsh/gpg.zsh}
   '';
+
 }

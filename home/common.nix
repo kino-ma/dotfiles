@@ -21,10 +21,6 @@
       zoom-us
     ];
 
-  home.sessionVariables = {
-    SSH_AUTH_SOCK = "$HOME/.gnupg/S.gpg-agent.ssh";
-  };
-
   programs.home-manager.enable = true;
 
   programs.git = import ./programs/git.nix;
