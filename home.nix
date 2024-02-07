@@ -37,6 +37,14 @@
     inherit pkgs;
   };
 
+  programs.tmux = {
+    enable = true;
+    prefix = "C-z";
+    clock24 = true;
+    mouse = true;
+    newSession = true;
+  };
+
   programs.zsh = import ./programs/zsh.nix {
     inherit pkgs;
   };
