@@ -34,9 +34,7 @@
     desktopManager.gnome.enable = true;
 
     layout = "us";
-    xkbModel = "applealu_jis";
     xkbVariant = ",dvorak";
-    xkbOptions = "ctrl:swapcaps";
   };
 
   console.useXkbConfig = true;
@@ -83,8 +81,8 @@
 
   # Japanese input
   i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5.addons = with pkgs; [ fcitx5-mozc fcitx5-anthy fcitx5-gtk ];
+    enabled = "ibus";
+    ibus.engines = with pkgs.ibus-engines; [ mozc ];
   };
 
   # Enable sound with pipewire.
