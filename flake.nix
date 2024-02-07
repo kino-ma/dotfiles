@@ -15,7 +15,9 @@
   outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, home-manager }:
 
     let
-      darwin-config = import ./darwin-common.nix;
+      darwin-config = import ./platforms/darwin-common.nix;
+
+      babylon-config = import ./platforms/darwin-common.nix;
 
     in
     {
@@ -25,6 +27,7 @@
         system = "aarch64-darwin";
         modules = [
           darwin-config
+          babylon-config
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

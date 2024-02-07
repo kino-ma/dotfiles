@@ -7,9 +7,7 @@
       git
       gnupg
       home-manager
-      iterm2
       nixpkgs-fmt
-      pinentry_mac
       vscode
 
       # Unfree packages

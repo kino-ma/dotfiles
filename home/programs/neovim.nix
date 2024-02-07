@@ -72,9 +72,9 @@
 
     endif
 
-    source ${../.vim/rc/keymaps.vim}
-    source ${../.vim/rc/settings.vim}
-    source ${../.vim/rc/syntax.vim}
-    source ${../.vim/rc/terminal.vim}
+    source ${../../.vim/rc/keymaps.vim}
+    source ${../../.vim/rc/settings.vim}
+    source ${../../.vim/rc/syntax.vim}
+    source ${../../.vim/rc/terminal.vim}
   '';
 }
