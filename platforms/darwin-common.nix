@@ -26,12 +26,12 @@
     home = "/Users/kino-ma";
   };
 
-  home-manager.users."kino-ma" = import ../home/darwin.nix;
-
   nixpkgs.config = {
     allowUnfree = true;
     allowBroken = true;
   };
 
   system.defaults.dock.orientation = "left";
+
+  system.defaults.screencapture.location = "/Users/kino-ma/Documents/screenshots";
 }

@@ -1,3 +1,7 @@
 { pkgs, ... }: {
-  system.defaults.screencapture.location = "/Users/kino-ma/Documents/screenshots";
+  imports = [
+    ../platforms/darwin-common.nix
+  ];
+
+  home-manager.users."kino-ma" = import ../home/darwin.nix;
 }

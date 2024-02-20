@@ -25,9 +25,7 @@
       nixos-gui = import ./platforms/nixos-gui.nix;
       nixos-desktop = import ./platforms/nixos-desktop.nix;
 
-      darwin-config = import ./platforms/darwin-common.nix;
-
-      babylon-config = import ./platforms/darwin-common.nix;
+      babylon = import ./hosts/babylon.nix;
       edinburgh = import ./hosts/edinburgh.nix;
       vps-jn-config = import ./hosts/vps-jn.nix;
 
@@ -38,8 +36,8 @@
       darwinConfigurations."babylon" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
-          darwin-config
-          babylon-config
+          babylon
+
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
