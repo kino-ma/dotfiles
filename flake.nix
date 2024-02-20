@@ -28,7 +28,7 @@
       darwin-config = import ./platforms/darwin-common.nix;
 
       babylon-config = import ./platforms/darwin-common.nix;
-      edinburgh-config = import ./hosts/edinburgh.nix;
+      edinburgh = import ./hosts/edinburgh.nix;
       vps-jn-config = import ./hosts/vps-jn.nix;
 
     in
@@ -54,11 +54,8 @@
       nixosConfigurations."edinburgh" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          nixos-common
-          nixos-gui
-          nixos-desktop
+          edinburgh
 
-          edinburgh-config
           dotfiles-private.nixosModules."edinburgh"
 
           home-manager.nixosModules.home-manager

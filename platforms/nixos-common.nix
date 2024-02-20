@@ -71,9 +71,6 @@
     ];
   };
 
-  # Home Manager
-  home-manager.users."kino-ma" = import ../home/nixos-desktop.nix;
-
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true; # default shell on catalina
 

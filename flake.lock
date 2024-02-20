@@ -12,7 +12,6 @@
       },
       "original": {
         "ref": "main",
-        "rev": "4acf1658ba1b567d227cbb662fa66da922354e7c",
         "type": "git",
         "url": "ssh://git@github.com/kino-ma/dotfiles-private"
       }

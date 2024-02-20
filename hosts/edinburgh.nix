@@ -1,5 +1,11 @@
 { pkgs, ... }: { 
 
+  imports = [
+    ../platforms/nixos-common.nix
+    ../platforms/nixos-gui.nix
+    ../platforms/nixos-desktop.nix
+  ];
+
   networking.hostName = "edinburgh";
 
   # Bootloader.
@@ -21,5 +27,8 @@
     tailscale
     wpa_supplicant_gui
   ];
+
+  # Home Manager
+  home-manager.users."kino-ma" = import ../home/nixos-desktop.nix;
 
 }
