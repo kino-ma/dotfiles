@@ -21,8 +21,11 @@
   outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, home-manager, dotfiles-private, ... }:
 
     let
+      nixos-common = import ./platforms/nixos-common.nix;
+      nixos-gui = import ./platforms/nixos-gui.nix;
+      nixos-desktop = import ./platforms/nixos-desktop.nix;
+
       darwin-config = import ./platforms/darwin-common.nix;
-      nixos-config = import ./platforms/nixos-common.nix;
 
       babylon-config = import ./platforms/darwin-common.nix;
       edinburgh-config = import ./hosts/edinburgh.nix;
@@ -51,8 +54,13 @@
       nixosConfigurations."edinburgh" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          nixos-config
+          nixos-common
+          nixos-gui
+          nixos-desktop
+
           edinburgh-config
+          dotfiles-private.nixosModules."edinburgh"
+
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

@@ -1,69 +1,22 @@
 { config, pkgs, ... }: {
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.05"; # Did you read the comment?
-
-  environment.systemPackages = with pkgs; [
-    python3
-    wireguard-tools tailscale wpa_supplicant_gui 
-  ];
+  # Enable Docker service
+  virtualisation.docker.enable = true;
 
   # Enable SSH access
   services.openssh.enable = true;
   services.openssh.permitRootLogin = "no";
   services.openssh.passwordAuthentication = false;
 
-  # Enable Docker service
-  virtualisation.docker.enable = true;
-
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    displayManager.gdm.wayland = false;
-    desktopManager.gnome.enable = true;
-
-    layout = "us";
-    xkbVariant = ",dvorak";
-  };
-
-  console.useXkbConfig = true;
-
-  programs.gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-  };
-
   security.pam.services = {
     login.u2fAuth = true;
     sudo.u2fAuth = true;
   };
+
   security.pam.u2f.cue = true;
   services.udev.extraRules = ''
     ACTION=="remove", ENV{ID_VENDOR_ID}=="1050", ENV{ID_MODEL_ID}=="0407", RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
   '';
-
-  networking = {
-    networkmanager.enable = false;
-
-    wireless.enable = true;
-    wireless.userControlled.enable = true;
-
-    firewall = {
-      enable = false;
-      allowedUDPPorts = [ 51820 ]; # Clients and peers can use the same port, see listenport
-    };
-  };
 
   services.resolved.enable = true;
 
@@ -75,30 +28,6 @@
     };
 
     settings.experimental-features = [ "nix-command" "flakes" ];
-  };
-
-  services.tailscale.enable = true;
-
-  # Japanese input
-  i18n.inputMethod = {
-    enabled = "ibus";
-    ibus.engines = with pkgs.ibus-engines; [ mozc ];
-  };
-
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
-  hardware.bluetooth = {
-    enable = true;
-    settings.General.ControllerMode = "bredr";
   };
 
   # Timezone
@@ -118,12 +47,6 @@
     LC_TELEPHONE = "ja_JP.utf8";
     LC_TIME = "ja_JP.utf8";
   };
-
-  # Configure console keymap
-  # console.keyMap = "dvorak";
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -149,19 +72,9 @@
   };
 
   # Home Manager
-  home-manager.users."kino-ma" = import ../home/nixos.nix;
+  home-manager.users."kino-ma" = import ../home/nixos-desktop.nix;
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true; # default shell on catalina
 
-  fonts.fonts = with pkgs; [
-    pkgs.powerline-fonts
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-extra
-    noto-fonts-emoji
-    fira-code
-    ipafont
-    fira-code-symbols dina-font proggyfonts dejavu_fonts
-  ];
 }

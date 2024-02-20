@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 
 {
-  imports = [ ./nxos-common.nix ];
+  imports = [ ./nixos-common.nix ];
 
   home.packages = (with pkgs; [
     pinentry-gnome
