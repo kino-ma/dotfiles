@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "dotfiles-private": {
+      "locked": {
+        "lastModified": 1708415227,
+        "narHash": "sha256-u4ibxARuXSs/XOKHwISiwkgEtQjEP4IjcKq1tI7oNQY=",
+        "ref": "main",
+        "rev": "a92c6a33f26418c0d8728929803bc13f8a3c60f4",
+        "revCount": 7,
+        "type": "git",
+        "url": "ssh://git@github.com/kino-ma/dotfiles-private"
+      },
+      "original": {
+        "ref": "main",
+        "type": "git",
+        "url": "ssh://git@github.com/kino-ma/dotfiles-private"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -74,6 +90,7 @@
     },
     "root": {
       "inputs": {
+        "dotfiles-private": "dotfiles-private",
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",

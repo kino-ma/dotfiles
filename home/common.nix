@@ -37,6 +37,7 @@
     clock24 = true;
     mouse = true;
     newSession = true;
+    terminal = "screen-256color";
   };
 
   programs.zsh = import ./programs/zsh.nix {
