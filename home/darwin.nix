@@ -7,6 +7,8 @@
 
   home.packages = with pkgs;
     [
+      colima
+      docker
       iterm2
       pinentry_mac
     ];
