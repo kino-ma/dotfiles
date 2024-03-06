@@ -55,4 +55,8 @@
     . ${../../.zsh/gpg.zsh}
   '';
 
+  envExtra = ''
+    REPORTTIME=5
+  '';
+
 }
