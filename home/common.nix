@@ -11,6 +11,7 @@
       hub
       home-manager
       nixpkgs-fmt
+      python3
       tldr
       tmux
       vscode
