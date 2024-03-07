@@ -53,6 +53,7 @@
     . ${../../.zsh/functions.zsh}
     . ${../../.zsh/keys.zsh}
     . ${../../.zsh/gpg.zsh}
+    unset RPS1
   '';
 
   envExtra = ''
