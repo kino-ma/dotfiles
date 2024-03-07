@@ -5,12 +5,20 @@
     [
       bc
       curl
+      dogdns
+      duf
+      du-dust
+      fd
       git
       gnupg
+      gping
       htop
       hub
       home-manager
+      httpie
+      hyperfine
       nixpkgs-fmt
+      procs
       python3
       tldr
       tmux
@@ -49,6 +57,14 @@
       "--group-directories-first"
     ];
   };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+    changeDirWidgetCommand = "fd --type d";
+    defaultCommand = "fd --type f";
+  };
+
 
   programs.git = import ./programs/git.nix;
 
