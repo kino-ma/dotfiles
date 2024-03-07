@@ -24,6 +24,20 @@
 
   programs.home-manager.enable = true;
 
+  programs.eza = {
+    enable = true;
+    enableAliases = true;
+
+    git = true;
+    icons = true;
+
+    extraOptions = [
+      #"--absolute=follow"
+      "--classify"
+      "--group-directories-first"
+    ];
+  };
+
   programs.git = import ./programs/git.nix;
 
   programs.gpg = import ./programs/gpg.nix;
