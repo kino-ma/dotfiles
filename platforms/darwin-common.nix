@@ -19,7 +19,7 @@
   #system.configurationRevision = self.rev or self.dirtyRev or null;
 
   fonts.fontDir.enable = true;
-  fonts.fonts = [ pkgs.powerline-fonts ];
+  fonts.fonts = [ pkgs.nerdfonts ];
 
   # Added
   users.users.kino-ma = {
