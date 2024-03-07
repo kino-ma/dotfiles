@@ -16,6 +16,14 @@
   oh-my-zsh = {
     enable = true;
     theme = "agnoster";
+    plugins = [
+      "copybuffer"
+      "copypath"
+      "copyfile"
+      "dirhistory"
+      "web-search"
+      "sudo"
+    ];
   };
   sessionVariables = {
     DEFAULT_USERS = [ "kino-ma" "kinoma" ];
