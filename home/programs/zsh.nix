@@ -32,6 +32,7 @@
   shellAliases = {
     xbrew = "BREW_PREFIX=/usr/local arch -x86_64 /usr/local/Homebrew/bin/brew";
     dcp = "docker compose";
+    cat = "bat";
   };
 
   completionInit = ''
@@ -62,6 +63,12 @@
     . ${../../.zsh/keys.zsh}
     . ${../../.zsh/gpg.zsh}
     unset RPS1
+
+    for script in $HOME/.config/op/plugins.sh; do
+        if [[ -f "$script" ]]; then
+            . $script
+        fi
+    done
   '';
 
   envExtra = ''

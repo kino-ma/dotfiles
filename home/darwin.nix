@@ -9,8 +9,12 @@
     [
       colima
       docker
+      git-credential-1password
       iterm2
       pinentry_mac
+
+      # Unfree packages
+      _1password
     ];
 
   home.file.".gnupg/gpg-agent.conf".text =

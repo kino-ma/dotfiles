@@ -9,6 +9,7 @@
       duf
       du-dust
       fd
+      gh
       git
       gnupg
       gping
@@ -73,6 +74,8 @@
   programs.neovim = import ./programs/neovim.nix {
     inherit pkgs;
   };
+
+  programs.ripgrep.enable = true;
 
   programs.tmux = {
     enable = true;
