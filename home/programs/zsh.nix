@@ -9,7 +9,7 @@
 
   autocd = true;
   enableAutosuggestions = true;
-  enableSyntaxHighlighting = true;
+  syntaxHighlighting.enable = true;
 
   history.extended = true;
 

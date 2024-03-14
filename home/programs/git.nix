@@ -16,14 +16,10 @@
     };
   };
 
-  extraConfig =
-    ''
-      [pull]
-      ff = only
-
-      [init]
-      defaultBranch = true
-    '';
+  extraConfig = {
+    pull.ff = "only";
+    init.defaultBranch = "main";
+  };
 
   aliases =
     {
