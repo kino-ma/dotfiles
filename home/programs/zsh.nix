@@ -58,7 +58,6 @@
 
   # Export LSCOLORS here instead of sessionVariables, because some plugins seem to override them.
   initExtra = ''
-    export LSCOLORS="ExGxdxdxCxDxDxBxBxegeg"
     . ${../../.zsh/functions.zsh}
     . ${../../.zsh/keys.zsh}
     . ${../../.zsh/gpg.zsh}
@@ -69,6 +68,8 @@
             . $script
         fi
     done
+
+    chpwd() { eza; }
   '';
 
   envExtra = ''
