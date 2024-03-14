@@ -83,6 +83,8 @@
 
   programs.ripgrep.enable = true;
 
+  programs.ssh = import ./programs/ssh.nix;
+
   programs.tmux = {
     enable = true;
     prefix = "C-z";
