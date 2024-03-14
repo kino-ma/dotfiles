@@ -32,6 +32,7 @@
       s = "status";
       d = "diff";
       ds = "diff --staged";
+      rs = "restore --staged";
 
       c-feat      = ''!sh ${../../shell-helpers/commit-with-prefix.sh} feat'';
       c-fix       = ''!sh ${../../shell-helpers/commit-with-prefix.sh} fix'';
@@ -54,5 +55,6 @@
       "*.swp"
       ".vscode"
       ".DS_Store"
+      ".direnv"
     ];
 }
