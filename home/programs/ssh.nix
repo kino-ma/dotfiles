@@ -8,6 +8,6 @@
   forwardAgent = true;
 
   controlMaster = "auto";
-  controlPath = "$HOME/.ssh/controlmasters/%r@%h:%p";
+  controlPath = "~/.ssh/.controlmasters/%r@%h:%p";
   controlPersist = "50";
 }

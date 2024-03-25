@@ -89,6 +89,7 @@
   };
 
   programs.ssh = import ./programs/ssh.nix;
+  home.file.".ssh/.controlmasters/.keep".text = "";
 
   programs.tmux = {
     enable = true;
