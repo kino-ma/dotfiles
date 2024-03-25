@@ -81,7 +81,12 @@
     inherit pkgs;
   };
 
-  programs.ripgrep.enable = true;
+  programs.ripgrep = {
+    enable = true;
+    arguments = [
+      "--hidden"
+    ];
+  };
 
   programs.ssh = import ./programs/ssh.nix;
 
