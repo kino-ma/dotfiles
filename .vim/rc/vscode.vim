@@ -5,14 +5,15 @@ command! CP %y+
 nnoremap <Space> <Nop>
 vnoremap <Space> <Nop>
 
-" set <Leader> key to <Space>
-let mapleader = "\<Space>"
-
 " Dvorak mapping
 noremap d h
 noremap h j
 noremap t k
 noremap n l
+
+nnoremap w <Leader>w
+nnoremap e <Leader>e
+nnoremap b <Leader>b
 
 noremap k d
 noremap l n
@@ -99,9 +100,6 @@ nnoremap <Leader>y "+y
 nnoremap <Leader>p "+p
 vnoremap <Leader>y "+y
 vnoremap <Leader>p "+p
-
-" prefix to move windows
-nnoremap <Leader>w <C-w>
 
 " split commands
 nnoremap <silent> <Leader>v :vsplit<CR>
