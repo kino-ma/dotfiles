@@ -33,6 +33,11 @@
     xbrew = "BREW_PREFIX=/usr/local arch -x86_64 /usr/local/Homebrew/bin/brew";
     dcp = "docker compose";
     cat = "bat";
+
+    # Git shortcuts
+    d = "git d";
+    s = "git s";
+    ds = "git ds";
   };
 
   completionInit = ''
