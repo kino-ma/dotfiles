@@ -2,7 +2,7 @@
   enable = true;
 
   includes = [
-    "$HOME/.ssh/extra_config"
+    "extra_config"
   ];
 
   forwardAgent = true;
