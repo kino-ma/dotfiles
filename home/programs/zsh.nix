@@ -33,6 +33,7 @@
     xbrew = "BREW_PREFIX=/usr/local arch -x86_64 /usr/local/Homebrew/bin/brew";
     dcp = "docker compose";
     cat = "bat";
+    iso = "date '+%Y-%m-%dT%H:%M:%S%z'";
 
     # Git shortcuts
     d = "git d";
