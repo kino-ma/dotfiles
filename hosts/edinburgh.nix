@@ -7,6 +7,7 @@
   ];
 
   networking.hostName = "edinburgh";
+  networking.interfaces.enp11s0.wakeOnLan.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
