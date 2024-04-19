@@ -14,12 +14,17 @@
 
     layout = "us";
     xkbVariant = ",dvorak";
+
+    autoRepeatDelay = 250;
+    autoRepeatInterval = 30;
   };
 
   console.useXkbConfig = true;
 
   fonts.fonts = with pkgs; [
-    pkgs.powerline-fonts
+    powerline-fonts
+    nerdfonts
+    monaspace
     noto-fonts
     noto-fonts-cjk
     noto-fonts-extra
