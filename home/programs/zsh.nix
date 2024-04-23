@@ -80,6 +80,7 @@
 
   envExtra = ''
     REPORTTIME=5
+    ZSH_AUTOSUGGEST_MANUAL_REBIND=1
   '';
 
 }
