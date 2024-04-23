@@ -18,6 +18,7 @@
       home-manager
       httpie
       hyperfine
+      jq
       nixpkgs-fmt
       procs
       python3
