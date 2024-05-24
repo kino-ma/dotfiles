@@ -29,6 +29,9 @@
     wpa_supplicant_gui
   ];
 
+  # No auto suspends
+  services.xserver.displayManager.gdm.autoSuspend = false;
+
   # Home Manager
   home-manager.users."kino-ma" = import ../home/nixos-desktop.nix;
 
