@@ -5,8 +5,8 @@
 
   # Enable SSH access
   services.openssh.enable = true;
-  services.openssh.permitRootLogin = "no";
-  services.openssh.passwordAuthentication = false;
+  services.openssh.settings.PermitRootLogin = "no";
+  services.openssh.settings.PasswordAuthentication = false;
 
   security.pam.services = {
     login.u2fAuth = true;

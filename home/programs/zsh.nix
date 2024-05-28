@@ -8,10 +8,13 @@
   dotDir = ".config/zsh";
 
   autocd = true;
-  enableAutosuggestions = true;
   syntaxHighlighting.enable = true;
 
   history.extended = true;
+
+  autosuggestion = {
+    enable = true;
+  };
 
   oh-my-zsh = {
     enable = true;

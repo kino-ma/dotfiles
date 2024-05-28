@@ -12,8 +12,10 @@
     displayManager.gdm.wayland = false;
     desktopManager.gnome.enable = true;
 
-    layout = "us";
-    xkbVariant = ",dvorak";
+    xkb = {
+      layout = "us";
+      variant = ",dvorak";
+    };
 
     autoRepeatDelay = 250;
     autoRepeatInterval = 30;
@@ -21,7 +23,7 @@
 
   console.useXkbConfig = true;
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     powerline-fonts
     nerdfonts
     monaspace
