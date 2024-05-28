@@ -24,6 +24,7 @@
 
   environment.systemPackages = with pkgs; [
     python3
+    nix-index
     wireguard-tools
     tailscale
     wpa_supplicant_gui
