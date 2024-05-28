@@ -20,6 +20,7 @@
       hyperfine
       jq
       nixpkgs-fmt
+      nixfmt-rfc-style
       procs
       python3
       tldr
