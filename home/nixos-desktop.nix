@@ -4,7 +4,7 @@
   imports = [ ./nixos-common.nix ];
 
   home.packages = (with pkgs; [
-    pinentry-gnome
+    pinentry-gnome3
     vscode
     xclip
     xdotool
