@@ -88,7 +88,8 @@
 
   loginExtra = ''
     if [[ -n "$SSH_CLIENT" && -z "$TMUX" ]]; then
-      tmux -CC attach || tmux -CC;
+      start_session() { tmux -CC attach || tmux -CC; }
+      exec start_session
     fi
   '';
 
