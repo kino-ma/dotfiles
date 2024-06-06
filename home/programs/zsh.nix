@@ -86,4 +86,10 @@
     ZSH_AUTOSUGGEST_MANUAL_REBIND=1
   '';
 
+  loginExtra = ''
+    if [[ -n "$SSH_CLIENT" && -z "$TMUX" ]]; then
+      tmux -CC attach || tmux -CC;
+    fi
+  '';
+
 }
