@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-2311.url = "github:NixOS/nixpkgs/release-23.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -18,7 +19,7 @@
 
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, home-manager, dotfiles-private, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, home-manager, dotfiles-private, nixpkgs-2311, ... }:
 
     let
       nixos-common = import ./platforms/nixos-common.nix;
@@ -29,6 +30,10 @@
       edinburgh = import ./hosts/edinburgh.nix;
       vps-jn-config = import ./hosts/vps-jn.nix;
 
+      overlay = self: super: {
+        tmux = nixpkgs-2311.legacyPackages.${self.system}.tmux;
+      };
+      nixpkgs-overlays =  { pkgs, ... }: { nixpkgs.overlays = [ overlay ]; };
     in
     {
       # Build darwin flake using:
@@ -52,6 +57,8 @@
       nixosConfigurations."edinburgh" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          nixpkgs-overlays
+
           edinburgh
 
           dotfiles-private.nixosModules."edinburgh"
