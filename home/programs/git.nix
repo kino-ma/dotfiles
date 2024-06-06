@@ -13,6 +13,7 @@
     options = {
       line-numbers = true;
       side-by-side = true;
+      dark = true;
     };
   };
 
