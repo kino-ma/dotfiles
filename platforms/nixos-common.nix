@@ -7,6 +7,9 @@
   services.openssh.enable = true;
   services.openssh.settings.PermitRootLogin = "no";
   services.openssh.settings.PasswordAuthentication = false;
+  services.openssh.extraConfig = ''
+    AcceptEnv LANG LC_*
+  '';
 
   security.pam.services = {
     login.u2fAuth = true;
