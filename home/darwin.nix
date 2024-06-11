@@ -9,7 +9,6 @@
     [
       colima
       docker
-      git-credential-1password
       iterm2
       pinentry_mac
 
