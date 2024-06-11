@@ -9,6 +9,7 @@
       duf
       du-dust
       fd
+      file
       gh
       git
       gnupg
