@@ -9,6 +9,7 @@
     [
       colima
       docker
+      docker-credential-helpers
       iterm2
       pinentry_mac
 
