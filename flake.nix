@@ -25,7 +25,7 @@
       nixos-gui = import ./platforms/nixos-gui.nix;
       nixos-desktop = import ./platforms/nixos-desktop.nix;
 
-      babylon = import ./hosts/babylon.nix;
+      babylon = import ./hosts/babylon/babylon.nix;
       edinburgh = import ./hosts/edinburgh.nix;
       vps-jn-config = import ./hosts/vps-jn.nix;
 
