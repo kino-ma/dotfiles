@@ -41,5 +41,6 @@ alias xbrew='BREW_PREFIX=/usr/local arch -x86_64 /usr/local/Homebrew/bin/brew'
 alias k='kubectl'
 
 clean_controlmasters() {
+    setopt localoptions rmstarsilent
     rm -iv "$HOME/.ssh/.controlmasters/"*
 }
