@@ -35,5 +35,4 @@
 
   # Home Manager
   home-manager.users."kino-ma" = import ../home/nixos-desktop.nix;
-
 }
