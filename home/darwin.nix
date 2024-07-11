@@ -8,6 +8,8 @@
   home.packages = with pkgs;
     [
       colima
+      darwin.iproute2mac
+      darwin.trash
       docker
       docker-credential-helpers
       iterm2
