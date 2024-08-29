@@ -18,8 +18,7 @@
   # Not using
   #system.configurationRevision = self.rev or self.dirtyRev or null;
 
-  fonts.fontDir.enable = true;
-  fonts.fonts = [ pkgs.nerdfonts pkgs.monaspace ];
+  fonts.packages = [ pkgs.nerdfonts pkgs.monaspace ];
 
   # Added
   users.users.kino-ma = {
