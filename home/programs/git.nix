@@ -26,6 +26,7 @@
     {
       c = "commit -m";
       cn = "commit --no-gpg-sign -m";
+      cn = "commit --amend --no-edit";
       s = "status";
       d = "diff";
       ds = "diff --staged";
