@@ -12,6 +12,7 @@
       file
       gh
       git
+      git-lfs
       gnupg
       gping
       htop
