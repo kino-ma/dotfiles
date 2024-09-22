@@ -78,7 +78,8 @@
         fi
     done
 
-    chpwd() { eza; }
+    # Copied from auto-generated alias manually
+    chpwd() { eza '--icons' '--git' '--classify' '--group-directories-first'; }
   '';
 
   envExtra = ''
