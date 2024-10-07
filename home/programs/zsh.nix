@@ -37,6 +37,7 @@
     dcp = "docker compose";
     cat = "bat";
     iso = "date '+%Y-%m-%dT%H:%M:%S%z'";
+    pry = "poetry";
 
     # Git shortcuts
     d = "git d";
