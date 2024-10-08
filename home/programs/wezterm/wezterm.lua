@@ -6,6 +6,9 @@ return {
     foreground = "#c7c7c7"
   },
 
+  initial_rows = 32,
+  initial_cols = 128,
+
   font_rules = {
     {
       intensity = "Bold",
