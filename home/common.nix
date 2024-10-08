@@ -85,6 +85,8 @@
     inherit pkgs;
   };
 
+  programs.wezterm = import ./programs/wezterm;
+
   programs.ripgrep = {
     enable = true;
     arguments = [
