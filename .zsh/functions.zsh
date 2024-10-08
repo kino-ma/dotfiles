@@ -22,7 +22,7 @@ prompt_context() {
 }
 
 prompt_dir() {
-    prompt_segment blue white '%~'
+    prompt_segment blue default '%~'
 }
 
 prompt_end() {
