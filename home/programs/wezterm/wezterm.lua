@@ -1,4 +1,10 @@
+local act = wezterm.action
+
 return {
+  keys = {
+    { key = 'UpArrow', mods = 'SHIFT', action = act.ScrollToPrompt(-1) },
+    { key = 'DownArrow', mods = 'SHIFT', action = act.ScrollToPrompt(1) },
+  },
   font = wezterm.font("MonaspiceNe Nerd Font Mono"),
   font_size = 13.0,
   color_scheme = "Apple System Colors",
