@@ -1,10 +1,4 @@
 { pkgs, ... }: {
-
-  programs.gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-  };
-
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;

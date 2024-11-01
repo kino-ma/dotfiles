@@ -48,6 +48,11 @@
   # No auto suspends
   services.xserver.displayManager.gdm.autoSuspend = false;
 
+  programs.gnupg.agent = {
+      enable = false;
+      enableSSHSupport = false;
+  };
+
   # Home Manager
   home-manager.users."kino-ma" = import ../home/nixos-desktop.nix;
 }
