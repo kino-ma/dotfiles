@@ -89,10 +89,9 @@
   '';
 
   loginExtra = ''
-    if [[ -n "$SSH_CLIENT" && -z "$TMUX" && "$LC_TERMINAL" == "iTerm2" ]]; then
-      start_session() { tmux -CC attach || tmux -CC; }
-      exec start_session
-    fi
+    wssh() {
+      wezterm cli spawn --domain-name "SSH:$1" --new-window
+    }
   '';
 
 }
