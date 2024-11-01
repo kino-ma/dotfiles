@@ -14,6 +14,21 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
+  # Edinburgh's GPU is Radeon FirePro D300 and it's the SI Family.
+  # Enable Southern Islands GPU support.
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.kernelParams = [ "radeon.si_support=0" "amdgpu.si_support=1" ];
+
+  # Configure Vulkan.
+  hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.enable = true;
+  hardware.pulseaudio.support32Bit = true;
+
+  users.users.kino-ma.packages = with pkgs;
+  [
+    vulkan-tools
+  ];
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
