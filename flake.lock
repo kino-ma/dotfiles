@@ -2,11 +2,11 @@
   "nodes": {
     "dotfiles-private": {
       "locked": {
-        "lastModified": 1734614945,
-        "narHash": "sha256-oEhHBYGzcRrt9FSBle7zomH2Rt1CBzXr2EpqR0A0uVM=",
+        "lastModified": 1734615883,
+        "narHash": "sha256-654sslZ6JX2xZBJGBSpZ1GD6cdW1h9/3gGR5HoDpLv8=",
         "ref": "main",
-        "rev": "0c51358fe72f2a98648b82185755ed6970d9d5cc",
-        "revCount": 10,
+        "rev": "238301b2f6be5ec9488f00bbb0a5a6ef523470b8",
+        "revCount": 11,
         "type": "git",
         "url": "ssh://git@github.com/kino-ma/dotfiles-private"
       },
