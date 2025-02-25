@@ -12,7 +12,6 @@
       darwin.trash
       docker
       docker-credential-helpers
-      iterm2
       pinentry_mac
 
       # Unfree packages
