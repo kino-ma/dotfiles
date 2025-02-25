@@ -6,7 +6,7 @@ return {
     { key = 'DownArrow', mods = 'SHIFT', action = act.ScrollToPrompt(1) },
   },
   font = wezterm.font("MonaspiceNe Nerd Font Mono"),
-  font_size = 13.0,
+  font_size = 14.0,
   color_scheme = "Apple System Colors",
   colors = {
     foreground = "#c7c7c7"
