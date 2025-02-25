@@ -24,6 +24,7 @@
       nixpkgs-fmt
       nixfmt-rfc-style
       procs
+      procps
       python3
       tldr
       tmux
