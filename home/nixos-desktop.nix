@@ -10,7 +10,10 @@
     xdotool
 
     # Unfree packages
+    discord
     google-chrome
+    slack
+    zoom-us
   ]);
 
   # dconf.enable = true;

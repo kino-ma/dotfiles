@@ -17,7 +17,6 @@
       gping
       htop
       hub
-      home-manager
       httpie
       hyperfine
       jq
@@ -28,15 +27,7 @@
       python3
       tldr
       tmux
-      vscode
-
-      # Unfree packages
-      discord
-      slack
-      zoom-us
     ];
-
-  programs.home-manager.enable = true;
 
   programs.bat = {
     enable = true;
