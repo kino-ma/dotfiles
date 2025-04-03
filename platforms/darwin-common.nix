@@ -12,8 +12,6 @@ in
     scroll-reverser
   ];
 
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
 
   # Necessary for using flakes on this system.
@@ -29,11 +27,6 @@ in
 
   fonts.packages = [ pkgs.nerdfonts pkgs.monaspace ];
 
-  # Added
-  users.users.kino-ma = {
-    home = "/Users/kino-ma";
-  };
-
   nixpkgs.config = {
     allowUnfree = true;
     allowBroken = true;
@@ -41,5 +34,5 @@ in
 
   system.defaults.dock.orientation = "left";
 
-  system.defaults.screencapture.location = "/Users/kino-ma/Documents/screenshots";
+  system.defaults.screencapture.location = "$HOME/Documents/screenshots";
 }

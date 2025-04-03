@@ -2,7 +2,7 @@
   description = "Example Darwin system flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/25.05-pre";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -28,6 +28,7 @@
       babylon = import ./hosts/babylon/babylon.nix;
       edinburgh = import ./hosts/edinburgh.nix;
       vps-jn-config = import ./hosts/vps-jn.nix;
+      alamut = import ./hosts/alamut/alamut.nix;
 
     in
     {
@@ -57,6 +58,20 @@
           dotfiles-private.nixosModules."edinburgh"
 
           home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+          }
+        ];
+      };
+
+      darwinConfigurations."alamut" = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        modules = [
+          dotfiles-private.darwinModules."alamut"
+          alamut
+
+          home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
