@@ -26,6 +26,7 @@
       nixos-desktop = import ./platforms/nixos-desktop.nix;
 
       babylon = import ./hosts/babylon/babylon.nix;
+      domremy = import ./hosts/domremy/domremy.nix;
       edinburgh = import ./hosts/edinburgh.nix;
       vps-jn-config = import ./hosts/vps-jn.nix;
       alamut = import ./hosts/alamut/alamut.nix;
@@ -38,6 +39,19 @@
         system = "aarch64-darwin";
         modules = [
           babylon
+
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+          }
+        ];
+      };
+
+      darwinConfigurations."domremy" = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        modules = [
+          domremy
 
           home-manager.darwinModules.home-manager
           {
