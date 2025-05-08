@@ -3,6 +3,6 @@
     ../../platforms/darwin-common.nix
   ];
 
-  home-manager.users."kino-ma" = import ../../home/darwin.nix;
+  home-manager.users."kino-ma" = import ./home.nix;
   system.stateVersion = 5;
 }
