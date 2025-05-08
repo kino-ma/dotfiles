@@ -16,6 +16,8 @@
 
       # Unfree packages
       _1password
+      raycast
+      vscode
     ];
 
   home.file.".gnupg/gpg-agent.conf".text =
