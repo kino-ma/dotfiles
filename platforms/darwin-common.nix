@@ -33,6 +33,6 @@ in
   };
 
   system.defaults.dock.orientation = "left";
-
   system.defaults.screencapture.location = "$HOME/Documents/screenshots";
+  system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
 }
