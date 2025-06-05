@@ -32,7 +32,7 @@ in
     allowBroken = true;
   };
 
-  system.defaults.dock.orientation = "left";
+  system.defaults.dock.orientation = "right";
   system.defaults.screencapture.location = "$HOME/Documents/screenshots";
   system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
 }
