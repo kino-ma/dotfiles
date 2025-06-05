@@ -12,6 +12,7 @@
       darwin.trash
       docker
       docker-credential-helpers
+      obsidian
       pinentry_mac
 
       # Unfree packages
