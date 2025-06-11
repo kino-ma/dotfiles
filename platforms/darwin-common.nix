@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
 
@@ -25,13 +25,17 @@ in
   # Not using
   #system.configurationRevision = self.rev or self.dirtyRev or null;
 
-  fonts.packages = [ pkgs.nerdfonts pkgs.monaspace ];
+  fonts.packages = [
+    pkgs.nerdfonts
+    pkgs.monaspace
+  ];
 
   nixpkgs.config = {
     allowUnfree = true;
     allowBroken = true;
   };
 
+  system.primaryUser = lib.mkDefault "kino-ma";
   system.defaults.dock.orientation = "right";
   system.defaults.screencapture.location = "$HOME/Documents/screenshots";
   system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
