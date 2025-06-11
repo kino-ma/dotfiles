@@ -30,6 +30,7 @@
       edinburgh = import ./hosts/edinburgh.nix;
       vps-jn-config = import ./hosts/vps-jn.nix;
       alamut = import ./hosts/alamut/alamut.nix;
+      wales = import ./hosts/wales/wales.nix;
 
     in
     {
@@ -84,6 +85,19 @@
         modules = [
           dotfiles-private.darwinModules."alamut"
           alamut
+
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+          }
+        ];
+      };
+
+      darwinConfigurations."wales" = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        modules = [
+          wales
 
           home-manager.darwinModules.home-manager
           {
