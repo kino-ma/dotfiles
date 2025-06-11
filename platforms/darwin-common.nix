@@ -26,7 +26,7 @@ in
   #system.configurationRevision = self.rev or self.dirtyRev or null;
 
   fonts.packages = [
-    pkgs.nerdfonts
+    pkgs.nerd-fonts._0xproto
     pkgs.monaspace
   ];
 
