@@ -35,4 +35,6 @@ in
   system.defaults.dock.orientation = "right";
   system.defaults.screencapture.location = "$HOME/Documents/screenshots";
   system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
+  system.defaults.NSGlobalDomain.KeyRepeat = 2;
+  system.defaults.NSGlobalDomain.InitialKeyRepeat = 15;
 }
