@@ -5,7 +5,7 @@ return {
     { key = 'UpArrow', mods = 'SHIFT', action = act.ScrollToPrompt(-1) },
     { key = 'DownArrow', mods = 'SHIFT', action = act.ScrollToPrompt(1) },
   },
-  font = wezterm.font("MonaspiceNe Nerd Font Mono"),
+  font = wezterm.font("Monaspace Neon"),
   font_size = 14.0,
   color_scheme = "Apple System Colors",
   colors = {
@@ -19,7 +19,7 @@ return {
     {
       intensity = "Bold",
       font = wezterm.font(
-        "MonaspiceNe Nerd Font Mono",
+        "Monaspace Neon",
         {
           foreground = "#fffeff",
           weight = "Bold",
