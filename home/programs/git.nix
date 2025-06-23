@@ -55,5 +55,6 @@
       ".vscode"
       ".DS_Store"
       ".direnv"
+      ".envrc"
     ];
 }
