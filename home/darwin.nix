@@ -14,6 +14,7 @@
       docker-credential-helpers
       obsidian
       pinentry_mac
+      postman
 
       # Unfree packages
       _1password
