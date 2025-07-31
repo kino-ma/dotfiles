@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 
 let
 
@@ -37,7 +37,7 @@ in
 
   system.primaryUser = lib.mkDefault "kino-ma";
   system.defaults.dock.orientation = "right";
-  system.defaults.screencapture.location = "$HOME/Documents/screenshots";
+  system.defaults.screencapture.location = "${config.users.users.kino-ma.home}/Documents/screenshots";
   system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
   system.defaults.NSGlobalDomain.KeyRepeat = 2;
   system.defaults.NSGlobalDomain.InitialKeyRepeat = 15;
