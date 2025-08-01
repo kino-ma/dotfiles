@@ -41,6 +41,7 @@
       vps-jn-config = import ./hosts/vps-jn.nix;
       alamut = import ./hosts/alamut/alamut.nix;
       wales = import ./hosts/wales/wales.nix;
+      gorgon = import ./hosts/gorgon/gorgon.nix;
 
     in
     {
@@ -108,6 +109,20 @@
         system = "aarch64-darwin";
         modules = [
           wales
+
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+          }
+        ];
+      };
+
+      darwinConfigurations."gorgon" = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        modules = [
+          dotfiles-private.darwinModules."gorgon"
+          gorgon
 
           home-manager.darwinModules.home-manager
           {
