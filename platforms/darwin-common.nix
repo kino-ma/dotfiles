@@ -37,6 +37,7 @@ in
 
   system.primaryUser = lib.mkDefault "kino-ma";
   system.defaults.dock.orientation = "right";
+  system.defaults.dock.autohide = true;
   system.defaults.screencapture.location = "${config.users.users.kino-ma.home}/Documents/screenshots";
   system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
   system.defaults.NSGlobalDomain.KeyRepeat = 2;
