@@ -13,12 +13,14 @@
       gh
       git
       git-lfs
+      gnumake
       gnupg
       gping
       htop
       hub
       httpie
       hyperfine
+      inetutils
       jq
       nixpkgs-fmt
       nixfmt-rfc-style
