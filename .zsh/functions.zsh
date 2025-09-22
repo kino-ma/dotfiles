@@ -44,3 +44,7 @@ clean_controlmasters() {
     setopt localoptions rmstarsilent
     rm -iv "$HOME/.ssh/.controlmasters/"*
 }
+
+use_flake() {
+    echo 'use flake' > .envrc && direnv allow .
+}
