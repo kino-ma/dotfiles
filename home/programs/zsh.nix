@@ -38,6 +38,9 @@
     cat = "bat";
     iso = "date '+%Y-%m-%dT%H:%M:%S%z'";
     pry = "poetry";
+    uf = "git update-index --assume-unchanged flake.nix flake.lock";
+    dr = "direnv reload";
+    uff = "git update-index --no-assume-unchanged flake.nix flake.lock";
 
     # Git shortcuts
     d = "git d";
