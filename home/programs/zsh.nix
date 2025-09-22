@@ -70,7 +70,7 @@
   '';
 
   # Export LSCOLORS here instead of sessionVariables, because some plugins seem to override them.
-  initExtra = ''
+  initContent = ''
     . ${../../.zsh/functions.zsh}
     . ${../../.zsh/keys.zsh}
     . ${../../.zsh/gpg.zsh}

@@ -8,16 +8,16 @@
   home.packages = with pkgs;
     [
       colima
-      darwin.iproute2mac
       darwin.trash
       docker
       docker-credential-helpers
+      iproute2mac
       obsidian
       pinentry_mac
       postman
 
       # Unfree packages
-      _1password
+      _1password-cli
       arc-browser
       raycast
       vscode
