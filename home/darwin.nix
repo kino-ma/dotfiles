@@ -18,7 +18,6 @@
 
       # Unfree packages
       _1password-cli
-      arc-browser
       raycast
       vscode
     ];
