@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  imports = [ ../../home/darwin.nix ];
+  imports = [ ../../home/darwin-common.nix ];
 
   home.file.".ideavimrc".text =
     ''
