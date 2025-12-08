@@ -46,6 +46,7 @@
     d = "git d";
     s = "git s";
     ds = "git ds";
+    lg = "lazygit";
   };
 
   completionInit = ''

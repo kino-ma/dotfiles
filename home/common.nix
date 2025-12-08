@@ -22,6 +22,7 @@
       hyperfine
       inetutils
       jq
+      lazygit
       nixpkgs-fmt
       nixfmt-rfc-style
       procs
