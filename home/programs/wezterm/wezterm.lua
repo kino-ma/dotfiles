@@ -5,6 +5,20 @@ return {
     { key = 'UpArrow', mods = 'SHIFT', action = act.ScrollToPrompt(-1) },
     { key = 'DownArrow', mods = 'SHIFT', action = act.ScrollToPrompt(1) },
   },
+
+  mouse_bindings = {
+    {
+      event = { Up = { streak = 1, button = 'Left' } },
+      mods = 'NONE',
+      action = act.CompleteSelection 'ClipboardAndPrimarySelection',
+    },
+    {
+        event = { Up = { streak = 1, button = 'Left' } },
+        mods = 'CMD',
+        action = act.OpenLinkAtMouseCursor,
+    },
+  },
+
   font = wezterm.font("Monaspace Neon"),
   font_size = 14.0,
   color_scheme = "Apple System Colors",
