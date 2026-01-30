@@ -30,6 +30,7 @@
   };
   sessionVariables = {
     DEFAULT_USERS = [ "kino-ma" "kinoma" ];
+    DOCKER_HOST = "unix://\${HOME}/.colima/default/docker.sock";
   };
 
   shellAliases = {
