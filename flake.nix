@@ -2,14 +2,15 @@
   description = "Example Darwin system flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/25.05";
-    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
+    nixpkgs.url = "github:NixOS/nixpkgs/25.11";
+    nixpkgs-2505.url = "github:NixOS/nixpkgs/25.05";
+    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.05";
+    nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.11";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -22,8 +23,9 @@
   outputs =
     inputs@{
       self,
-      nix-darwin,
       nixpkgs,
+      nixpkgs-2505,
+      nix-darwin,
       nixpkgs-unstable,
       home-manager,
       dotfiles-private,
@@ -42,6 +44,15 @@
       alamut = import ./hosts/alamut/alamut.nix;
       wales = import ./hosts/wales/wales.nix;
       gorgon = import ./hosts/gorgon/gorgon.nix;
+
+      overlay = self: super: {
+        arc-browser = nixpkgs-2505.legacyPackages.${self.system}.arc-browser;
+      };
+      nixpkgs-overlays =
+        { pkgs, ... }:
+        {
+          nixpkgs.overlays = [ overlay ];
+        };
 
     in
     {
@@ -65,6 +76,7 @@
         modules = [
           domremy
 
+          nixpkgs-overlays
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -83,6 +95,7 @@
 
           dotfiles-private.nixosModules."edinburgh"
 
+          nixpkgs-overlays
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -97,6 +110,7 @@
           dotfiles-private.darwinModules."alamut"
           alamut
 
+          nixpkgs-overlays
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -110,6 +124,7 @@
         modules = [
           wales
 
+          nixpkgs-overlays
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -124,6 +139,7 @@
           dotfiles-private.darwinModules."gorgon"
           gorgon
 
+          nixpkgs-overlays
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -137,6 +153,8 @@
         modules = [
           vps-jn-config
           dotfiles-private.nixosModules."vps-jn"
+
+          nixpkgs-overlays
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

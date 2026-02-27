@@ -7,7 +7,7 @@
       curl
       dogdns
       duf
-      du-dust
+      dust
       fd
       file
       gh

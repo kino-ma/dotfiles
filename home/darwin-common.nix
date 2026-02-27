@@ -15,6 +15,7 @@
       obsidian
       pinentry_mac
       postman
+      yubikey-manager
 
       # Unfree packages
       _1password-cli
