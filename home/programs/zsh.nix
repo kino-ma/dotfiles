@@ -77,6 +77,7 @@
     . ${../../.zsh/keys.zsh}
     . ${../../.zsh/gpg.zsh}
     unset RPS1
+    unset RPROMPT
 
     for script in $HOME/.config/op/plugins.sh; do
         if [[ -f "$script" ]]; then
@@ -86,6 +87,16 @@
 
     # Copied from auto-generated alias manually
     chpwd() { eza '--icons' '--git' '--classify' '--group-directories-first'; }
+
+    if [[ "$TERM_PROGRAM" == "vscode" ]]; then
+    # Disable RPROMPT in VS Code (causes detection issues)
+    unset RPROMPT
+    unset RPS1
+
+    # Load VS Code shell integration
+    [[ -f "$(code --locate-shell-integration-path zsh)" ]] && \
+        . "$(code --locate-shell-integration-path zsh)"
+    fi
   '';
 
   envExtra = ''
