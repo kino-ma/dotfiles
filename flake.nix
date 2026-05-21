@@ -21,15 +21,15 @@
   };
 
   outputs =
-    inputs@{
+    {
       self,
       nixpkgs,
       nixpkgs-2505,
       nix-darwin,
       nixpkgs-unstable,
+      nixpkgs-darwin,
       home-manager,
       dotfiles-private,
-      ...
     }:
 
     let
@@ -137,6 +137,7 @@
         system = "aarch64-darwin";
         modules = [
           dotfiles-private.darwinModules."gorgon"
+          dotfiles-private.darwinModules."overlays"
           gorgon
 
           nixpkgs-overlays
