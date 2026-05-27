@@ -9,6 +9,8 @@
     nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.11";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
 
+    ccusage.url = "github:ryoppippi/ccusage";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,6 +30,7 @@
       nix-darwin,
       nixpkgs-unstable,
       nixpkgs-darwin,
+      ccusage,
       home-manager,
       dotfiles-private,
     }:
@@ -47,6 +50,7 @@
 
       overlay = self: super: {
         arc-browser = nixpkgs-2505.legacyPackages.${self.system}.arc-browser;
+        ccusage = ccusage.packages.${self.system}.ccusage;
       };
       nixpkgs-overlays =
         { pkgs, ... }:
@@ -136,11 +140,12 @@
       darwinConfigurations."gorgon" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
+          nixpkgs-overlays
+
           dotfiles-private.darwinModules."gorgon"
           dotfiles-private.darwinModules."overlays"
           gorgon
 
-          nixpkgs-overlays
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

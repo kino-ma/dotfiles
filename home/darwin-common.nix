@@ -7,7 +7,7 @@
 
   home.packages = with pkgs;
     [
-      colima
+      ccusage
       darwin.trash
       docker
       docker-credential-helpers
