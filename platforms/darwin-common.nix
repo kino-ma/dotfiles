@@ -8,8 +8,9 @@ in
 {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = [
+  environment.systemPackages = with pkgs; [
     scroll-reverser
+    colima
   ];
 
   # nix.package = pkgs.nix;
@@ -33,6 +34,10 @@ in
   nixpkgs.config = {
     allowUnfree = true;
     allowBroken = true;
+    permittedInsecurePackages = [
+      "lima-full-1.2.2"
+      "lima-additional-guestagents-1.2.2"
+    ];
   };
 
   system.primaryUser = lib.mkDefault "kino-ma";
