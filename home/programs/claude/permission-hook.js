@@ -13,30 +13,29 @@ const HOOK_EVENT_NAME = "PermissionRequest";
 
 const BUTTON_ALLOW = "Allow";
 const BUTTON_ALWAYS_ALLOW = "Always Allow";
-const BUTTON_DENY = "Decline";
+const BUTTON_DENY = "Cancel";
 
 const OUTPUT_ALLOW = "allow";
 const OUTPUT_DENY = "deny";
 
 /* Make decision according to pressed button */
-const makeDecision = (buttonReturned) => {
-  const decisionMapping = {
-    [BUTTON_ALLOW]: {
+const makeDecision = (buttonReturned, suggestions) => {
+  if (buttonReturned === BUTTON_ALWAYS_ALLOW) {
+    return {
       hookEventName: HOOK_EVENT_NAME,
-      permissionDecision: OUTPUT_ALLOW,
-    },
-    [BUTTON_ALWAYS_ALLOW]: {
+      decision: { behavior: OUTPUT_ALLOW, updatedPermissions: suggestions },
+    };
+  }
+  if (buttonReturned === BUTTON_ALLOW) {
+    return {
       hookEventName: HOOK_EVENT_NAME,
-      permissionDecision: OUTPUT_ALLOW,
-      allowAlways: true,
-    },
-    [BUTTON_DENY]: {
-      hookEventName: HOOK_EVENT_NAME,
-      permissionDecision: OUTPUT_DENY,
-    },
+      decision: { behavior: OUTPUT_ALLOW },
+    };
+  }
+  return {
+    hookEventName: HOOK_EVENT_NAME,
+    decision: { behavior: OUTPUT_DENY },
   };
-
-  return decisionMapping[buttonReturned] ?? decisionMapping[BUTTON_DENY];
 }
 
 /* Main function */
@@ -54,20 +53,37 @@ function main() {
     return `  [${key}]\n  ${displayValue}`;
   }).join('\n\n');
 
+  const suggestions = data.permission_suggestions ?? [];
+  const formatSuggestion = (s) => {
+    if (s.type === 'addRules' && Array.isArray(s.rules)) {
+      return s.rules.map(r => r.ruleContent ? `  ${r.toolName}(${r.ruleContent})` : `  ${r.toolName}`).join('\n');
+    }
+    return `  ${JSON.stringify(s)}`;
+  };
+  const suggestionsText = suggestions.length > 0
+    ? `\n\nAlways Allow will add:\n${suggestions.map(formatSuggestion).join('\n')}`
+    : '';
+
   const text = `Authorize "${toolName}" operation`;
-  const message = `Operation: ${toolName}\n\n${operationDetails}`;
+  const message = `Operation: ${toolName}\n\n${operationDetails}\n${suggestionsText}`;
   const buttons = [BUTTON_DENY, BUTTON_ALWAYS_ALLOW, BUTTON_ALLOW];
 
-  // Display macOS alert
-  const response = app.displayAlert(text, {
-    message,
-    buttons,
-    defaultButton: BUTTON_ALLOW,
-    cancelButton: BUTTON_DENY,
-    as: 'informational'
-  });
+  // Display macOS alert (cancelButton throws errorNumber -128)
+  let response;
+  try {
+    response = app.displayAlert(text, {
+      message,
+      buttons,
+      defaultButton: BUTTON_ALLOW,
+      cancelButton: BUTTON_DENY,
+      as: 'informational'
+    });
+  } catch (e) {
+    if (e.errorNumber === -128) { return; }
+    throw e;
+  }
 
-  const decision = makeDecision(response.buttonReturned);
+  const decision = makeDecision(response.buttonReturned, suggestions);
 
   const output = {
     hookSpecificOutput: decision,
@@ -83,8 +99,8 @@ try {
   console.log(JSON.stringify({
     hookSpecificOutput: {
       hookEventName: "PermissionRequest",
-      permissionDecision: "deny",
-      permissionDecisionReason: `An error occured while prompting to user: ${e}`
+      decision: { behavior: "deny" },
+      reason: `An error occured while prompting to user: ${e}`
     }
   }));
 }
