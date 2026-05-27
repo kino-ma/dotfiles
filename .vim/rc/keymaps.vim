@@ -99,7 +99,7 @@ nnoremap <silent> <C-u> <C-d>
 
 " useful shortcuts
 nnoremap <silent> <C-w> :w<CR>
-nnoremap <Leader>q :q!
+nnoremap <Leader>q :qa
 nnoremap <silent> <Leader>Q :w<CR>:bd<CR>
 
 " insert CR
