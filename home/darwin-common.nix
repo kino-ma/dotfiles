@@ -29,4 +29,6 @@
       pinentry-program ${pkgs.pinentry_mac}/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac
       enable-ssh-support
     '';
+
+  programs.claude-code = import ./programs/claude;
 }
