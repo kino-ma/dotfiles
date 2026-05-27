@@ -20,10 +20,10 @@ const OUTPUT_DENY = "deny";
 
 /* Format a permission suggestion entry for display */
 const DESTINATION_LABELS = {
-  session: 'session',
-  localSettings: 'local settings',
-  projectSettings: 'project settings',
-  userSettings: 'user settings',
+  session: 'This session',
+  localSettings: 'Local',
+  projectSettings: 'Project',
+  userSettings: 'User global',
 };
 
 const formatSuggestion = (s) => {
@@ -34,17 +34,17 @@ const formatSuggestion = (s) => {
     s.directories.map(d => `  ${label} (${dest}): ${d}`).join('\n');
   switch (s.type) {
     case 'addRules':
-      return formatRules('Add rule');
+      return formatRules('Add rules');
     case 'replaceRules':
       return formatRules('Replace rules');
     case 'removeRules':
-      return formatRules('Remove rule');
+      return formatRules('Remove rules');
     case 'setMode':
       return `  Set mode (${dest}): ${s.mode}`;
     case 'addDirectories':
-      return formatDirectories('Add directory');
+      return formatDirectories('Add directories');
     case 'removeDirectories':
-      return formatDirectories('Remove directory');
+      return formatDirectories('Remove directories');
     default:
       return `  ${JSON.stringify(s)}`;
   }
