@@ -1,25 +1,10 @@
 # dotfiles
 
-dotfiles of kino-ma
-
-**WARNING**: Executing `./install.sh` installs my GPG Public key with ultimate trust. Do not use without understanding what you are doing.
-
-## install
-
 ```
-$ ./install.sh
-```
+git clone https://github.com/kino-ma/dotfiles.git
 
-## update
-
-If you have installed already, or you just need to set config files:
-
-```
-$ ./install.sh --update
-```
-
-## without packages instllation
-
-```
-$ ./install.sh --init
+# Darwin
+sudo darwin-rebuild switch --flake "${HOME}/dotfiles#${THE_MACHINE_NAME}"
+# NixOS
+sudo nixos-rebuild switch --flake "${HOME}/dotfiles#${THE_MACHINE_NAME}"
 ```
