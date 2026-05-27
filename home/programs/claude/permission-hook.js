@@ -18,6 +18,38 @@ const BUTTON_DENY = "Cancel";
 const OUTPUT_ALLOW = "allow";
 const OUTPUT_DENY = "deny";
 
+/* Format a permission suggestion entry for display */
+const DESTINATION_LABELS = {
+  session: 'session',
+  localSettings: 'local settings',
+  projectSettings: 'project settings',
+  userSettings: 'user settings',
+};
+
+const formatSuggestion = (s) => {
+  const dest = DESTINATION_LABELS[s.destination] ?? s.destination;
+  const formatRules = (label) =>
+    s.rules.map(r => `  ${label} (${dest}): ${r.ruleContent ? `${r.toolName}(${r.ruleContent})` : r.toolName}`).join('\n');
+  const formatDirectories = (label) =>
+    s.directories.map(d => `  ${label} (${dest}): ${d}`).join('\n');
+  switch (s.type) {
+    case 'addRules':
+      return formatRules('Add rule');
+    case 'replaceRules':
+      return formatRules('Replace rules');
+    case 'removeRules':
+      return formatRules('Remove rule');
+    case 'setMode':
+      return `  Set mode (${dest}): ${s.mode}`;
+    case 'addDirectories':
+      return formatDirectories('Add directory');
+    case 'removeDirectories':
+      return formatDirectories('Remove directory');
+    default:
+      return `  ${JSON.stringify(s)}`;
+  }
+};
+
 /* Make decision according to pressed button */
 const makeDecision = (buttonReturned, suggestions) => {
   if (buttonReturned === BUTTON_ALWAYS_ALLOW) {
@@ -54,18 +86,13 @@ function main() {
   }).join('\n\n');
 
   const suggestions = data.permission_suggestions ?? [];
-  const formatSuggestion = (s) => {
-    if (s.type === 'addRules' && Array.isArray(s.rules)) {
-      return s.rules.map(r => r.ruleContent ? `  ${r.toolName}(${r.ruleContent})` : `  ${r.toolName}`).join('\n');
-    }
-    return `  ${JSON.stringify(s)}`;
-  };
+  const formattedSuggestions = suggestions.map(formatSuggestion).join('\n');
   const suggestionsText = suggestions.length > 0
-    ? `\n\nAlways Allow will add:\n${suggestions.map(formatSuggestion).join('\n')}`
+    ? `\n\nAlways Allow will add:\n${formattedSuggestions}`
     : '';
 
   const text = `Authorize "${toolName}" operation`;
-  const message = `Operation: ${toolName}\n\n${operationDetails}\n${suggestionsText}`;
+  const message = `Operation: ${toolName}\n\n${operationDetails}${suggestionsText}`;
   const buttons = [BUTTON_DENY, BUTTON_ALWAYS_ALLOW, BUTTON_ALLOW];
 
   // Display macOS alert (cancelButton throws errorNumber -128)
