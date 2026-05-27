@@ -5,11 +5,11 @@
     hooks = {
       PermissionRequest = [
         {
-          matcher = "Bash|Read|Edit|Write|Glob|Grep|Agent";
+          matcher = "";
           hooks = [
             {
               type = "command";
-              command = ''osascript -l JavaScript ${./permission-hook.js} 3<&0'';
+              command = ''osascript -l JavaScript ${./permission-hook.js} 3<&0 2>&1'';
             }
           ];
         }
