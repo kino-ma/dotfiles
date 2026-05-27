@@ -25,17 +25,17 @@ const makeDecision = (buttonReturned, suggestions) => {
       hookEventName: HOOK_EVENT_NAME,
       decision: { behavior: OUTPUT_ALLOW, updatedPermissions: suggestions },
     };
-  }
-  if (buttonReturned === BUTTON_ALLOW) {
+  } else if (buttonReturned === BUTTON_ALLOW) {
     return {
       hookEventName: HOOK_EVENT_NAME,
       decision: { behavior: OUTPUT_ALLOW },
     };
+  } else {
+    return {
+      hookEventName: HOOK_EVENT_NAME,
+      decision: { behavior: OUTPUT_DENY },
+    };
   }
-  return {
-    hookEventName: HOOK_EVENT_NAME,
-    decision: { behavior: OUTPUT_DENY },
-  };
 }
 
 /* Main function */
@@ -69,6 +69,7 @@ function main() {
   const buttons = [BUTTON_DENY, BUTTON_ALWAYS_ALLOW, BUTTON_ALLOW];
 
   // Display macOS alert (cancelButton throws errorNumber -128)
+  // See: https://bru6.de/jxa/basics/interacting-with-users/
   let response;
   try {
     response = app.displayAlert(text, {
@@ -99,7 +100,7 @@ try {
   console.log(JSON.stringify({
     hookSpecificOutput: {
       hookEventName: "PermissionRequest",
-      decision: { behavior: "deny" },
+      decision: { behavior: OUTPUT_DENY },
       reason: `An error occured while prompting to user: ${e}`
     }
   }));
