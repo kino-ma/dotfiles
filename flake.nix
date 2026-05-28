@@ -16,9 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    dotfiles-private = {
-      url = "git+ssh://git@github.com/kino-ma/dotfiles-private?ref=main";
-    };
+    dotfiles-private.url = "git+ssh://git@github.com/kino-ma/dotfiles-private?ref=main";
 
   };
 
@@ -143,7 +141,6 @@
           nixpkgs-overlays
 
           dotfiles-private.darwinModules."gorgon"
-          dotfiles-private.darwinModules."overlays"
           gorgon
 
           home-manager.darwinModules.home-manager
