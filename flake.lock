@@ -57,14 +57,14 @@
     },
     "dotfiles-private": {
       "inputs": {
-        "claude-launcher": "claude-launcher"
+        "r-dotfiles": "r-dotfiles"
       },
       "locked": {
-        "lastModified": 1779691938,
-        "narHash": "sha256-PDkCuJyrLK/bVad8e6w6k00reZh5vmnStVb/4d6svMg=",
+        "lastModified": 1779954981,
+        "narHash": "sha256-eXOz0yVkbmjvLcocC4t9RHuMC0Z30wKSgOv6P9Zv9rA=",
         "ref": "main",
-        "rev": "156e29e2244d6166984a15d35b1ca7260f7b6f14",
-        "revCount": 32,
+        "rev": "fd301731e7e7acb42e65cde51db5f7f037663620",
+        "revCount": 33,
         "type": "git",
         "url": "ssh://git@github.com/kino-ma/dotfiles-private"
       },
@@ -226,6 +226,24 @@
         "ref": "25.11",
         "repo": "nixpkgs",
         "type": "github"
+      }
+    },
+    "r-dotfiles": {
+      "inputs": {
+        "claude-launcher": "claude-launcher"
+      },
+      "locked": {
+        "lastModified": 1779954518,
+        "narHash": "sha256-vSAtZu8VlVKo10hQNl1Rmuw7Isv57gp5B+qd76MeO7A=",
+        "ref": "refs/heads/main",
+        "rev": "ff1b62fe9034758c85b8fe8de006ab003b05c2d6",
+        "revCount": 3,
+        "type": "git",
+        "url": "ssh://git@ghe.misosiru.io/seiki-makino/r-dotfiles"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@ghe.misosiru.io/seiki-makino/r-dotfiles"
       }
     },
     "root": {
