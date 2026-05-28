@@ -38,11 +38,11 @@
     },
     "dotfiles-private": {
       "locked": {
-        "lastModified": 1779691938,
-        "narHash": "sha256-PDkCuJyrLK/bVad8e6w6k00reZh5vmnStVb/4d6svMg=",
+        "lastModified": 1779954981,
+        "narHash": "sha256-eXOz0yVkbmjvLcocC4t9RHuMC0Z30wKSgOv6P9Zv9rA=",
         "ref": "main",
-        "rev": "156e29e2244d6166984a15d35b1ca7260f7b6f14",
-        "revCount": 32,
+        "rev": "fd301731e7e7acb42e65cde51db5f7f037663620",
+        "revCount": 33,
         "type": "git",
         "url": "ssh://git@github.com/kino-ma/dotfiles-private"
       },
