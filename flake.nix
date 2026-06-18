@@ -38,13 +38,13 @@
       nixos-gui = import ./platforms/nixos-gui.nix;
       nixos-desktop = import ./platforms/nixos-desktop.nix;
 
+      darwin-common = import ./platforms/darwin-common.nix;
+
       babylon = import ./hosts/babylon/babylon.nix;
       domremy = import ./hosts/domremy/domremy.nix;
       edinburgh = import ./hosts/edinburgh.nix;
       vps-jn-config = import ./hosts/vps-jn.nix;
-      alamut = import ./hosts/alamut/alamut.nix;
       wales = import ./hosts/wales/wales.nix;
-      gorgon = import ./hosts/gorgon/gorgon.nix;
 
       overlay = self: super: {
         arc-browser = nixpkgs-2505.legacyPackages.${self.system}.arc-browser;
@@ -58,6 +58,10 @@
 
     in
     {
+      # Export reusable modules
+      darwinModules.overlays = nixpkgs-overlays;
+      darwinModules.common = darwin-common;
+
       # Build darwin flake using:
       # $ darwin-rebuild build --flake .#babylon
       darwinConfigurations."babylon" = nix-darwin.lib.darwinSystem {
@@ -106,43 +110,12 @@
         ];
       };
 
-      darwinConfigurations."alamut" = nix-darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        modules = [
-          dotfiles-private.darwinModules."alamut"
-          alamut
-
-          nixpkgs-overlays
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-          }
-        ];
-      };
-
       darwinConfigurations."wales" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
           wales
 
           nixpkgs-overlays
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-          }
-        ];
-      };
-
-      darwinConfigurations."gorgon" = nix-darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        modules = [
-          nixpkgs-overlays
-
-          dotfiles-private.darwinModules."gorgon"
-          gorgon
-
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -165,6 +138,5 @@
           }
         ];
       };
-
     };
 }

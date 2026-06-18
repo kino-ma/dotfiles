@@ -47,4 +47,6 @@ in
   system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
   system.defaults.NSGlobalDomain.KeyRepeat = 2;
   system.defaults.NSGlobalDomain.InitialKeyRepeat = 15;
+
+  home-manager.users."kino-ma" = import ../home/darwin-common.nix;
 }
