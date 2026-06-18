@@ -5,7 +5,7 @@
     [
       bc
       curl
-      dogdns
+      doggo
       duf
       dust
       fd
