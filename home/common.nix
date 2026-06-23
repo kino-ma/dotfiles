@@ -1,36 +1,41 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs;
-    [
-      bc
-      curl
-      doggo
-      duf
-      dust
-      fd
-      file
-      gh
-      git
-      git-lfs
-      gnumake
-      gnupg
-      gping
-      htop
-      hub
-      httpie
-      hyperfine
-      inetutils
-      jq
-      lazygit
-      nixpkgs-fmt
-      nixfmt-rfc-style
-      procs
-      procps
-      python3
-      tldr
-      tmux
-    ];
+  imports = [
+    ./programs/git.nix
+    ./programs/neovim.nix
+    ./programs/zsh.nix
+  ];
+
+  home.packages = with pkgs; [
+    bc
+    curl
+    doggo
+    duf
+    dust
+    fd
+    file
+    gh
+    git
+    git-lfs
+    gnumake
+    gnupg
+    gping
+    htop
+    hub
+    httpie
+    hyperfine
+    inetutils
+    jq
+    lazygit
+    nixfmt
+    nixpkgs-fmt
+    procs
+    procps
+    python3
+    tldr
+    tmux
+  ];
 
   programs.bat = {
     enable = true;
@@ -71,14 +76,7 @@
     defaultCommand = "fd --type f";
   };
 
-
-  programs.git = import ./programs/git.nix;
-
   programs.gpg = import ./programs/gpg.nix;
-
-  programs.neovim = import ./programs/neovim.nix {
-    inherit pkgs;
-  };
 
   programs.wezterm = import ./programs/wezterm;
 
@@ -99,9 +97,5 @@
     mouse = true;
     newSession = true;
     terminal = "screen-256color";
-  };
-
-  programs.zsh = import ./programs/zsh.nix {
-    inherit pkgs;
   };
 }

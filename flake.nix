@@ -46,10 +46,16 @@
       vps-jn-config = import ./hosts/vps-jn.nix;
       wales = import ./hosts/wales/wales.nix;
 
-      overlay = self: super: {
-        arc-browser = nixpkgs-2505.legacyPackages.${self.system}.arc-browser;
-        ccusage = ccusage.packages.${self.system}.ccusage;
-      };
+      overlay =
+        final: prev:
+        let
+          system = final.stdenv.hostPlatform.system;
+        in
+        {
+          arc-browser = nixpkgs-2505.legacyPackages.${system}.arc-browser;
+          ccusage = ccusage.packages.${system}.ccusage;
+        };
+
       nixpkgs-overlays =
         { pkgs, ... }:
         {
