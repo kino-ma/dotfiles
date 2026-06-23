@@ -99,6 +99,13 @@ function main() {
   // See: https://bru6.de/jxa/basics/interacting-with-users/
   let response;
   try {
+    app.displayNotification(text, {
+      withTitle: "Claude",
+      soundName: "alert",
+    });
+
+    delay(0.4);
+
     response = app.displayAlert(text, {
       message,
       buttons,
@@ -127,7 +134,6 @@ try {
   console.log(JSON.stringify({
     hookSpecificOutput: {
       hookEventName: "PermissionRequest",
-      decision: { behavior: OUTPUT_DENY },
       reason: `An error occured while prompting to user: ${e}`
     }
   }));
