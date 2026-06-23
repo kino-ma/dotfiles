@@ -93,7 +93,9 @@ function main() {
 
   const text = `Authorize "${toolName}" operation`;
   const message = `Operation: ${toolName}\n\n${operationDetails}${suggestionsText}`;
-  const buttons = [BUTTON_DENY, BUTTON_ALWAYS_ALLOW, BUTTON_ALLOW];
+  const buttons = suggestions.length > 0
+    ? [BUTTON_DENY, BUTTON_ALWAYS_ALLOW, BUTTON_ALLOW]
+    : [BUTTON_DENY, BUTTON_ALLOW];
 
   // Display macOS alert (cancelButton throws errorNumber -128)
   // See: https://bru6.de/jxa/basics/interacting-with-users/
