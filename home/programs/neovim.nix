@@ -82,4 +82,8 @@
       source ${../../.vim/rc/terminal.vim}
     '';
   };
+
+  home.file.".ideavimrc".text = ''
+    source ${../../.vim/rc/vscode.vim}
+  '';
 }
