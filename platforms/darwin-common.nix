@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 let
 
@@ -47,6 +52,7 @@ in
   system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
   system.defaults.NSGlobalDomain.KeyRepeat = 2;
   system.defaults.NSGlobalDomain.InitialKeyRepeat = 15;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   home-manager.users."kino-ma" = import ../home/darwin-common.nix;
 }
