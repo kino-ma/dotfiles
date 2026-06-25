@@ -96,6 +96,7 @@
       . ${../../.zsh/gpg.zsh}
       . ${../../.zsh/gpg.zsh}
       . ${../../.zsh/history.zsh}
+      . ${../../.zsh/notify.zsh}
       unset RPS1
       unset RPROMPT
 
