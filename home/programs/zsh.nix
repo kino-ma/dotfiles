@@ -34,6 +34,23 @@
       DOCKER_HOST = "unix://\${HOME}/.colima/default/docker.sock";
     };
 
+    siteFunctions = {
+      "fzf-select-history" = ''
+         BUFFER=$(history -n -r 1 | fzf --query "$LBUFFER" --reverse)
+        CURSOR=$#BUFFER
+        zle reset-prompt
+      '';
+
+      "fzf-cdr" = ''
+        local selected_dir=$(cdr -l | awk '{ print $2 }' | fzf --reverse)
+        if [ -n "$selected_dir" ]; then
+            BUFFER="cd $selected_dir"
+            zle accept-line
+        fi
+        zle clear-screen
+      '';
+    };
+
     shellAliases = {
       xbrew = "BREW_PREFIX=/usr/local arch -x86_64 /usr/local/Homebrew/bin/brew";
       dcp = "docker compose";
@@ -77,6 +94,8 @@
       . ${../../.zsh/functions.zsh}
       . ${../../.zsh/keys.zsh}
       . ${../../.zsh/gpg.zsh}
+      . ${../../.zsh/gpg.zsh}
+      . ${../../.zsh/history.zsh}
       unset RPS1
       unset RPROMPT
 
