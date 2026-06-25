@@ -4,6 +4,9 @@
 const app = Application.currentApplication();
 app.includeStandardAdditions = true;
 
+// This brings `$` variable into the scope
+ObjC.import("Foundation");
+
 // Use FD 3 instead of stdin (fd 1) because AppleScript closes stdin
 // See: https://stackoverflow.com/a/18732806
 const stdinText = app.doShellScript('cat <&3');
@@ -75,6 +78,21 @@ function main() {
   const data = JSON.parse(stdinText);
   const toolName = data.tool_name || "<Unknown Tool>";
   const toolInput = data.tool_input || {};
+
+  // In IntelliJ, the bundled diff view handles Edit approvals, so skip the
+  // alert and only notify, deferring the decision to the built-in UI.
+  const environment = $.NSProcessInfo.processInfo.environment.js;
+  const terminalEmulator = 'TERMINAL_EMULATOR' in environment
+    ? environment.TERMINAL_EMULATOR.js
+    : undefined;
+  const isIntelliJ = terminalEmulator === 'JetBrains-JediTerm';
+  if (isIntelliJ && toolName === 'Edit') {
+    app.displayNotification(`Authorize "${toolName}" operation`, {
+      withTitle: "Claude",
+      soundName: "alert",
+    });
+    return;
+  }
 
   const operationDetails = Object.entries(toolInput).map(([key, value]) => {
     const str = value.toString();
