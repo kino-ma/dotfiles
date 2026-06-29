@@ -36,7 +36,7 @@
 
     siteFunctions = {
       "fzf-select-history" = ''
-         BUFFER=$(history -n -r 1 | fzf --query "$LBUFFER" --reverse --no-sort)
+        BUFFER=$(history -n -r 1 | fzf --query "$LBUFFER" --reverse --tiebreak index)
         CURSOR=$#BUFFER
         zle reset-prompt
       '';
