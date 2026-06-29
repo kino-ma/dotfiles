@@ -53,6 +53,22 @@ const formatSuggestion = (s) => {
   }
 };
 
+/* Format a Bash command for display.
+ * `;` separates commands onto their own line; `|`, `&&`, `||` move the
+ * operator to the start of an following line. */
+const formatBashCommand = (command) => {
+  const tokens = command.split(/(\s*(?:&&|\|\||;|\|)\s*)/);
+  return tokens.map((token, i) => {
+    // Even indices are command segments, odd indices are separators.
+    if (i % 2 === 0) { return token.trim(); }
+    const op = token.trim();
+
+    // macOS alerts remove leading whitespaces of each line.
+    // Instead of indenting the entire line, insert a '\t' after operators.
+    return op === ';' ? ';\n\n' : `\n${op}\t`;
+  }).join('');
+};
+
 /* Make decision according to pressed button */
 const makeDecision = (buttonReturned, suggestions) => {
   if (buttonReturned === BUTTON_ALWAYS_ALLOW) {
@@ -95,10 +111,12 @@ function main() {
   }
 
   const operationDetails = Object.entries(toolInput).map(([key, value]) => {
-    const str = value.toString();
+    const str = toolName === 'Bash' && key === 'command'
+      ? value.toString()
+      : formatBashCommand(str);
     const displayValue = str.length <= 300
       ? str
-      : value.substring(0, 300) + '...';
+      : str.substring(0, 300) + '...';
 
     return `  [${key}]\n  ${displayValue}`;
   }).join('\n\n');
