@@ -112,8 +112,8 @@ function main() {
 
   const operationDetails = Object.entries(toolInput).map(([key, value]) => {
     const str = toolName === 'Bash' && key === 'command'
-      ? value.toString()
-      : formatBashCommand(str);
+      ? formatBashCommand(value.toString())
+      : value.toString();
     const displayValue = str.length <= 300
       ? str
       : str.substring(0, 300) + '...';
