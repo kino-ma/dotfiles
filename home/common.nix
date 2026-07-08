@@ -28,6 +28,7 @@
     hyperfine
     inetutils
     jq
+    just
     lazygit
     nixfmt
     nixpkgs-fmt
