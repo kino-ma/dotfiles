@@ -5,12 +5,14 @@
     ./common.nix
 
     ./programs/claude
+    ./programs/cmux
   ];
 
   home.stateVersion = "24.05";
 
   home.packages = with pkgs; [
     ccusage
+    cmux
     darwin.trash
     docker
     docker-credential-helpers
