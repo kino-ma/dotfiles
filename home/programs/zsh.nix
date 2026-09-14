@@ -100,6 +100,28 @@
       unset RPS1
       unset RPROMPT
 
+      # agnoster theme's prompt_git() calls parse_git_dirty() (git status --porcelain)
+      # and vcs_info with check-for-changes, which are slow on large repos.
+      # Override with a lightweight version that only shows the branch name.
+      prompt_git() {
+        (( $+commands[git] )) || return
+        if [[ "$(command git config --get oh-my-zsh.hide-status 2>/dev/null)" = 1 ]]; then
+          return
+        fi
+        local PL_BRANCH_CHAR
+        () {
+          local LC_ALL="" LC_CTYPE="en_US.UTF-8"
+          PL_BRANCH_CHAR=$'\ue0a0'
+        }
+        local ref
+        if [[ "$(command git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ]]; then
+          ref=$(command git symbolic-ref --short HEAD 2>/dev/null) || \
+          ref="◈ $(command git describe --exact-match --tags HEAD 2>/dev/null)" || \
+          ref="➦ $(command git rev-parse --short HEAD 2>/dev/null)"
+          prompt_segment "$AGNOSTER_GIT_CLEAN_BG" "$AGNOSTER_GIT_CLEAN_FG" "$PL_BRANCH_CHAR ''${ref:gs/%/%%}"
+        fi
+      }
+
       for script in $HOME/.config/op/plugins.sh; do
           if [[ -f "$script" ]]; then
               . $script
