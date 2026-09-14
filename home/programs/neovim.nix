@@ -84,6 +84,6 @@
   };
 
   home.file.".ideavimrc".text = ''
-    source ${../../.vim/rc/vscode.vim}
+    source ${../../.vim/rc/idea.vim}
   '';
 }
