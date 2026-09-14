@@ -14,11 +14,25 @@
       "Bash(git show *)"
       "Bash(git status *)"
 
+      "Bash(nix build *)"
+      "Bash(nix eval *)"
+
+      "Bash(javap *)"
+
       "Bash(command -v)"
       "Bash(nix *)"
       "Bash(python3 -m json.tool)"
 
       "Read(//tmp/**)"
+    ];
+    ask = [
+      "Bash(git commit *)"
+      "Bash(git push *)"
+      "Bash(nix run *)"
+    ];
+    deny = [
+      "Bash(brew *)"
+      "Bash(pip install *)"
     ];
   };
 }
