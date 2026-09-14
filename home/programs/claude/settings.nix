@@ -36,7 +36,6 @@
       "Read(//tmp/**)"
     ];
     ask = [
-      "Bash(git commit *)"
       "Bash(git push *)"
       "Bash(nix run *)"
     ];
