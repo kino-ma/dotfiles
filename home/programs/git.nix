@@ -27,6 +27,9 @@
         ds = "diff --staged";
         rs = "restore --staged";
         sc = "switch --create";
+        p = "pull";
+        pp = "push";
+        ppp = "!bash ${../../shell-helpers/push-to-remote.sh}";
 
         c-feat = "!sh ${../../shell-helpers/commit-with-prefix.sh} feat";
         c-fix = "!sh ${../../shell-helpers/commit-with-prefix.sh} fix";
