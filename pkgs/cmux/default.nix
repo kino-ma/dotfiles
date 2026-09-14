@@ -7,7 +7,7 @@
 
 stdenvNoCC.mkDerivation rec {
   pname = "cmux";
-  version = "0.64.17";
+  version = "0.64.20";
 
   src = fetchurl {
     url = "https://github.com/manaflow-ai/cmux/releases/download/v${version}/cmux-macos.dmg";
@@ -28,7 +28,7 @@ stdenvNoCC.mkDerivation rec {
   installPhase = ''
     runHook preInstall
     mkdir -p "$out/Applications"
-    cp -r cmux.app "$out/Applications/"
+    cp -r 'cmux.app' "$out/Applications/"
     /usr/bin/xattr -cr "$out/Applications/cmux.app"
     runHook postInstall
   '';

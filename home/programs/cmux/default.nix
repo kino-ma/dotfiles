@@ -9,7 +9,10 @@
 
     package = pkgs.ghostty-bin;
 
-    enableZshIntegration = true;
+    # Currently, cmux in breaking path consistency of integration scripts.
+    # refs: https://github.com/manaflow-ai/cmux/issues/1309
+    # So we load the cmux's scripts on zsh side.
+    enableZshIntegration = false;
     installBatSyntax = true;
     installVimSyntax = true;
   };
@@ -17,6 +20,17 @@
   home.file.".config/cmux/cmux.json".text = builtins.toJSON {
     "$schema" = "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/data/cmux.schema.json";
     schemaVersion = 1;
+
+    app = {
+      appearance = "dark";
+      reorderOnNotification = false;
+    };
+
+    notifications = {
+      agentPermissionPrompt = false;
+      agentTurnComplete = false;
+      agentIdleReminder = false;
+    };
 
     terminal = {
       copyOnSelect = true;
