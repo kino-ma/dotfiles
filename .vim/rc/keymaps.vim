@@ -17,7 +17,6 @@ noremap n l
 noremap k d
 noremap l n
 noremap j t
-noremap t k
 
 " Map t to UP, not Open In New Tab, in netrw & nerdtree mode
 augroup netrw_mapping
