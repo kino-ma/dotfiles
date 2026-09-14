@@ -47,4 +47,9 @@
       focusTextBoxInput = "cmd+.";
     };
   };
+
+  home.file.".config/ghostty/config.ghostty".text = ''
+    cursor-style = block
+    shell-integration-features = no-cursor
+  '';
 }
