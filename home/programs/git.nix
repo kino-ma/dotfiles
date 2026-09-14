@@ -1,11 +1,16 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   programs.git = {
     enable = true;
 
     signing = {
-      key = "F0D7A2F02CAE648A";
+      key = lib.mkDefault "F0D7A2F02CAE648A";
       signByDefault = true;
     };
 
@@ -13,7 +18,7 @@
       pull.ff = "only";
       init.defaultBranch = "main";
 
-      user = {
+      user = lib.mkDefault {
         Name = "kino-ma";
         Email = "ma@kino.ma";
       };
