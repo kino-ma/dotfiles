@@ -91,6 +91,11 @@
 
     # Export LSCOLORS here instead of sessionVariables, because some plugins seem to override them.
     initContent = ''
+      if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
+        source "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration 2>/dev/null || \
+          source "''${GHOSTTY_RESOURCES_DIR%/ghostty}"/shell-integration/ghostty-integration.zsh 2>/dev/null
+      fi
+
       . ${../../.zsh/functions.zsh}
       . ${../../.zsh/keys.zsh}
       . ${../../.zsh/gpg.zsh}
