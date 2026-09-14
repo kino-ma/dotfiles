@@ -10,6 +10,7 @@
 
   home.packages = with pkgs; [
     bc
+    clamp
     curl
     doggo
     duf

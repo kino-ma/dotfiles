@@ -55,6 +55,7 @@
           arc-browser = nixpkgs-2505.legacyPackages.${system}.arc-browser;
           ccusage = ccusage.packages.${system}.ccusage;
           cmux = final.callPackage ./pkgs/cmux { };
+          clamp = final.callPackage ./pkgs/clamp { };
         };
 
       nixpkgs-overlays =
