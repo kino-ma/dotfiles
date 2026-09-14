@@ -22,10 +22,16 @@ let
     sha256 = "sha256-RH2B03gj4kzw1j5LORezgUZPPu8mW+mWb+Kl2U7WUbY=";
   };
 
+  mattpocock = pkgs.fetchFromGitHub {
+    owner = "mattpocock";
+    repo = "skills";
+    rev = "main";
+    sha256 = "sha256-dF5i37jHnqfcXD1IRSVzSSm/pfCYSUmOsEhhs5Zx340=";
+  };
 in
 [
   cc-caffeine
   chrome-devtools
-
+  mattpocock
   "${official-skills}/skills"
 ]
