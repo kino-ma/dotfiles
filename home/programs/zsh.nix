@@ -42,7 +42,7 @@
       '';
 
       "fzf-cdr" = ''
-        local selected_dir=$(cdr -l | awk '{ print $2 }' | fzf --reverse)
+        local selected_dir=$(cdr -l | awk '{ print $2 }' | fzf)
         if [ -n "$selected_dir" ]; then
             BUFFER="cd $selected_dir"
             zle accept-line
