@@ -56,6 +56,7 @@
           ccusage = ccusage.packages.${system}.ccusage;
           cmux = final.callPackage ./pkgs/cmux { };
           clamp = final.callPackage ./pkgs/clamp { };
+          claude-code = nixpkgs-unstable.legacyPackages.${system}.claude-code;
         };
 
       nixpkgs-overlays =
