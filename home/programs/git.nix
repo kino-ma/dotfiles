@@ -35,6 +35,9 @@
         p = "pull";
         pp = "push";
         ppp = "!bash ${../../shell-helpers/push-to-remote.sh}";
+        wa = "worktree add -b";
+        wi = "worktree list";
+        we = "worktree remove";
 
         c-feat = "!sh ${../../shell-helpers/commit-with-prefix.sh} feat";
         c-fix = "!sh ${../../shell-helpers/commit-with-prefix.sh} fix";
