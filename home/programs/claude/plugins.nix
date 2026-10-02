@@ -28,10 +28,18 @@ let
     rev = "main";
     sha256 = "sha256-dF5i37jHnqfcXD1IRSVzSSm/pfCYSUmOsEhhs5Zx340=";
   };
+
+  yomiyasu = pkgs.fetchFromGitHub {
+    owner = "nanaism";
+    repo = "yomiyasu";
+    rev = "main";
+    # sha256 = "sha256-dF5i37jHnqfcXD1IRSVzSSm/pfCYSUmOsEhhs5Zx340=";
+  };
 in
 [
   cc-caffeine
   chrome-devtools
   mattpocock
   "${official-skills}/skills"
+  yomiyyasu
 ]
