@@ -29,17 +29,25 @@ let
     sha256 = "sha256-dF5i37jHnqfcXD1IRSVzSSm/pfCYSUmOsEhhs5Zx340=";
   };
 
+  slack = pkgs.fetchFromGitHub {
+    owner = "slackapi";
+    repo = "slack-mcp-plugin";
+    rev = "main";
+    sha256 = "sha256-rmgMymxZCpP+a3E282BLMFRnNSRRd5SZivmoH1PX4d4=";
+  };
+
   yomiyasu = pkgs.fetchFromGitHub {
     owner = "nanaism";
     repo = "yomiyasu";
     rev = "main";
-    # sha256 = "sha256-dF5i37jHnqfcXD1IRSVzSSm/pfCYSUmOsEhhs5Zx340=";
+    sha256 = "sha256-0ZkpwWkNI16wlP3MzFyvtA84GPR1vLXyXvnw2DdCt10=";
   };
 in
 [
   cc-caffeine
   chrome-devtools
   mattpocock
+  slack
   "${official-skills}/skills"
-  yomiyyasu
+  yomiyasu
 ]
