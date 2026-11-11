@@ -57,6 +57,7 @@
           cmux = final.callPackage ./pkgs/cmux { };
           clamp = final.callPackage ./pkgs/clamp { };
           claude-code = nixpkgs-unstable.legacyPackages.${system}.claude-code;
+          deepseek-harness = final.callPackage ./pkgs/deepseek-harness { };
         };
 
       nixpkgs-overlays =

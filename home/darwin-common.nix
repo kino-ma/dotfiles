@@ -14,6 +14,7 @@
     ccusage
     cmux
     darwin.trash
+    deepseek-harness
     docker
     docker-credential-helpers
     iproute2mac
