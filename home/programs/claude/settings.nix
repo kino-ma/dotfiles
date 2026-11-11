@@ -1,9 +1,6 @@
 {
   hooks = import ./hooks.nix;
 
-  # global CLAUDE.md
-  context = ./rules.md;
-
   worktree.baseRef = "head";
 
   statusLine = {
