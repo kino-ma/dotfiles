@@ -8,12 +8,31 @@ let
     sha256 = "sha256-kJ+Ast9a38mNT6rjBCwvvGx84voKz+vhSrpRkq68pqc=";
   };
 
-  chrome-devtools = pkgs.fetchFromGitHub {
+  chrome-devtools-source = pkgs.fetchFromGitHub {
     owner = "ChromeDevTools";
     repo = "chrome-devtools-mcp";
     rev = "main";
     sha256 = "sha256-tB/9iZ8tY2zYN3zBSzj5aPOgoTTUpV+CV4d2DfRa+fU=";
   };
+
+  chrome-devtools =
+    pkgs.runCommand "chrome-devtools-mcp"
+      {
+        nativeBuildInputs = [ pkgs.jq ];
+      }
+      ''
+        mkdir -p "$out"
+        cp -R ${chrome-devtools-source}/. "$out/"
+        chmod -R u+w "$out"
+        jq '
+          if (.mcpServers["chrome-devtools"].args | type) != "array" then
+            error("expected mcpServers.chrome-devtools.args to be an array")
+          else
+            .mcpServers["chrome-devtools"].args |= (. + (["--headless", "--isolated"] - .))
+          end
+        ' "$out/.claude-plugin/plugin.json" > "$out/.claude-plugin/plugin.json.tmp"
+        mv "$out/.claude-plugin/plugin.json.tmp" "$out/.claude-plugin/plugin.json"
+      '';
 
   official-skills = pkgs.fetchFromGitHub {
     owner = "anthropics";
