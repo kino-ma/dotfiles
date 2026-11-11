@@ -48,6 +48,6 @@ in
   chrome-devtools
   mattpocock
   slack
-  "${official-skills}/skills"
+  official-skills
   yomiyasu
 ]
